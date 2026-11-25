@@ -304,8 +304,8 @@ def check_hessian(
     Returns
     -------
     dict
-        "errors": [e], "max frequency": the largest frequency magnitude, "refused": bool and
-        "reason": text or None.
+        "errors": [e], "max frequency": the largest frequency magnitude,
+        "refused": bool and "reason": text or None.
     """
     x0 = np.asarray(xyz, dtype=float).reshape(-1)
     H = np.asarray(hessian, dtype=float)

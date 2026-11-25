@@ -2,7 +2,7 @@ seamm
 seamm-util
 seamm-widgets
 seamm-exec>=2026.11.25.1
-normal-mode-sampling-step
+normal-mode-sampling-step>=2026.11.25
 molsystem
 numpy
 ase
