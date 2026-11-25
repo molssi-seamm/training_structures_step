@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/training_structures_step';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development Team" href="../authors.html" />
+    <link rel="prev" title="training_structures_step" href="modules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.25" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Training Structures</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">training_structures_step</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a aria-current="page" class="current reference internal" href="#">training_structures_step package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">training_structures_step</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">training_structures_step package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="training-structures-step-package">
+<h1>training_structures_step package<a class="headerlink" href="#training-structures-step-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-training_structures_step.generate">
+<span id="training-structures-step-generate-module"></span><h2>training_structures_step.generate module<a class="headerlink" href="#module-training_structures_step.generate" title="Link to this heading">#</a></h2>
+<p>The geometry generators and filters of the Training Structures step, as plain
+functions of coordinates, bonds and Hessians (no flowchart state), so that they
+can be tested on their own.</p>
+<p>Units: coordinates in Å, Hessians in E_h/bohr², gradients in E_h/bohr, energies in
+E_h unless a name says otherwise.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.bond_classes">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">bond_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#bond_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.bond_classes" title="Link to this definition">#</a></dt>
+<dd><p>{“C-H”: (i, j), …}: for each bonded element pair, the bond of median
+length (the lower of the two middle ones; ties to the lower indices).
+<code class="docutils literal notranslate"><span class="pre">pairs</span></code> limits it to those classes (e.g. {“C-H”, “C-C”}; order of the
+elements does not matter).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.check_hessian">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">check_hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses_amu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_displacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#check_hessian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.check_hessian" title="Link to this definition">#</a></dt>
+<dd><p>Test a Hessian against central differences of the gradient.</p>
+<p>For each of <code class="docutils literal notranslate"><span class="pre">n_displacements</span></code> random displacements δ with an RMS of <code class="docutils literal notranslate"><span class="pre">rms</span></code>
+Å, e = ‖Hδ − [g(x₀+δ) − g(x₀−δ)]/2‖ / ‖Hδ‖ (2 gradients each). The Hessian
+is refused if any e exceeds <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> or any frequency magnitude exceeds
+<code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> cm⁻¹.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gradient</strong> (<em>callable</em>) – gradient(xyz (N, 3) Å) -&gt; (3N,) E_h/bohr.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>“errors”: [e], “max frequency”: the largest frequency magnitude,
+“refused”: bool and “reason”: text or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.connectivity">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.connectivity" title="Link to this definition">#</a></dt>
+<dd><p>The bonds (i &lt; j) of a structure: atoms closer than <code class="docutils literal notranslate"><span class="pre">factor</span></code> times the
+sum of their covalent radii.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.connectivity_change">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">connectivity_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference_bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#connectivity_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.connectivity_change" title="Link to this definition">#</a></dt>
+<dd><p>None if the structure has exactly the reference bonds, else the bonds
+broken and formed, as text (e.g. ‘-C1-H5 +H5-O3’). <code class="docutils literal notranslate"><span class="pre">exempt</span></code> is a bond
+(i, j) not judged: a bond stretched on purpose.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.covalent_radii">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">covalent_radii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#covalent_radii"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.covalent_radii" title="Link to this definition">#</a></dt>
+<dd><p>RDKit’s covalent radii (Å) of the elements.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.diatomic_grid">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">diatomic_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#diatomic_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.diatomic_grid" title="Link to this definition">#</a></dt>
+<dd><p>Bond-length changes (Å) for a diatomic’s 1-D stretch grid: n_points equally
+spaced from -a to +a, a the displacement whose harmonic energy is <code class="docutils literal notranslate"><span class="pre">energy</span></code>
+(E_h); r_e itself (the minimum, already a point) is left out if it falls on
+the grid.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.dihedral">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#dihedral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.dihedral" title="Link to this definition">#</a></dt>
+<dd><p>The dihedral a-b-c-d (degrees, -180..180).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.find_rotors">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">find_rotors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conjugated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rotors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#find_rotors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.find_rotors" title="Link to this definition">#</a></dt>
+<dd><p>The heavy rotors of a molecule, most heavy atoms moved first.</p>
+<p>A heavy rotor is an acyclic single bond i-j, not conjugated, where i and j
+each have another heavy-atom neighbour (so methyl, OH and NH2 rotations are
+not rotors). Rotating about it moves the smaller side; rotors are ranked by
+the number of heavy atoms that moves, ties going to the lower atom indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbols</strong> (<em>[</em><em>str</em><em>]</em>)</p></li>
+<li><p><strong>bonds</strong> (<em>[</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em><em>]</em>) – 0-based.</p></li>
+<li><p><strong>orders</strong> (<em>{</em><em>(</em><em>i</em><em>, </em><em>j</em><em>)</em><em>: int}</em><em> or </em><em>None</em>) – Bond orders (i &lt; j); a bond without one counts as single.</p></li>
+<li><p><strong>conjugated</strong> (<em>set</em><em> of </em><em>(</em><em>i</em><em>, </em><em>j</em><em>) or </em><em>None</em>) – The conjugated bonds (i &lt; j), e.g. from RDKit’s GetIsConjugated.</p></li>
+<li><p><strong>max_rotors</strong> (<em>int</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Each with “bond” (i, j), “dihedral” (a, i, j, b), “moving” (the atoms
+that rotate, a sorted list) and “heavy moved”.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.frequencies">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">frequencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses_amu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#frequencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.frequencies" title="Link to this definition">#</a></dt>
+<dd><p>Signed harmonic frequencies (cm⁻¹) of a Cartesian Hessian (E_h/bohr²),
+without projecting translations and rotations (for the frequency guard).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.rotate_about_bond">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">rotate_about_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moving</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#rotate_about_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.rotate_about_bond" title="Link to this definition">#</a></dt>
+<dd><p>A copy of xyz with the atoms <code class="docutils literal notranslate"><span class="pre">moving</span></code> turned by <code class="docutils literal notranslate"><span class="pre">degrees</span></code> about the
+i-j axis (right-handed about i -&gt; j).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.scan_angles">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">scan_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#scan_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.scan_angles" title="Link to this definition">#</a></dt>
+<dd><p>The scan’s dihedral targets: start + k*step, k = 1 … 360/step - 1 (the
+start itself is the minimum and is not repeated), wrapped to -180..180.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.set_dihedral">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">set_dihedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#set_dihedral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.set_dihedral" title="Link to this definition">#</a></dt>
+<dd><p>A copy of xyz with the rotor’s dihedral set to <code class="docutils literal notranslate"><span class="pre">target</span></code> degrees by
+turning its moving side.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.stretch">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">stretch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#stretch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.stretch" title="Link to this definition">#</a></dt>
+<dd><p>A copy of xyz with bond i-j lengthened by a (Å; negative shortens), each
+atom moving a/2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.stretch_amplitude">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">stretch_amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#stretch_amplitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.stretch_amplitude" title="Link to this definition">#</a></dt>
+<dd><p>The bond-length change a (Å) whose harmonic energy along the stretch is
+<code class="docutils literal notranslate"><span class="pre">energy</span></code> (E_h): 1/2 a² vᵀHv = energy, exact for this two-atom
+displacement; capped at <code class="docutils literal notranslate"><span class="pre">maximum</span></code> (Å).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.stretch_vector">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">stretch_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#stretch_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.stretch_vector" title="Link to this definition">#</a></dt>
+<dd><p>The unit-free stretch direction (3N): -u/2 on i, +u/2 on j, u the unit
+vector i -&gt; j; a displacement a times it lengthens the bond by a.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.generate.wrap">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#wrap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.wrap" title="Link to this definition">#</a></dt>
+<dd><p>The magnitude of an angle difference, wrapped to 0..180 degrees.</p>
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.metadata">
+<span id="training-structures-step-metadata-module"></span><h2>training_structures_step.metadata module<a class="headerlink" href="#module-training_structures_step.metadata" title="Link to this heading">#</a></h2>
+<p>This file contains metadata describing the results from TrainingStructures</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="training_structures_step.metadata.metadata">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.metadata.</span></span><span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'results':</span> <span class="pre">{'dropped</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">points</span> <span class="pre">refused,</span> <span class="pre">by</span> <span class="pre">kind,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">reasons',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'hessian':</span> <span class="pre">{'description':</span> <span class="pre">'How</span> <span class="pre">the</span> <span class="pre">Hessian</span> <span class="pre">was</span> <span class="pre">made</span> <span class="pre">and</span> <span class="pre">checked',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">dropped</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">points</span> <span class="pre">refused</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">checks',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">grid</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">&quot;The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">diatomic's</span> <span class="pre">stretch-grid</span> <span class="pre">points&quot;,</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">structures</span> <span class="pre">made,</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">included',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">rotors':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">heavy</span> <span class="pre">rotors</span> <span class="pre">scanned',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">sample</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">normal-mode</span> <span class="pre">samples',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">scan</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">torsion-scan</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">stretch</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">bond-stretch</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'random</span> <span class="pre">seed':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">seed</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">random</span> <span class="pre">numbers,</span> <span class="pre">to</span> <span class="pre">reproduce</span> <span class="pre">the</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'system</span> <span class="pre">name':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">system</span> <span class="pre">holding</span> <span class="pre">the</span> <span class="pre">structures',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'string'}}}</span></span><a class="headerlink" href="#training_structures_step.metadata.metadata" title="Link to this definition">#</a></dt>
+<dd><p>Description of the computational models for TrainingStructures.</p>
+<p>Hamiltonians, approximations, and basis set or parameterizations,
+only if appropriate for this code. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">[</span><span class="s2">"computational models"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Hartree-Fock"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"models"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"PM7"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"parameterizations"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"PM7"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"elements"</span><span class="p">:</span> <span class="s2">"1-60,62-83"</span><span class="p">,</span>
+                        <span class="s2">"periodic"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"reactions"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"optimization"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"mopac"</span><span class="p">,</span>
+                    <span class="p">},</span>
+                    <span class="s2">"PM7-TS"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"elements"</span><span class="p">:</span> <span class="s2">"1-60,62-83"</span><span class="p">,</span>
+                        <span class="s2">"periodic"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"reactions"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"optimization"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"mopac"</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.substep">
+<span id="training-structures-step-substep-module"></span><h2>training_structures_step.substep module<a class="headerlink" href="#module-training_structures_step.substep" title="Link to this heading">#</a></h2>
+<p>Base class for substeps in the Training Structures step.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.substep.</span></span><span class="sig-name descname"><span class="pre">Substep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no</span> <span class="pre">title'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">training_structures_step.substep</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/substep.html#Substep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.substep.Substep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>A base class for substeps in the Training Structures subflowchart.</p>
+<p>The top-level TrainingStructures step iterates over the substeps
+of its subflowchart and calls each substep’s <cite>run()</cite> method. Each substep
+is responsible for preparing its own input, invoking Training Structures,
+analyzing its output, and storing its results.</p>
+<p>This base class provides:</p>
+<ul class="simple">
+<li><p><cite>is_runable</cite> - whether the top-level loop should call <cite>run()</cite> on this
+substep. Override to return False for substeps that only contribute
+input (e.g., an Initialization step) rather than invoking the code.</p></li>
+<li><p><cite>input_only</cite> - a flag for “write input but don’t run” mode, useful for
+debugging and testing.</p></li>
+<li><p><cite>options</cite> / <cite>global_options</cite> - delegated to the parent step so that
+command-line options reach substeps uniformly.</p></li>
+<li><p><cite>header</cite> - a printable header for this section of step.out.</p></li>
+<li><p><cite>version</cite> / <cite>git_revision</cite> - delegated to the plug-in package so that
+every substep reports the plug-in’s version, not seamm.Node’s.</p></li>
+</ul>
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git revision of the training_structures_step package.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.global_options">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">global_options</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.global_options" title="Link to this definition">#</a></dt>
+<dd><p>The global SEAMM options, delegated to the parent step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.header">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">header</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.header" title="Link to this definition">#</a></dt>
+<dd><p>A printable header for this section of output.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.input_only">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">input_only</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.input_only" title="Link to this definition">#</a></dt>
+<dd><p>Whether to write the input only, not run Training Structures.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.is_runable">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_runable</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.is_runable" title="Link to this definition">#</a></dt>
+<dd><p>Whether this substep should be run by the top-level loop.</p>
+<p>Override to return False for substeps that only contribute input
+(e.g., an Initialization step) rather than invoking
+Training Structures themselves.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.options">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.options" title="Link to this definition">#</a></dt>
+<dd><p>The Training Structures options, delegated to the parent step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.substep.Substep.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of the training_structures_step package.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.tk_training_structures">
+<span id="training-structures-step-tk-training-structures-module"></span><h2>training_structures_step.tk_training_structures module<a class="headerlink" href="#module-training_structures_step.tk_training_structures" title="Link to this heading">#</a></h2>
+<p>The graphical part of a Training Structures step</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.tk_training_structures.</span></span><span class="sig-name descname"><span class="pre">TkTrainingStructures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tk_flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_training_structures.html#TkTrainingStructures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TkNode</span></code></p>
+<p>The graphical part of a Training Structures step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.tk_flowchart">
+<span class="sig-name descname"><span class="pre">tk_flowchart</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.tk_flowchart" title="Link to this definition">#</a></dt>
+<dd><p>The flowchart that we belong to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.node">
+<span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.node" title="Link to this definition">#</a></dt>
+<dd><p>The corresponding node of the non-graphical flowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.namespace" title="Link to this definition">#</a></dt>
+<dd><p>The namespace of the current step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.tk_subflowchart">
+<span class="sig-name descname"><span class="pre">tk_subflowchart</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.tk_subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A graphical Flowchart representing a subflowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.canvas">
+<span class="sig-name descname"><span class="pre">canvas</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.canvas" title="Link to this definition">#</a></dt>
+<dd><p>The Tk Canvas to draw on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tkCanvas = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.dialog">
+<span class="sig-name descname"><span class="pre">dialog</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.dialog" title="Link to this definition">#</a></dt>
+<dd><p>The Pmw dialog object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dialog</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.x" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.y" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.w" title="Link to this definition">#</a></dt>
+<dd><p>The width in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 200</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.h" title="Link to this definition">#</a></dt>
+<dd><p>The height in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 50</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.self">
+<span class="sig-name descname"><span class="pre">self</span></span><span class="sig-paren">[</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">]</span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.self" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of tk widgets built using the information
+contained in Training Structures_parameters.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStructures</span></code>, <a class="reference internal" href="#training_structures_step.tk_training_structures.TkTrainingStructures" title="training_structures_step.tk_training_structures.TkTrainingStructures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkTrainingStructures</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStructuresParameters</span></code></p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.DRIVERS">
+<span class="sig-name descname"><span class="pre">DRIVERS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('number</span> <span class="pre">of</span> <span class="pre">samples',</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">rotors',</span> <span class="pre">'bond</span> <span class="pre">stretches',</span> <span class="pre">'connectivity</span> <span class="pre">check',</span> <span class="pre">'prescreen</span> <span class="pre">energy',</span> <span class="pre">'check</span> <span class="pre">the</span> <span class="pre">hessian')</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.DRIVERS" title="Link to this definition">#</a></dt>
+<dd><p>the parameters whose value changes the layout</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.GROUPS">
+<span class="sig-name descname"><span class="pre">GROUPS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Bond</span> <span class="pre">stretches':</span> <span class="pre">('bond</span> <span class="pre">stretches',</span> <span class="pre">'bond</span> <span class="pre">pairs',</span> <span class="pre">'stretch</span> <span class="pre">energy',</span> <span class="pre">'maximum</span> <span class="pre">stretch',</span> <span class="pre">'diatomic</span> <span class="pre">grid</span> <span class="pre">points',</span> <span class="pre">'diatomic</span> <span class="pre">grid</span> <span class="pre">energy'),</span> <span class="pre">'Checks':</span> <span class="pre">('generator</span> <span class="pre">level',</span> <span class="pre">'connectivity</span> <span class="pre">check',</span> <span class="pre">'connectivity</span> <span class="pre">factor',</span> <span class="pre">'prescreen</span> <span class="pre">energy'),</span> <span class="pre">'Hessian':</span> <span class="pre">('check</span> <span class="pre">the</span> <span class="pre">hessian',</span> <span class="pre">'closed-shell</span> <span class="pre">check</span> <span class="pre">fraction',</span> <span class="pre">'hessian</span> <span class="pre">tolerance',</span> <span class="pre">'check</span> <span class="pre">displacement',</span> <span class="pre">'maximum</span> <span class="pre">frequency'),</span> <span class="pre">'Output':</span> <span class="pre">('random</span> <span class="pre">seed',</span> <span class="pre">'system</span> <span class="pre">name'),</span> <span class="pre">'Samples':</span> <span class="pre">('number</span> <span class="pre">of</span> <span class="pre">samples',</span> <span class="pre">'samples</span> <span class="pre">per</span> <span class="pre">mode',</span> <span class="pre">'minimum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">samples',</span> <span class="pre">'maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">samples',</span> <span class="pre">'minimum</span> <span class="pre">target</span> <span class="pre">energy',</span> <span class="pre">'maximum</span> <span class="pre">target</span> <span class="pre">energy',</span> <span class="pre">'amplitude</span> <span class="pre">cap',</span> <span class="pre">'lowest</span> <span class="pre">frequency',</span> <span class="pre">'maximum</span> <span class="pre">atom</span> <span class="pre">displacement',</span> <span class="pre">'maximum</span> <span class="pre">bond</span> <span class="pre">change',</span> <span class="pre">'maximum</span> <span class="pre">angle</span> <span class="pre">change',</span> <span class="pre">'maximum</span> <span class="pre">draws'),</span> <span class="pre">'Torsion</span> <span class="pre">scans':</span> <span class="pre">('number</span> <span class="pre">of</span> <span class="pre">rotors',</span> <span class="pre">'scan</span> <span class="pre">step',</span> <span class="pre">'relaxation</span> <span class="pre">convergence',</span> <span class="pre">'relaxation</span> <span class="pre">max</span> <span class="pre">steps')}</span></span><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.GROUPS" title="Link to this definition">#</a></dt>
+<dd><p>the dialog’s frames and the parameters in each, in order</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.create_dialog">
+<span class="sig-name descname"><span class="pre">create_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_training_structures.html#TkTrainingStructures.create_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.create_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Create the dialog: the parameters in labelled frames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.reset_dialog">
+<span class="sig-name descname"><span class="pre">reset_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_training_structures.html#TkTrainingStructures.reset_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.reset_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Lay out the frames, showing each parameter only when it applies.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_training_structures.TkTrainingStructures.right_click">
+<span class="sig-name descname"><span class="pre">right_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_training_structures.html#TkTrainingStructures.right_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_training_structures.TkTrainingStructures.right_click" title="Link to this definition">#</a></dt>
+<dd><p>Handles the right click event on the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tk Event</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkTrainingStructures.edit</span></code></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.training_structures">
+<span id="training-structures-step-training-structures-module"></span><h2>training_structures_step.training_structures module<a class="headerlink" href="#module-training_structures_step.training_structures" title="Link to this heading">#</a></h2>
+<p>Non-graphical part of the Training Structures step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures.</span></span><span class="sig-name descname"><span class="pre">TrainingStructures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Training</span> <span class="pre">Structures'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">training_structures_step.training_structures</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#TrainingStructures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>The non-graphical part of a Training Structures step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.parser">
+<span class="sig-name descname"><span class="pre">parser</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.parser" title="Link to this definition">#</a></dt>
+<dd><p>The parser object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>configargparse.ArgParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.options" title="Link to this definition">#</a></dt>
+<dd><p>It contains a two item tuple containing the populated namespace and the
+list of remaining argument strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.subflowchart">
+<span class="sig-name descname"><span class="pre">subflowchart</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A SEAMM Flowchart object that represents a subflowchart, if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seamm.Flowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.parameters" title="Link to this definition">#</a></dt>
+<dd><p>The control parameters for Training Structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#training_structures_step.training_structures_parameters.TrainingStructuresParameters" title="training_structures_step.training_structures_parameters.TrainingStructuresParameters">TrainingStructuresParameters</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkTrainingStructures</span></code>, <a class="reference internal" href="#training_structures_step.training_structures.TrainingStructures" title="training_structures_step.training_structures.TrainingStructures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStructures</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStructuresParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#TrainingStructures.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.analyze" title="Link to this definition">#</a></dt>
+<dd><p>Summarize the points made.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.description_text">
+<span class="sig-name descname"><span class="pre">description_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#TrainingStructures.description_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.description_text" title="Link to this definition">#</a></dt>
+<dd><p>Create the text description of what this step will do.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git version of this module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#TrainingStructures.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.run" title="Link to this definition">#</a></dt>
+<dd><p>Make the training structures of the current molecule.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.TrainingStructures.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#training_structures_step.training_structures.TrainingStructures.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of this module.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.training_structures_parameters">
+<span id="training-structures-step-training-structures-parameters-module"></span><h2>training_structures_step.training_structures_parameters module<a class="headerlink" href="#module-training_structures_step.training_structures_parameters" title="Link to this heading">#</a></h2>
+<p>Control parameters for the Training Structures step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_parameters.TrainingStructuresParameters">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures_parameters.</span></span><span class="sig-name descname"><span class="pre">TrainingStructuresParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures_parameters.html#TrainingStructuresParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures_parameters.TrainingStructuresParameters" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Parameters</span></code></p>
+<p>The control parameters for Training Structures.</p>
+<p>The step makes distorted structures of one molecule (the current
+configuration, which should be a minimum of the flowchart’s Model Chemistry)
+for training a machine-learned potential: normal-mode samples at targeted
+energies, relaxed torsion scans of the heavy rotors, and bond stretches. The
+Hessian comes from the Model Chemistry; the scans and the pre-screen use a
+second, cheap level.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_parameters.TrainingStructuresParameters.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'amplitude</span> <span class="pre">cap':</span> <span class="pre">{'default':</span> <span class="pre">3.0,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Amplitude</span> <span class="pre">cap</span> <span class="pre">(in</span> <span class="pre">sigma):',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Clamp</span> <span class="pre">each</span> <span class="pre">normal</span> <span class="pre">coordinate</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">shape</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">many</span> <span class="pre">standard</span> <span class="pre">deviations</span> <span class="pre">before</span> <span class="pre">scaling.</span> <span class="pre">'none'</span> <span class="pre">leaves</span> <span class="pre">the</span> <span class="pre">tails</span> <span class="pre">uncapped.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'bond</span> <span class="pre">pairs':</span> <span class="pre">{'default':</span> <span class="pre">'all',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Element</span> <span class="pre">pairs:',</span> <span class="pre">'enumeration':</span> <span class="pre">('all',),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;'all',</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">pairs</span> <span class="pre">to</span> <span class="pre">stretch,</span> <span class="pre">e.g.</span> <span class="pre">'C-H,</span> <span class="pre">C-C,</span> <span class="pre">C-O'.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'bond</span> <span class="pre">stretches':</span> <span class="pre">{'default':</span> <span class="pre">'yes',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Bond</span> <span class="pre">stretches:',</span> <span class="pre">'enumeration':</span> <span class="pre">('yes',</span> <span class="pre">'no'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'Stretch</span> <span class="pre">and</span> <span class="pre">compress</span> <span class="pre">the</span> <span class="pre">median</span> <span class="pre">bond</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">bonded</span> <span class="pre">element</span> <span class="pre">pair</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">amplitude</span> <span class="pre">below</span> <span class="pre">(two</span> <span class="pre">points</span> <span class="pre">per</span> <span class="pre">pair).',</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'check</span> <span class="pre">displacement':</span> <span class="pre">{'default':</span> <span class="pre">0.005,</span> <span class="pre">'default_units':</span> <span class="pre">'Å',</span> <span class="pre">'description':</span> <span class="pre">'Check</span> <span class="pre">displacement</span> <span class="pre">(RMS):',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.4f',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">size</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">random</span> <span class="pre">displacement.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'check</span> <span class="pre">the</span> <span class="pre">hessian':</span> <span class="pre">{'default':</span> <span class="pre">'open</span> <span class="pre">shells',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Check</span> <span class="pre">the</span> <span class="pre">Hessian:',</span> <span class="pre">'enumeration':</span> <span class="pre">('open</span> <span class="pre">shells',</span> <span class="pre">'always',</span> <span class="pre">'never'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Test</span> <span class="pre">the</span> <span class="pre">Hessian</span> <span class="pre">against</span> <span class="pre">central</span> <span class="pre">differences</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">gradient</span> <span class="pre">along</span> <span class="pre">random</span> <span class="pre">displacements;</span> <span class="pre">a</span> <span class="pre">refused</span> <span class="pre">one</span> <span class="pre">is</span> <span class="pre">replaced</span> <span class="pre">by</span> <span class="pre">finite</span> <span class="pre">differences</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">gradient.</span> <span class="pre">'open</span> <span class="pre">shells'</span> <span class="pre">checks</span> <span class="pre">every</span> <span class="pre">open-shell</span> <span class="pre">molecule</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">fraction</span> <span class="pre">below</span> <span class="pre">of</span> <span class="pre">closed-shell</span> <span class="pre">ones.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'closed-shell</span> <span class="pre">check</span> <span class="pre">fraction':</span> <span class="pre">{'default':</span> <span class="pre">0.05,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'and</span> <span class="pre">closed</span> <span class="pre">shells</span> <span class="pre">at</span> <span class="pre">random:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">fraction</span> <span class="pre">of</span> <span class="pre">closed-shell</span> <span class="pre">molecules</span> <span class="pre">checked,</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">watch.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'connectivity</span> <span class="pre">check':</span> <span class="pre">{'default':</span> <span class="pre">'yes',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Keep</span> <span class="pre">the</span> <span class="pre">bonds:',</span> <span class="pre">'enumeration':</span> <span class="pre">('yes',</span> <span class="pre">'no'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Refuse</span> <span class="pre">a</span> <span class="pre">point</span> <span class="pre">whose</span> <span class="pre">bonds</span> <span class="pre">(atoms</span> <span class="pre">closer</span> <span class="pre">than</span> <span class="pre">the</span> <span class="pre">factor</span> <span class="pre">below</span> <span class="pre">times</span> <span class="pre">the</span> <span class="pre">sum</span> <span class="pre">of</span> <span class="pre">their</span> <span class="pre">covalent</span> <span class="pre">radii)</span> <span class="pre">differ</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">minimum's.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'connectivity</span> <span class="pre">factor':</span> <span class="pre">{'default':</span> <span class="pre">1.3,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Bond</span> <span class="pre">factor:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'Covalent-radius</span> <span class="pre">factor.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'diatomic</span> <span class="pre">grid</span> <span class="pre">energy':</span> <span class="pre">{'default':</span> <span class="pre">9.5,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'out</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">harmonic</span> <span class="pre">energy</span> <span class="pre">of:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;The</span> <span class="pre">ends</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">diatomic's</span> <span class="pre">grid.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'diatomic</span> <span class="pre">grid</span> <span class="pre">points':</span> <span class="pre">{'default':</span> <span class="pre">100,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Diatomic</span> <span class="pre">stretch</span> <span class="pre">grid:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'A</span> <span class="pre">diatomic</span> <span class="pre">gets</span> <span class="pre">this</span> <span class="pre">many</span> <span class="pre">points</span> <span class="pre">evenly</span> <span class="pre">spaced</span> <span class="pre">along</span> <span class="pre">its</span> <span class="pre">stretch,</span> <span class="pre">in</span> <span class="pre">place</span> <span class="pre">of</span> <span class="pre">samples</span> <span class="pre">and</span> <span class="pre">stretches.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'generator</span> <span class="pre">level':</span> <span class="pre">{'default':</span> <span class="pre">'xTB:SQM&#64;GFN2-xTB',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Level</span> <span class="pre">for</span> <span class="pre">scans</span> <span class="pre">and</span> <span class="pre">pre-screen:',</span> <span class="pre">'enumeration':</span> <span class="pre">('xTB:SQM&#64;GFN2-xTB',</span> <span class="pre">'MOPAC:SQM&#64;PM7'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">cheap</span> <span class="pre">model</span> <span class="pre">chemistry</span> <span class="pre">that</span> <span class="pre">relaxes</span> <span class="pre">the</span> <span class="pre">scan</span> <span class="pre">points</span> <span class="pre">at</span> <span class="pre">fixed</span> <span class="pre">torsion</span> <span class="pre">and</span> <span class="pre">pre-screens</span> <span class="pre">every</span> <span class="pre">point.</span> <span class="pre">It</span> <span class="pre">only</span> <span class="pre">makes</span> <span class="pre">geometries:</span> <span class="pre">no</span> <span class="pre">energy</span> <span class="pre">of</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">label.',</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'hessian</span> <span class="pre">tolerance':</span> <span class="pre">{'default':</span> <span class="pre">0.02,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Relative</span> <span class="pre">error</span> <span class="pre">allowed:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">'e</span> <span class="pre">=</span> <span class="pre">|Hδ</span> <span class="pre">-</span> <span class="pre">Δg/2|</span> <span class="pre">/</span> <span class="pre">|Hδ|</span> <span class="pre">above</span> <span class="pre">this,</span> <span class="pre">or</span> <span class="pre">any</span> <span class="pre">|ν|</span> <span class="pre">above</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">frequency,</span> <span class="pre">refuses</span> <span class="pre">the</span> <span class="pre">Hessian.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'lowest</span> <span class="pre">frequency':</span> <span class="pre">{'default':</span> <span class="pre">100.0,</span> <span class="pre">'default_units':</span> <span class="pre">'1/cm',</span> <span class="pre">'description':</span> <span class="pre">'Skip</span> <span class="pre">modes</span> <span class="pre">below:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Do</span> <span class="pre">not</span> <span class="pre">sample</span> <span class="pre">along</span> <span class="pre">modes</span> <span class="pre">softer</span> <span class="pre">than</span> <span class="pre">this:</span> <span class="pre">soft</span> <span class="pre">torsions</span> <span class="pre">are</span> <span class="pre">covered</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">scans.</span> <span class="pre">'none'</span> <span class="pre">samples</span> <span class="pre">every</span> <span class="pre">mode.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">angle</span> <span class="pre">change':</span> <span class="pre">{'default':</span> <span class="pre">15.0,</span> <span class="pre">'default_units':</span> <span class="pre">'degree',</span> <span class="pre">'description':</span> <span class="pre">'Largest</span> <span class="pre">bond-angle</span> <span class="pre">change:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">'Redraw</span> <span class="pre">a</span> <span class="pre">sample</span> <span class="pre">in</span> <span class="pre">which</span> <span class="pre">a</span> <span class="pre">bond</span> <span class="pre">angle</span> <span class="pre">changes</span> <span class="pre">by</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">atom</span> <span class="pre">displacement':</span> <span class="pre">{'default':</span> <span class="pre">0.3,</span> <span class="pre">'default_units':</span> <span class="pre">'Å',</span> <span class="pre">'description':</span> <span class="pre">'Largest</span> <span class="pre">atom</span> <span class="pre">displacement:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Redraw</span> <span class="pre">a</span> <span class="pre">sample</span> <span class="pre">in</span> <span class="pre">which</span> <span class="pre">an</span> <span class="pre">atom</span> <span class="pre">moves</span> <span class="pre">farther</span> <span class="pre">than</span> <span class="pre">this.</span> <span class="pre">'none'</span> <span class="pre">sets</span> <span class="pre">no</span> <span class="pre">limit.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">bond</span> <span class="pre">change':</span> <span class="pre">{'default':</span> <span class="pre">0.2,</span> <span class="pre">'default_units':</span> <span class="pre">'Å',</span> <span class="pre">'description':</span> <span class="pre">'Largest</span> <span class="pre">bond-length</span> <span class="pre">change:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">'Redraw</span> <span class="pre">a</span> <span class="pre">sample</span> <span class="pre">in</span> <span class="pre">which</span> <span class="pre">a</span> <span class="pre">bond</span> <span class="pre">length</span> <span class="pre">changes</span> <span class="pre">by</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">draws':</span> <span class="pre">{'default':</span> <span class="pre">5,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Draws</span> <span class="pre">per</span> <span class="pre">sample:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'How</span> <span class="pre">many</span> <span class="pre">times</span> <span class="pre">a</span> <span class="pre">sample</span> <span class="pre">is</span> <span class="pre">drawn</span> <span class="pre">(keeping</span> <span class="pre">its</span> <span class="pre">target</span> <span class="pre">energy)</span> <span class="pre">before</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">dropped,</span> <span class="pre">when</span> <span class="pre">it</span> <span class="pre">fails</span> <span class="pre">the</span> <span class="pre">limits,</span> <span class="pre">the</span> <span class="pre">connectivity</span> <span class="pre">check</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">pre-screen.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'maximum</span> <span class="pre">frequency':</span> <span class="pre">{'default':</span> <span class="pre">5000.0,</span> <span class="pre">'default_units':</span> <span class="pre">'1/cm',</span> <span class="pre">'description':</span> <span class="pre">'Maximum</span> <span class="pre">frequency:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.0f',</span> <span class="pre">'help_text':</span> <span class="pre">'A</span> <span class="pre">frequency</span> <span class="pre">above</span> <span class="pre">this</span> <span class="pre">means</span> <span class="pre">the</span> <span class="pre">Hessian</span> <span class="pre">is</span> <span class="pre">broken.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">samples':</span> <span class="pre">{'default':</span> <span class="pre">40,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'At</span> <span class="pre">most:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">most</span> <span class="pre">samples.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'maximum</span> <span class="pre">stretch':</span> <span class="pre">{'default':</span> <span class="pre">0.1,</span> <span class="pre">'default_units':</span> <span class="pre">'Å',</span> <span class="pre">'description':</span> <span class="pre">'but</span> <span class="pre">by</span> <span class="pre">at</span> <span class="pre">most:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">largest</span> <span class="pre">bond-length</span> <span class="pre">change</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">stretch</span> <span class="pre">point.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'maximum</span> <span class="pre">target</span> <span class="pre">energy':</span> <span class="pre">{'default':</span> <span class="pre">9.0,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'to:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">highest</span> <span class="pre">target</span> <span class="pre">energy.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'minimum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">samples':</span> <span class="pre">{'default':</span> <span class="pre">10,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'At</span> <span class="pre">least:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">fewest</span> <span class="pre">samples.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'minimum</span> <span class="pre">target</span> <span class="pre">energy':</span> <span class="pre">{'default':</span> <span class="pre">0.5,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'Target</span> <span class="pre">energies</span> <span class="pre">from:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'Each</span> <span class="pre">sample</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">equipartition</span> <span class="pre">shape</span> <span class="pre">scaled</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">harmonic</span> <span class="pre">energy</span> <span class="pre">drawn</span> <span class="pre">uniformly</span> <span class="pre">between</span> <span class="pre">this</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">maximum.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">rotors':</span> <span class="pre">{'default':</span> <span class="pre">2,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Rotors</span> <span class="pre">to</span> <span class="pre">scan:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'Scan</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">many</span> <span class="pre">heavy</span> <span class="pre">rotors</span> <span class="pre">(acyclic,</span> <span class="pre">non-conjugated</span> <span class="pre">single</span> <span class="pre">bonds</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">heavy</span> <span class="pre">atom</span> <span class="pre">beyond</span> <span class="pre">each</span> <span class="pre">end),</span> <span class="pre">those</span> <span class="pre">that</span> <span class="pre">move</span> <span class="pre">the</span> <span class="pre">most</span> <span class="pre">heavy</span> <span class="pre">atoms</span> <span class="pre">first.</span> <span class="pre">0</span> <span class="pre">makes</span> <span class="pre">no</span> <span class="pre">scans.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">samples':</span> <span class="pre">{'default':</span> <span class="pre">'in</span> <span class="pre">proportion</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">modes',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Number</span> <span class="pre">of</span> <span class="pre">samples:',</span> <span class="pre">'enumeration':</span> <span class="pre">('in</span> <span class="pre">proportion</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">modes',),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;How</span> <span class="pre">many</span> <span class="pre">normal-mode</span> <span class="pre">samples</span> <span class="pre">to</span> <span class="pre">draw:</span> <span class="pre">a</span> <span class="pre">number,</span> <span class="pre">or</span> <span class="pre">'in</span> <span class="pre">proportion</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">modes'</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">sampled</span> <span class="pre">modes</span> <span class="pre">times</span> <span class="pre">'samples</span> <span class="pre">per</span> <span class="pre">mode',</span> <span class="pre">kept</span> <span class="pre">between</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">and</span> <span class="pre">maximum</span> <span class="pre">below.</span> <span class="pre">0</span> <span class="pre">makes</span> <span class="pre">no</span> <span class="pre">samples.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'prescreen</span> <span class="pre">energy':</span> <span class="pre">{'default':</span> <span class="pre">15.0,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'Pre-screen</span> <span class="pre">energy:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Refuse</span> <span class="pre">a</span> <span class="pre">point</span> <span class="pre">whose</span> <span class="pre">energy</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">generator</span> <span class="pre">level</span> <span class="pre">is</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this</span> <span class="pre">above</span> <span class="pre">the</span> <span class="pre">minimum's.</span> <span class="pre">'none'</span> <span class="pre">skips</span> <span class="pre">the</span> <span class="pre">pre-screen.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'random</span> <span class="pre">seed':</span> <span class="pre">{'default':</span> <span class="pre">'random',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Random</span> <span class="pre">seed:',</span> <span class="pre">'enumeration':</span> <span class="pre">('random',),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;An</span> <span class="pre">integer</span> <span class="pre">for</span> <span class="pre">reproducible</span> <span class="pre">points,</span> <span class="pre">or</span> <span class="pre">'random'</span> <span class="pre">(the</span> <span class="pre">seed</span> <span class="pre">used</span> <span class="pre">is</span> <span class="pre">recorded).&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'relaxation</span> <span class="pre">convergence':</span> <span class="pre">{'default':</span> <span class="pre">0.01,</span> <span class="pre">'default_units':</span> <span class="pre">'eV/Å',</span> <span class="pre">'description':</span> <span class="pre">'Relax</span> <span class="pre">scan</span> <span class="pre">points</span> <span class="pre">to:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;The</span> <span class="pre">largest</span> <span class="pre">force</span> <span class="pre">on</span> <span class="pre">an</span> <span class="pre">atom</span> <span class="pre">(the</span> <span class="pre">torsion</span> <span class="pre">held</span> <span class="pre">fixed)</span> <span class="pre">at</span> <span class="pre">which</span> <span class="pre">a</span> <span class="pre">scan</span> <span class="pre">point's</span> <span class="pre">relaxation</span> <span class="pre">stops.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'relaxation</span> <span class="pre">max</span> <span class="pre">steps':</span> <span class="pre">{'default':</span> <span class="pre">200,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'At</span> <span class="pre">most:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Steps</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">scan</span> <span class="pre">point's</span> <span class="pre">relaxation.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'results':</span> <span class="pre">{'default':</span> <span class="pre">{},</span> <span class="pre">'default_units':</span> <span class="pre">None,</span> <span class="pre">'description':</span> <span class="pre">'results',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">results</span> <span class="pre">to</span> <span class="pre">save</span> <span class="pre">to</span> <span class="pre">variables</span> <span class="pre">or</span> <span class="pre">in</span> <span class="pre">tables.',</span> <span class="pre">'kind':</span> <span class="pre">'dictionary'},</span> <span class="pre">'samples</span> <span class="pre">per</span> <span class="pre">mode':</span> <span class="pre">{'default':</span> <span class="pre">0.5,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Samples</span> <span class="pre">per</span> <span class="pre">mode:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'Samples</span> <span class="pre">per</span> <span class="pre">sampled</span> <span class="pre">mode.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'scan</span> <span class="pre">step':</span> <span class="pre">{'default':</span> <span class="pre">15.0,</span> <span class="pre">'default_units':</span> <span class="pre">'degree',</span> <span class="pre">'description':</span> <span class="pre">'Scan</span> <span class="pre">step:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;The</span> <span class="pre">step</span> <span class="pre">of</span> <span class="pre">each</span> <span class="pre">torsion</span> <span class="pre">scan;</span> <span class="pre">the</span> <span class="pre">minimum's</span> <span class="pre">own</span> <span class="pre">angle</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">repeated.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'stretch</span> <span class="pre">energy':</span> <span class="pre">{'default':</span> <span class="pre">8.0,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'Stretch</span> <span class="pre">to</span> <span class="pre">an</span> <span class="pre">energy</span> <span class="pre">of:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">amplitude</span> <span class="pre">a</span> <span class="pre">solves</span> <span class="pre">1/2</span> <span class="pre">a²</span> <span class="pre">vᵀHv</span> <span class="pre">=</span> <span class="pre">this,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">full</span> <span class="pre">Hessian.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'system</span> <span class="pre">name':</span> <span class="pre">{'default':</span> <span class="pre">'from</span> <span class="pre">structure',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">system:',</span> <span class="pre">'enumeration':</span> <span class="pre">('from</span> <span class="pre">structure',),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;The</span> <span class="pre">system</span> <span class="pre">holding</span> <span class="pre">the</span> <span class="pre">points:</span> <span class="pre">'from</span> <span class="pre">structure'</span> <span class="pre">adds</span> <span class="pre">'</span> <span class="pre">training'</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">molecule's</span> <span class="pre">name.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'}}</span></span><a class="headerlink" href="#training_structures_step.training_structures_parameters.TrainingStructuresParameters.parameters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.training_structures_step">
+<span id="training-structures-step-training-structures-step-module"></span><h2>training_structures_step.training_structures_step module<a class="headerlink" href="#module-training_structures_step.training_structures_step" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_step.TrainingStructuresStep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures_step.</span></span><span class="sig-name descname"><span class="pre">TrainingStructuresStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures_step.html#TrainingStructuresStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures_step.TrainingStructuresStep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class needed for the stevedore integration.</p>
+<p>This must provide a <cite>description()</cite> method that returns a dict containing a
+description of this node, and <cite>create_node()</cite> and <cite>create_tk_node()</cite> methods
+for creating the graphical and non-graphical nodes.</p>
+<p>The dictionary for the description is the class variable just below these
+comments. The felds are as follows:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>my_description<span class="classifier">{str, str}</span></dt><dd><p>A human-readable description of this step. It can be
+several lines long, and needs to be clear to non-expert users.
+It contains the following keys: description, group, name.</p>
+</dd>
+<dt>my_description[“description”]<span class="classifier">tuple</span></dt><dd><p>A description of the Training Structures step. It must be
+clear to non-experts.</p>
+</dd>
+<dt>my_description[“group”]<span class="classifier">str</span></dt><dd><p>Which group in the menus to put this step. If the group does
+not exist it will be created. Common groups are “Building”,
+“Control”, “Custom”, “Data”, and “Simulations”.</p>
+</dd>
+<dt>my_description[“name”]<span class="classifier">str</span></dt><dd><p>The name of this step, to be displayed in the menus.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_step.TrainingStructuresStep.create_node">
+<span class="sig-name descname"><span class="pre">create_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures_step.html#TrainingStructuresStep.create_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures_step.TrainingStructuresStep.create_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the new node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flowchart</strong> (<em>seamm.Node</em>) – A non-graphical SEAMM node</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as title, namespace or
+extension representing the title displayed in the flowchart,
+the namespace for the plugins of a subflowchart and
+the extension, respectively.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#training_structures_step.training_structures.TrainingStructures" title="training_structures_step.training_structures.TrainingStructures">TrainingStructures</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_step.TrainingStructuresStep.create_tk_node">
+<span class="sig-name descname"><span class="pre">create_tk_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures_step.html#TrainingStructuresStep.create_tk_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures_step.TrainingStructuresStep.create_tk_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the graphical Tk node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>canvas</strong> (<em>tk.Canvas</em>) – The Tk Canvas widget</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as tk_flowchart, node, x, y, w, h
+representing a graphical flowchart object, a non-graphical node for
+a step, and dimensions of the graphical node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#training_structures_step.tk_training_structures.TkTrainingStructures" title="training_structures_step.tk_training_structures.TkTrainingStructures">TkTrainingStructures</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_step.TrainingStructuresStep.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures_step.html#TrainingStructuresStep.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures_step.TrainingStructuresStep.description" title="Link to this definition">#</a></dt>
+<dd><p>Return a description of what this step does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict(str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.training_structures_step.TrainingStructuresStep.my_description">
+<span class="sig-name descname"><span class="pre">my_description</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">'Distorted</span> <span class="pre">structures</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">molecule</span> <span class="pre">for</span> <span class="pre">training</span> <span class="pre">a</span> <span class="pre">machine-learned</span> <span class="pre">potential:</span> <span class="pre">energy-targeted</span> <span class="pre">normal-mode</span> <span class="pre">samples,</span> <span class="pre">relaxed</span> <span class="pre">torsion</span> <span class="pre">scans</span> <span class="pre">and</span> <span class="pre">bond</span> <span class="pre">stretches',</span> <span class="pre">'group':</span> <span class="pre">'Building',</span> <span class="pre">'name':</span> <span class="pre">'Training</span> <span class="pre">Structures'}</span></span><a class="headerlink" href="#training_structures_step.training_structures_step.TrainingStructuresStep.my_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-training_structures_step" title="Link to this heading">#</a></h2>
+<p>training_structures_step
+A SEAMM plug-in for Training Structures</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">training_structures_step</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../authors.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development Team</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.generate">training_structures_step.generate module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.bond_classes"><code class="docutils literal notranslate"><span class="pre">bond_classes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.check_hessian"><code class="docutils literal notranslate"><span class="pre">check_hessian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.connectivity"><code class="docutils literal notranslate"><span class="pre">connectivity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.connectivity_change"><code class="docutils literal notranslate"><span class="pre">connectivity_change()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.covalent_radii"><code class="docutils literal notranslate"><span class="pre">covalent_radii()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.diatomic_grid"><code class="docutils literal notranslate"><span class="pre">diatomic_grid()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.dihedral"><code class="docutils literal notranslate"><span class="pre">dihedral()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.find_rotors"><code class="docutils literal notranslate"><span class="pre">find_rotors()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.frequencies"><code class="docutils literal notranslate"><span class="pre">frequencies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.rotate_about_bond"><code class="docutils literal notranslate"><span class="pre">rotate_about_bond()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.scan_angles"><code class="docutils literal notranslate"><span class="pre">scan_angles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.set_dihedral"><code class="docutils literal notranslate"><span class="pre">set_dihedral()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.stretch"><code class="docutils literal notranslate"><span class="pre">stretch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.stretch_amplitude"><code class="docutils literal notranslate"><span class="pre">stretch_amplitude()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.stretch_vector"><code class="docutils literal notranslate"><span class="pre">stretch_vector()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.wrap"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.metadata">training_structures_step.metadata module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.metadata.metadata"><code class="docutils literal notranslate"><span class="pre">metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.substep">training_structures_step.substep module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep"><code class="docutils literal notranslate"><span class="pre">Substep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.git_revision"><code class="docutils literal notranslate"><span class="pre">Substep.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.global_options"><code class="docutils literal notranslate"><span class="pre">Substep.global_options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.header"><code class="docutils literal notranslate"><span class="pre">Substep.header</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.input_only"><code class="docutils literal notranslate"><span class="pre">Substep.input_only</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.is_runable"><code class="docutils literal notranslate"><span class="pre">Substep.is_runable</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.options"><code class="docutils literal notranslate"><span class="pre">Substep.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.version"><code class="docutils literal notranslate"><span class="pre">Substep.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.tk_training_structures">training_structures_step.tk_training_structures module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.tk_flowchart"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.tk_flowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.node"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.node</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.namespace"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.namespace</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.tk_subflowchart"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.tk_subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.canvas"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.canvas</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.dialog"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.dialog</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.x"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.x</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.y"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.y</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.w"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.w</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.h"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.h</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.self"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.self</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.DRIVERS"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.DRIVERS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.GROUPS"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.GROUPS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.create_dialog"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.create_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.reset_dialog"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.reset_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_training_structures.TkTrainingStructures.right_click"><code class="docutils literal notranslate"><span class="pre">TkTrainingStructures.right_click()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.training_structures">training_structures_step.training_structures module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures"><code class="docutils literal notranslate"><span class="pre">TrainingStructures</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.parser"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.parser</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.options"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.subflowchart"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.parameters"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.parameters</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.analyze"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.analyze()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.description_text"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.description_text()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.git_revision"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.run"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.version"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.training_structures_parameters">training_structures_step.training_structures_parameters module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_parameters.TrainingStructuresParameters"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresParameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_parameters.TrainingStructuresParameters.parameters"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresParameters.parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.training_structures_step">training_structures_step.training_structures_step module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_step.TrainingStructuresStep"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresStep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_step.TrainingStructuresStep.create_node"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresStep.create_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_step.TrainingStructuresStep.create_tk_node"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresStep.create_tk_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_step.TrainingStructuresStep.description"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresStep.description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures_step.TrainingStructuresStep.my_description"><code class="docutils literal notranslate"><span class="pre">TrainingStructuresStep.my_description</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/training_structures_step.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

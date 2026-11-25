@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/training_structures_step/training_structures';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.25" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Training Structures</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">training_structures_step.training_structures</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for training_structures_step.training_structures</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">"""Non-graphical part of the Training Structures step in a SEAMM flowchart"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.resources</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">training_structures_step</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">training_structures_step</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">molsystem</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seamm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seamm_util</span><span class="w"> </span><span class="kn">import</span> <span class="n">ureg</span><span class="p">,</span> <span class="n">Q_</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seamm_util.printing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">printing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seamm_util.printing</span><span class="w"> </span><span class="kn">import</span> <span class="n">FormattedText</span> <span class="k">as</span> <span class="n">__</span>
+
+<span class="c1"># In addition to the normal logger, two logger-like printing facilities are</span>
+<span class="c1"># defined: "job" and "printer". "job" send output to the main job.out file for</span>
+<span class="c1"># the job, and should be used very sparingly, typically to echo what this step</span>
+<span class="c1"># will do in the initial summary of the job.</span>
+<span class="c1">#</span>
+<span class="c1"># "printer" sends output to the file "step.out" in this steps working</span>
+<span class="c1"># directory, and is used for all normal output from this step.</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">printing</span><span class="o">.</span><span class="n">getPrinter</span><span class="p">()</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="n">printing</span><span class="o">.</span><span class="n">getPrinter</span><span class="p">(</span><span class="s2">"Training Structures"</span><span class="p">)</span>
+
+<span class="c1"># Add this module's properties to the standard properties</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">"training_structures_step"</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"data"</span>
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">path</span> <span class="o">/</span> <span class="s2">"properties.csv"</span>
+<span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">molsystem</span><span class="o">.</span><span class="n">add_properties_from_file</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TrainingStructures">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.TrainingStructures">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TrainingStructures</span><span class="p">(</span><span class="n">seamm</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    The non-graphical part of a Training Structures step in a flowchart.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : configargparse.ArgParser</span>
+<span class="sd">        The parser object.</span>
+
+<span class="sd">    options : tuple</span>
+<span class="sd">        It contains a two item tuple containing the populated namespace and the</span>
+<span class="sd">        list of remaining argument strings.</span>
+
+<span class="sd">    subflowchart : seamm.Flowchart</span>
+<span class="sd">        A SEAMM Flowchart object that represents a subflowchart, if needed.</span>
+
+<span class="sd">    parameters : TrainingStructuresParameters</span>
+<span class="sd">        The control parameters for Training Structures.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    TkTrainingStructures,</span>
+<span class="sd">    TrainingStructures, TrainingStructuresParameters</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">flowchart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Training Structures"</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A step for Training Structures in a SEAMM flowchart.</span>
+
+<span class="sd">        You may wish to change the title above, which is the string displayed</span>
+<span class="sd">        in the box representing the step in the flowchart.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        flowchart: seamm.Flowchart</span>
+<span class="sd">            The non-graphical flowchart that contains this step.</span>
+
+<span class="sd">        title: str</span>
+<span class="sd">            The name displayed in the flowchart.</span>
+<span class="sd">        extension: None</span>
+<span class="sd">            Not yet implemented</span>
+<span class="sd">        logger : Logger = logger</span>
+<span class="sd">            The logger to use and pass to parent classes</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating Training Structures </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">flowchart</span><span class="o">=</span><span class="n">flowchart</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"Training Structures"</span><span class="p">,</span>
+            <span class="n">extension</span><span class="o">=</span><span class="n">extension</span><span class="p">,</span>
+            <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># yapf: disable</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">training_structures_step</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">training_structures_step</span><span class="o">.</span><span class="n">TrainingStructuresParameters</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The semantic version of this module."""</span>
+        <span class="k">return</span> <span class="n">training_structures_step</span><span class="o">.</span><span class="n">__version__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">git_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The git version of this module."""</span>
+        <span class="k">return</span> <span class="n">training_structures_step</span><span class="o">.</span><span class="n">__git_revision__</span>
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># Description</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+<div class="viewcode-block" id="TrainingStructures.description_text">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.TrainingStructures.description_text">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">description_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Create the text description of what this step will do."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">P</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values_to_dict</span><span class="p">()</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"number of samples"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"in proportion to the modes"</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'samples per mode'</span><span class="p">]</span><span class="si">}</span><span class="s2"> normal-mode samples per mode above "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'lowest frequency'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (at least </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'minimum number of samples'</span><span class="p">]</span><span class="si">}</span><span class="s2">, "</span>
+                <span class="sa">f</span><span class="s2">"at most </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'maximum number of samples'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> normal-mode samples"</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">"Distorted structures of the current molecule, for training a "</span>
+            <span class="s2">"machine-learned potential, from the Hessian of the model chemistry "</span>
+            <span class="sa">f</span><span class="s2">"defined earlier in the flowchart: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">, each scaled to a harmonic "</span>
+            <span class="sa">f</span><span class="s2">"energy between </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'minimum target energy'</span><span class="p">]</span><span class="si">}</span><span class="s2"> and "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'maximum target energy'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"number of rotors"</span><span class="p">])</span> <span class="o">!=</span> <span class="s2">"0"</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"; relaxed torsion scans in steps of </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'scan step'</span><span class="p">]</span><span class="si">}</span><span class="s2"> of up to "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'number of rotors'</span><span class="p">]</span><span class="si">}</span><span class="s2"> heavy rotors at </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'generator level'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"bond stretches"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"yes"</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="s2">"; and two stretches of the median bond of each bonded element pair "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'bond pairs'</span><span class="p">]</span><span class="si">}</span><span class="s2">), to a harmonic energy of </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'stretch energy'</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+                <span class="sa">f</span><span class="s2">"but at most </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'maximum stretch'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="s2">". A diatomic gets a stretch grid of "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'diatomic grid points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> points instead."</span>
+        <span class="p">)</span>
+        <span class="n">checks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"connectivity check"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"yes"</span><span class="p">:</span>
+            <span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"keeps the minimum's bonds"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_none</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"prescreen energy"</span><span class="p">]):</span>
+            <span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"lies within </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'prescreen energy'</span><span class="p">]</span><span class="si">}</span><span class="s2"> of the minimum at "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'generator level'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">checks</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s2">" Every point must pass a check that it "</span> <span class="o">+</span> <span class="s2">" and "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">checks</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s2">"."</span>
+        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"check the hessian"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"never"</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="s2">" The Hessian is checked against finite differences of the gradient "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'check the hessian'</span><span class="p">]</span><span class="si">}</span><span class="s2">) and replaced by a finite-difference "</span>
+                <span class="s2">"Hessian if it fails."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># Run</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+<div class="viewcode-block" id="TrainingStructures.run">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.TrainingStructures.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Make the training structures of the current molecule."""</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">HessianDriver</span>
+
+        <span class="n">next_node</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">printer</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">current_values_to_dict</span><span class="p">(</span>
+            <span class="n">context</span><span class="o">=</span><span class="n">seamm</span><span class="o">.</span><span class="n">flowchart_variables</span><span class="o">.</span><span class="n">_data</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description_text</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+
+        <span class="n">directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
+        <span class="n">directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">system_db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">"_system_db"</span><span class="p">)</span>
+        <span class="n">system</span><span class="p">,</span> <span class="n">reference</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_system_configuration</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reference</span><span class="o">.</span><span class="n">periodicity</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Training Structures handles molecules, not crystals."</span><span class="p">)</span>
+
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seed_of</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"random seed"</span><span class="p">])</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+        <span class="n">symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
+        <span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_atoms</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Training Structures needs at least two atoms."</span><span class="p">)</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_coordinates</span><span class="p">(</span><span class="n">fractionals</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">atomic_masses</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"connectivity factor"</span><span class="p">])</span>
+        <span class="n">ref_bonds</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">connectivity</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span>
+        <span class="n">table_bonds</span><span class="p">,</span> <span class="n">orders</span><span class="p">,</span> <span class="n">conjugated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bond_table</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">table_bonds</span> <span class="ow">and</span> <span class="nb">set</span><span class="p">(</span><span class="n">table_bonds</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ref_bonds</span><span class="p">:</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="s2">"Note: the bonds perceived at the minimum differ from the "</span>
+                    <span class="s2">"structure's bond table; points are compared with the perceived "</span>
+                    <span class="s2">"bonds."</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">driver</span> <span class="o">=</span> <span class="n">HessianDriver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">who</span><span class="o">=</span><span class="s2">"Training Structures"</span><span class="p">,</span> <span class="n">print_to</span><span class="o">=</span><span class="n">printer</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">model_chemistry</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Training Structures needs a Model Chemistry step before it."</span>
+            <span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"random seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">}</span>
+        <span class="c1"># 1. The Hessian at the Model Chemistry, checked</span>
+        <span class="n">H</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hessian</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+
+        <span class="c1"># 2. The points, with the generator level for the scans and pre-screen</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="n">x0</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">}]</span>
+        <span class="n">dropped</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"generator level"</span><span class="p">]</span>
+        <span class="n">prescreen</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_none</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"prescreen energy"</span><span class="p">])</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"prescreen energy"</span><span class="p">],</span> <span class="s2">"kJ/mol"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">rotors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">n_atoms</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"number of rotors"</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rotors</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">find_rotors</span><span class="p">(</span>
+                <span class="n">symbols</span><span class="p">,</span>
+                <span class="n">table_bonds</span> <span class="ow">or</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ref_bonds</span><span class="p">),</span>
+                <span class="n">orders</span><span class="p">,</span>
+                <span class="n">conjugated</span><span class="p">,</span>
+                <span class="n">max_rotors</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"number of rotors"</span><span class="p">]),</span>
+            <span class="p">)</span>
+        <span class="n">need_cheap</span> <span class="o">=</span> <span class="n">prescreen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">rotors</span>
+        <span class="n">cheap_context</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">driver</span><span class="o">.</span><span class="n">cheap_session</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span> <span class="k">if</span> <span class="n">need_cheap</span> <span class="k">else</span> <span class="n">_no_session</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="k">with</span> <span class="n">cheap_context</span> <span class="k">as</span> <span class="n">cheap</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">need_cheap</span> <span class="ow">and</span> <span class="n">cheap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"The generator level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2"> cannot run as a warm engine here."</span>
+                <span class="p">)</span>
+            <span class="n">e_ref</span> <span class="o">=</span> <span class="n">cheap</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">"kJ/mol"</span><span class="p">)</span> <span class="k">if</span> <span class="n">cheap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stretched</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">"""(reason or None, generator-level energy above the minimum). The</span>
+<span class="sd">                bond a stretch point lengthens on purpose (stretched, i &lt; j) is</span>
+<span class="sd">                not judged by the connectivity check; every other bond is."""</span>
+                <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"connectivity check"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"yes"</span><span class="p">:</span>
+                    <span class="n">change</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">connectivity_change</span><span class="p">(</span>
+                        <span class="n">ref_bonds</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">exempt</span><span class="o">=</span><span class="n">stretched</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">change</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="sa">f</span><span class="s2">"bonds changed: </span><span class="si">{</span><span class="n">change</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="n">de</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="n">cheap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">e</span> <span class="o">=</span> <span class="n">cheap</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">"kJ/mol"</span><span class="p">)</span> <span class="k">if</span> <span class="n">energy</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">energy</span>
+                    <span class="n">de</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-</span> <span class="n">e_ref</span>
+                    <span class="k">if</span> <span class="n">prescreen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">de</span> <span class="o">&gt;</span> <span class="n">prescreen</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">de</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kJ/mol above the minimum at </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                            <span class="n">de</span><span class="p">,</span>
+                        <span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">de</span>
+
+            <span class="k">if</span> <span class="n">n_atoms</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">points</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diatomic</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">points</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_samples</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">dropped</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">rotor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rotors</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">points</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan</span><span class="p">(</span>
+                        <span class="n">P</span><span class="p">,</span> <span class="n">cheap</span><span class="p">,</span> <span class="n">rotor</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"bond stretches"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"yes"</span><span class="p">:</span>
+                    <span class="n">points</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stretches</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">)</span>
+
+        <span class="c1"># 3. The new system, one configuration per point</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">system</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> training"</span>
+            <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"from structure"</span>
+            <span class="k">else</span> <span class="n">P</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">out_sys</span> <span class="o">=</span> <span class="n">system_db</span><span class="o">.</span><span class="n">create_combined_system</span><span class="p">([</span><span class="n">reference</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">out_sys</span><span class="o">.</span><span class="n">configuration</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">conf</span> <span class="o">=</span> <span class="n">base</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">out_sys</span><span class="o">.</span><span class="n">copy_configuration</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+            <span class="n">conf</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">set_coordinates</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">fractionals</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">conf</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="s2">"point type"</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="s2">"type"</span><span class="p">],</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"str"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_POINT_PROPERTIES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"hessian"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">],</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">)</span>
+        <span class="n">system_db</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">out_sys</span>
+        <span class="n">out_sys</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="s2">"type"</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"number of points"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"sample"</span><span class="p">,</span> <span class="s2">"scan"</span><span class="p">,</span> <span class="s2">"stretch"</span><span class="p">,</span> <span class="s2">"grid"</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">"number of </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> points"</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"number of rotors"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rotors</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"dropped points"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dropped</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"number of dropped points"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dropped</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">store_results</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">next_node</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># The Hessian</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The Hessian (E_h/bohr²) at the Model Chemistry and how it was made,</span>
+<span class="sd">        checked against finite differences of the gradient when asked."""</span>
+        <span class="n">how</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"check the hessian"</span><span class="p">]</span>
+        <span class="n">open_shell</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">spin_multiplicity</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>  <span class="c1"># always drawn, so the points do not depend on how</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">how</span> <span class="o">==</span> <span class="s2">"always"</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">how</span> <span class="o">==</span> <span class="s2">"open shells"</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">open_shell</span> <span class="ow">or</span> <span class="n">draw</span> <span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"closed-shell check fraction"</span><span class="p">]))</span>
+        <span class="p">)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"open shell"</span><span class="p">:</span> <span class="n">open_shell</span><span class="p">,</span> <span class="s2">"checked"</span><span class="p">:</span> <span class="n">check</span><span class="p">}</span>
+        <span class="k">with</span> <span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">energy_and_hessian</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"tasks"</span>
+                <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">"check"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"not possible: the model chemistry runs as tasks"</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
+            <span class="n">H</span><span class="p">,</span> <span class="n">route</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">()</span>
+            <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">check_hessian</span><span class="p">(</span>
+                <span class="n">H</span><span class="p">,</span>
+                <span class="n">session</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span>
+                <span class="n">x0</span><span class="p">,</span>
+                <span class="n">masses</span><span class="p">,</span>
+                <span class="n">rng</span><span class="p">,</span>
+                <span class="n">rms</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"check displacement"</span><span class="p">],</span> <span class="s2">"Å"</span><span class="p">),</span>
+                <span class="n">tolerance</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"hessian tolerance"</span><span class="p">]),</span>
+                <span class="n">max_frequency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum frequency"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">info</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]]</span>
+            <span class="n">info</span><span class="p">[</span><span class="s2">"max frequency"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"max frequency"</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">"refused"</span><span class="p">]:</span>
+                <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                    <span class="n">__</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2"> Hessian was refused: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'reason'</span><span class="p">]</span><span class="si">}</span><span class="s2">. It is "</span>
+                        <span class="s2">"replaced by finite differences of the gradient."</span><span class="p">,</span>
+                        <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">H</span><span class="p">,</span> <span class="n">route</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">finite_differences</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"refused"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"reason"</span><span class="p">]</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># The kinds of points</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">dropped</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Energy-targeted normal-mode samples."""</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">normal_mode_sampling_step.normal_mode_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">ZERO_MODE_THRESHOLD_CM</span><span class="p">,</span>
+            <span class="n">geometry_guard</span><span class="p">,</span>
+            <span class="n">normal_mode_analysis</span><span class="p">,</span>
+            <span class="n">sample_normal_modes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">freqs</span><span class="p">,</span> <span class="n">modes</span> <span class="o">=</span> <span class="n">normal_mode_analysis</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="n">freqs</span> <span class="o">&gt;</span> <span class="n">ZERO_MODE_THRESHOLD_CM</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_none</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"lowest frequency"</span><span class="p">]):</span>
+            <span class="n">keep</span> <span class="o">&amp;=</span> <span class="n">freqs</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"lowest frequency"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">)</span>
+        <span class="n">freqs</span><span class="p">,</span> <span class="n">modes</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[</span><span class="n">keep</span><span class="p">],</span> <span class="n">modes</span><span class="p">[:,</span> <span class="n">keep</span><span class="p">]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_number_of_samples</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">freqs</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">freqs</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_none</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">units</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">units</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="p">(</span><span class="s2">"maximum atom displacement"</span><span class="p">,</span> <span class="s2">"Å"</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">"maximum bond change"</span><span class="p">,</span> <span class="s2">"Å"</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">"maximum angle change"</span><span class="p">,</span> <span class="s2">"degree"</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">geometric</span> <span class="o">=</span> <span class="n">geometry_guard</span><span class="p">(</span>
+            <span class="n">x0</span><span class="p">,</span>
+            <span class="nb">sorted</span><span class="p">(</span><span class="n">generate</span><span class="o">.</span><span class="n">connectivity</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"connectivity factor"</span><span class="p">]))),</span>
+            <span class="n">max_displacement</span><span class="o">=</span><span class="n">limits</span><span class="p">[</span><span class="s2">"maximum atom displacement"</span><span class="p">],</span>
+            <span class="n">max_bond_change</span><span class="o">=</span><span class="n">limits</span><span class="p">[</span><span class="s2">"maximum bond change"</span><span class="p">],</span>
+            <span class="n">max_angle_change</span><span class="o">=</span><span class="n">limits</span><span class="p">[</span><span class="s2">"maximum angle change"</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">reasons</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">guard</span><span class="p">(</span><span class="n">dx</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">geometric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">reason</span> <span class="o">=</span> <span class="n">geometric</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">reason</span>
+            <span class="n">reason</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">reason</span>
+            <span class="n">energies</span><span class="p">[</span><span class="n">dx</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()]</span> <span class="o">=</span> <span class="n">de</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">cap</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_none</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"amplitude cap"</span><span class="p">])</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"amplitude cap"</span><span class="p">])</span>
+        <span class="n">displacements</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">n_dropped</span> <span class="o">=</span> <span class="n">sample_normal_modes</span><span class="p">(</span>
+            <span class="n">freqs</span><span class="p">,</span>
+            <span class="n">modes</span><span class="p">,</span>
+            <span class="n">masses</span><span class="p">,</span>
+            <span class="n">n</span><span class="p">,</span>
+            <span class="n">distribution</span><span class="o">=</span><span class="s2">"energy"</span><span class="p">,</span>
+            <span class="n">energy_range</span><span class="o">=</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"minimum target energy"</span><span class="p">],</span> <span class="s2">"kJ/mol"</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum target energy"</span><span class="p">],</span> <span class="s2">"kJ/mol"</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">amplitude_cap</span><span class="o">=</span><span class="n">cap</span><span class="p">,</span>
+            <span class="n">guard</span><span class="o">=</span><span class="n">guard</span><span class="p">,</span>
+            <span class="n">max_draws</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum draws"</span><span class="p">]),</span>
+            <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_dropped</span><span class="p">:</span>
+            <span class="n">dropped</span><span class="p">[</span><span class="s2">"sample"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n_dropped</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> samples failed all </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'maximum draws'</span><span class="p">]</span><span class="si">}</span><span class="s2"> draws"</span>
+            <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_redraws</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reasons</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sample"</span><span class="p">,</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"sample </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="s2">"x"</span><span class="p">:</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span>
+                <span class="s2">"target energy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="s2">"harmonic energy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="s2">"prescreen energy"</span><span class="p">:</span> <span class="n">energies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dx</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()),</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">displacements</span><span class="p">,</span> <span class="n">targets</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">cheap</span><span class="p">,</span> <span class="n">rotor</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A relaxed scan of one rotor at the generator level, from the minimum</span>
+<span class="sd">        around the circle, each point relaxed with the torsion fixed."""</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Atoms</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ase.constraints</span><span class="w"> </span><span class="kn">import</span> <span class="n">FixInternals</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ase.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">atomic_numbers</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">BFGS</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MDICalculator</span>
+
+        <span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rotor</span><span class="p">[</span><span class="s2">"dihedral"</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">symbols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}{</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">dihedral</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">fmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"relaxation convergence"</span><span class="p">],</span> <span class="s2">"eV/Å"</span><span class="p">)</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"relaxation max steps"</span><span class="p">])</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"scan step"</span><span class="p">],</span> <span class="s2">"degree"</span><span class="p">)</span>
+        <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomic_numbers</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">]</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">generate</span><span class="o">.</span><span class="n">scan_angles</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">set_dihedral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">rotor</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="n">numbers</span><span class="o">=</span><span class="n">numbers</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">atoms</span><span class="o">.</span><span class="n">set_constraint</span><span class="p">(</span><span class="n">FixInternals</span><span class="p">(</span><span class="n">dihedrals_deg</span><span class="o">=</span><span class="p">[[</span><span class="n">target</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span><span class="p">]]]))</span>
+            <span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">_MDICalculator</span><span class="p">(</span><span class="n">cheap</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+            <span class="n">converged</span> <span class="o">=</span> <span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="n">fmax</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">energy</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span> <span class="o">*</span> <span class="n">_EV_TO_KJ</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">start</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"scan </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">angle</span><span class="si">:</span><span class="s2">+.0f</span><span class="si">}</span><span class="s2">"</span>
+            <span class="n">reason</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="n">energy</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">converged</span><span class="p">:</span>
+                <span class="n">reason</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"the relaxation did not converge in </span><span class="si">{</span><span class="n">steps</span><span class="si">}</span><span class="s2"> steps"</span>
+            <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dropped</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"scan"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"scan"</span><span class="p">,</span>
+                    <span class="s2">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s2">"x"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+                    <span class="s2">"scan rotor"</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">"scan angle"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
+                    <span class="s2">"prescreen energy"</span><span class="p">:</span> <span class="n">de</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">points</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stretches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Two stretches of the median bond of each bonded element pair."""</span>
+        <span class="n">pairs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"bond pairs"</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">"all"</span><span class="p">:</span>
+            <span class="n">pairs</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"bond pairs"</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">";"</span><span class="p">,</span> <span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span><span class="p">}</span>
+        <span class="n">bonds</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="n">generate</span><span class="o">.</span><span class="n">connectivity</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"connectivity factor"</span><span class="p">]))</span>
+        <span class="p">)</span>
+        <span class="n">energy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"stretch energy"</span><span class="p">],</span> <span class="s2">"kJ/mol"</span><span class="p">)</span> <span class="o">/</span> <span class="n">generate</span><span class="o">.</span><span class="n">KJ_HARTREE</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum stretch"</span><span class="p">],</span> <span class="s2">"Å"</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="n">generate</span><span class="o">.</span><span class="n">bond_classes</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">pairs</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">stretch_amplitude</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">maximum</span><span class="p">)</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">stretch_vector</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">generate</span><span class="o">.</span><span class="n">BOHR</span>
+            <span class="n">k_eff</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span> <span class="o">@</span> <span class="n">H</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">stretch</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"stretch </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">'+'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">sign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'-'</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">reason</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stretched</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">dropped</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"stretch"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"stretch"</span><span class="p">,</span>
+                        <span class="s2">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                        <span class="s2">"x"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+                        <span class="s2">"bond class"</span><span class="p">:</span> <span class="bp">cls</span><span class="p">,</span>
+                        <span class="s2">"bond"</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                        <span class="s2">"bond change"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">sign</span> <span class="o">*</span> <span class="n">a</span><span class="p">),</span>
+                        <span class="s2">"harmonic energy"</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">k_eff</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">generate</span><span class="o">.</span><span class="n">KJ_HARTREE</span><span class="p">,</span>
+                        <span class="s2">"prescreen energy"</span><span class="p">:</span> <span class="n">de</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">points</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_diatomic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A diatomic's stretch grid, in place of samples and stretches."""</span>
+        <span class="n">energy</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"diatomic grid energy"</span><span class="p">],</span> <span class="s2">"kJ/mol"</span><span class="p">)</span> <span class="o">/</span> <span class="n">generate</span><span class="o">.</span><span class="n">KJ_HARTREE</span>
+        <span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">stretch_vector</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">generate</span><span class="o">.</span><span class="n">BOHR</span>
+        <span class="n">k_eff</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span> <span class="o">@</span> <span class="n">H</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">diatomic_grid</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"diatomic grid points"</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">stretch</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"grid </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span>
+            <span class="n">reason</span><span class="p">,</span> <span class="n">de</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stretched</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dropped</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"grid"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"grid"</span><span class="p">,</span>
+                    <span class="s2">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                    <span class="s2">"x"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+                    <span class="s2">"bond change"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+                    <span class="s2">"harmonic energy"</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">k_eff</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">generate</span><span class="o">.</span><span class="n">KJ_HARTREE</span><span class="p">,</span>
+                    <span class="s2">"prescreen energy"</span><span class="p">:</span> <span class="n">de</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">points</span>
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># Output</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+<div class="viewcode-block" id="TrainingStructures.analyze">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.TrainingStructures.analyze">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Summarize the points made."""</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of sample points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of scan points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> scan points over "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of rotors'</span><span class="p">]</span><span class="si">}</span><span class="s2"> rotors"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of stretch points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> bond stretches"</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">"number of grid points"</span><span class="p">]:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of grid points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> stretch-grid points"</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Made </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> structures in the system "</span>
+            <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'system name'</span><span class="p">]</span><span class="si">}</span><span class="s2">': the minimum, "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"."</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">))</span>
+        <span class="n">hessian</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"The Hessian is </span><span class="si">{</span><span class="n">hessian</span><span class="p">[</span><span class="s1">'route'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">if</span> <span class="n">hessian</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"refused"</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" (the first one was refused: </span><span class="si">{</span><span class="n">hessian</span><span class="p">[</span><span class="s1">'refused'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span>
+        <span class="k">elif</span> <span class="s2">"errors"</span> <span class="ow">in</span> <span class="n">hessian</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"; checked against the gradient, largest error "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">hessian</span><span class="p">[</span><span class="s1">'errors'</span><span class="p">])</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="n">text</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">"number of dropped points"</span><span class="p">]:</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'number of dropped points'</span><span class="p">]</span><span class="si">}</span><span class="s2"> points were dropped:"</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">"dropped points"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># group the points refused for the same reason</span>
+                <span class="n">by_reason</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+                    <span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">": "</span><span class="p">)</span>
+                    <span class="n">by_reason</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">reason</span> <span class="ow">or</span> <span class="n">name</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">reason</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">by_reason</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">reason</span> <span class="o">==</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="o">+</span> <span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">": </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">reason</span> <span class="o">!=</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s2">""</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s2"> points (</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> ... "</span>
+                        <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span>
+                    <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">8</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The random seed was </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'random seed'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_put_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="o">=</span><span class="s2">"float"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Store a per-point property (the names in data/properties.csv)."""</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">#TrainingStructures#generation"</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">properties</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">properties</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">properties</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_type</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span> <span class="n">noerror</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">properties</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="c1"># Helpers</span>
+    <span class="c1"># ------------------------------------------------------------------ #</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bond_table</span><span class="p">(</span><span class="n">configuration</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""(bonds, orders, conjugated) of a configuration's bond table, 0-based;</span>
+<span class="sd">        conjugation from RDKit. Empty when it has no bonds."""</span>
+        <span class="k">if</span> <span class="n">configuration</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">n_bonds</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="p">{},</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="n">aid</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">aid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ids</span><span class="p">)}</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">get_as_dict</span><span class="p">()</span>
+        <span class="n">bonds</span><span class="p">,</span> <span class="n">orders</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="s2">"i"</span><span class="p">],</span> <span class="n">table</span><span class="p">[</span><span class="s2">"j"</span><span class="p">],</span> <span class="n">table</span><span class="p">[</span><span class="s2">"bondorder"</span><span class="p">]):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">index</span><span class="p">[</span><span class="n">j</span><span class="p">])))</span>
+            <span class="n">bonds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">orders</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">conjugated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mol</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">to_RDKMol</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mol</span><span class="o">.</span><span class="n">GetBonds</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">GetIsConjugated</span><span class="p">():</span>
+                    <span class="n">conjugated</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                        <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">b</span><span class="o">.</span><span class="n">GetBeginAtomIdx</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">GetEndAtomIdx</span><span class="p">())))</span>
+                    <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No conjugation from RDKit: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">orders</span><span class="p">,</span> <span class="n">conjugated</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_seed_of</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">seed</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">""</span> <span class="ow">or</span> <span class="n">seed</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"random"</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">SeedSequence</span><span class="p">()</span><span class="o">.</span><span class="n">entropy</span> <span class="o">%</span> <span class="mi">2</span><span class="o">**</span><span class="mi">63</span><span class="p">)</span>
+            <span class="n">seed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_number_of_samples</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"number of samples"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">"in proportion to the modes"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">wanted</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"samples per mode"</span><span class="p">])</span> <span class="o">*</span> <span class="n">n_modes</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+        <span class="n">low</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"minimum number of samples"</span><span class="p">])</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum number of samples"</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">wanted</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_none</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"none"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_as_float</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">units</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">m_as</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+
+<span class="n">_EV_TO_KJ</span> <span class="o">=</span> <span class="mf">96.48533212331</span>  <span class="c1"># kJ/mol per eV</span>
+
+<span class="c1">#: per-point values -&gt; (property, units, type)</span>
+<span class="n">_POINT_PROPERTIES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"target energy"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"target energy"</span><span class="p">,</span> <span class="s2">"kJ/mol"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
+    <span class="s2">"harmonic energy"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"harmonic energy"</span><span class="p">,</span> <span class="s2">"kJ/mol"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
+    <span class="s2">"prescreen energy"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"prescreen energy"</span><span class="p">,</span> <span class="s2">"kJ/mol"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
+    <span class="s2">"scan rotor"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"scan rotor"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">),</span>
+    <span class="s2">"scan angle"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"scan angle"</span><span class="p">,</span> <span class="s2">"degree"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
+    <span class="s2">"bond class"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"bond class"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"str"</span><span class="p">),</span>
+    <span class="s2">"bond"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"bond"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">),</span>
+    <span class="s2">"bond change"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"bond change"</span><span class="p">,</span> <span class="s2">"Å"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
+<span class="p">}</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_no_session</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A context manager that gives no engine (no generator level needed)."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

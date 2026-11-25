@@ -1,0 +1,7 @@
+training_structures_step
+========================
+
+.. toctree::
+   :maxdepth: 4
+
+   training_structures_step

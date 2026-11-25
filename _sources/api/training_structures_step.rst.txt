@@ -1,0 +1,69 @@
+training\_structures\_step package
+==================================
+
+Submodules
+----------
+
+training\_structures\_step.generate module
+------------------------------------------
+
+.. automodule:: training_structures_step.generate
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.metadata module
+------------------------------------------
+
+.. automodule:: training_structures_step.metadata
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.substep module
+-----------------------------------------
+
+.. automodule:: training_structures_step.substep
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.tk\_training\_structures module
+----------------------------------------------------------
+
+.. automodule:: training_structures_step.tk_training_structures
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.training\_structures module
+------------------------------------------------------
+
+.. automodule:: training_structures_step.training_structures
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.training\_structures\_parameters module
+------------------------------------------------------------------
+
+.. automodule:: training_structures_step.training_structures_parameters
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+training\_structures\_step.training\_structures\_step module
+------------------------------------------------------------
+
+.. automodule:: training_structures_step.training_structures_step
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: training_structures_step
+   :members:
+   :show-inheritance:
+   :undoc-members:

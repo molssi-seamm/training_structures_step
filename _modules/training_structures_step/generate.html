@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>training_structures_step.generate &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/training_structures_step/generate';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.25" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Training Structures</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">training_structures_step.generate</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for training_structures_step.generate</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">"""The geometry generators and filters of the Training Structures step, as plain</span>
+<span class="sd">functions of coordinates, bonds and Hessians (no flowchart state), so that they</span>
+<span class="sd">can be tested on their own.</span>
+
+<span class="sd">Units: coordinates in Å, Hessians in E_h/bohr², gradients in E_h/bohr, energies in</span>
+<span class="sd">E_h unless a name says otherwise.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">BOHR</span> <span class="o">=</span> <span class="mf">0.529177210903</span>  <span class="c1"># Å</span>
+<span class="n">KCAL_HARTREE</span> <span class="o">=</span> <span class="mf">627.509474</span>  <span class="c1"># kcal/mol per E_h</span>
+<span class="n">KJ_HARTREE</span> <span class="o">=</span> <span class="mf">2625.4996394799</span>  <span class="c1"># kJ/mol per E_h</span>
+
+
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Connectivity</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<div class="viewcode-block" id="covalent_radii">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.covalent_radii">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">covalent_radii</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""RDKit's covalent radii (Å) of the elements."""</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">rdkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chem</span>
+
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">GetPeriodicTable</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">GetRcovalent</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="connectivity">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.connectivity">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">connectivity</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">radii</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The bonds (i &lt; j) of a structure: atoms closer than ``factor`` times the</span>
+<span class="sd">    sum of their covalent radii."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">covalent_radii</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="k">if</span> <span class="n">radii</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
+    <span class="n">bonds</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">bonds</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">bonds</span></div>
+
+
+
+<div class="viewcode-block" id="connectivity_change">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.connectivity_change">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">connectivity_change</span><span class="p">(</span>
+    <span class="n">reference_bonds</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">radii</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exempt</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""None if the structure has exactly the reference bonds, else the bonds</span>
+<span class="sd">    broken and formed, as text (e.g. '-C1-H5 +H5-O3'). ``exempt`` is a bond</span>
+<span class="sd">    (i, j) not judged: a bond stretched on purpose."""</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">connectivity</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">radii</span><span class="p">)</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">reference_bonds</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">exempt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">exempt</span><span class="p">))</span>
+        <span class="n">now</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">ref</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">now</span> <span class="o">==</span> <span class="n">ref</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">label</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">symbols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}{</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="k">return</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span><span class="sa">f</span><span class="s2">"-</span><span class="si">{</span><span class="n">label</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ref</span> <span class="o">-</span> <span class="n">now</span><span class="p">)]</span>
+        <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"+</span><span class="si">{</span><span class="n">label</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">ref</span><span class="p">)]</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Rotors and torsion scans</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_side</span><span class="p">(</span><span class="n">n_atoms</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The atoms on j's side of the bond i-j (j included), or None when the bond</span>
+<span class="sd">    is in a ring."""</span>
+    <span class="n">neighbours</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_atoms</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">:</span>
+        <span class="n">neighbours</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">neighbours</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">seen</span><span class="p">,</span> <span class="n">todo</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">},</span> <span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">todo</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">todo</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">neighbours</span><span class="p">[</span><span class="n">a</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">j</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># back to i another way: a ring</span>
+            <span class="k">if</span> <span class="n">b</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+                <span class="n">todo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seen</span>
+
+
+<div class="viewcode-block" id="find_rotors">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.find_rotors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_rotors</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">orders</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conjugated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_rotors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The heavy rotors of a molecule, most heavy atoms moved first.</span>
+
+<span class="sd">    A heavy rotor is an acyclic single bond i-j, not conjugated, where i and j</span>
+<span class="sd">    each have another heavy-atom neighbour (so methyl, OH and NH2 rotations are</span>
+<span class="sd">    not rotors). Rotating about it moves the smaller side; rotors are ranked by</span>
+<span class="sd">    the number of heavy atoms that moves, ties going to the lower atom indices.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbols : [str]</span>
+<span class="sd">    bonds : [(int, int)]</span>
+<span class="sd">        0-based.</span>
+<span class="sd">    orders : {(i, j): int} or None</span>
+<span class="sd">        Bond orders (i &lt; j); a bond without one counts as single.</span>
+<span class="sd">    conjugated : set of (i, j) or None</span>
+<span class="sd">        The conjugated bonds (i &lt; j), e.g. from RDKit's GetIsConjugated.</span>
+<span class="sd">    max_rotors : int or None</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    [dict]</span>
+<span class="sd">        Each with "bond" (i, j), "dihedral" (a, i, j, b), "moving" (the atoms</span>
+<span class="sd">        that rotate, a sorted list) and "heavy moved".</span>
+<span class="sd">    """</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+    <span class="n">heavy</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="o">!=</span> <span class="s2">"H"</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">]</span>
+    <span class="n">neighbours</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">:</span>
+        <span class="n">neighbours</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">neighbours</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">orders</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">orders</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">orders</span>
+    <span class="n">conjugated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="k">if</span> <span class="n">conjugated</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">conjugated</span>
+    <span class="n">rotors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">}):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">heavy</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">and</span> <span class="n">heavy</span><span class="p">[</span><span class="n">b</span><span class="p">]):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">orders</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">conjugated</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ha</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">neighbours</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="p">{</span><span class="n">b</span><span class="p">}</span> <span class="k">if</span> <span class="n">heavy</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">hb</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">neighbours</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="p">{</span><span class="n">a</span><span class="p">}</span> <span class="k">if</span> <span class="n">heavy</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ha</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">hb</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">side_b</span> <span class="o">=</span> <span class="n">_side</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">side_b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>  <span class="c1"># in a ring</span>
+        <span class="n">side_a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="n">side_b</span>
+        <span class="n">heavy_a</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">side_a</span> <span class="k">if</span> <span class="n">heavy</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">heavy_b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">side_b</span> <span class="k">if</span> <span class="n">heavy</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">moving</span> <span class="o">=</span> <span class="n">side_b</span> <span class="k">if</span> <span class="n">heavy_b</span> <span class="o">&lt;=</span> <span class="n">heavy_a</span> <span class="k">else</span> <span class="n">side_a</span>
+        <span class="n">rotors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">"bond"</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+                <span class="s2">"dihedral"</span><span class="p">:</span> <span class="p">(</span><span class="n">ha</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">hb</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="s2">"moving"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">moving</span><span class="p">),</span>
+                <span class="s2">"heavy moved"</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">heavy_a</span><span class="p">,</span> <span class="n">heavy_b</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="n">rotors</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="s2">"heavy moved"</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">"bond"</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">rotors</span> <span class="k">if</span> <span class="n">max_rotors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">rotors</span><span class="p">[:</span><span class="n">max_rotors</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="dihedral">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.dihedral">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">dihedral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The dihedral a-b-c-d (degrees, -180..180)."""</span>
+    <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">b1n</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b0</span><span class="p">,</span> <span class="n">b1n</span><span class="p">)</span> <span class="o">*</span> <span class="n">b1n</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">b2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">b1n</span><span class="p">)</span> <span class="o">*</span> <span class="n">b1n</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">b1n</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">w</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="rotate_about_bond">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.rotate_about_bond">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rotate_about_bond</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">moving</span><span class="p">,</span> <span class="n">degrees</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A copy of xyz with the atoms ``moving`` turned by ``degrees`` about the</span>
+<span class="sd">    i-j axis (right-handed about i -&gt; j)."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">axis</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">degrees</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">axis</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">axis</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">K</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="o">*</span> <span class="n">K</span> <span class="o">@</span> <span class="n">K</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">moving</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">@</span> <span class="n">R</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+
+<div class="viewcode-block" id="set_dihedral">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.set_dihedral">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_dihedral</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">rotor</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A copy of xyz with the rotor's dihedral set to ``target`` degrees by</span>
+<span class="sd">    turning its moving side."""</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rotor</span><span class="p">[</span><span class="s2">"dihedral"</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">dihedral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="c1"># turning the side that holds b about i -&gt; j by t changes the dihedral by t;</span>
+    <span class="c1"># turning the side that holds a changes it by -t</span>
+    <span class="n">sign</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">rotor</span><span class="p">[</span><span class="s2">"moving"</span><span class="p">]</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">rotate_about_bond</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">rotor</span><span class="p">[</span><span class="s2">"moving"</span><span class="p">],</span> <span class="n">sign</span> <span class="o">*</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="scan_angles">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.scan_angles">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">scan_angles</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">15.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The scan's dihedral targets: start + k*step, k = 1 ... 360/step - 1 (the</span>
+<span class="sd">    start itself is the minimum and is not repeated), wrapped to -180..180."""</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">360.0</span> <span class="o">/</span> <span class="n">step</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[((</span><span class="n">start</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">step</span> <span class="o">+</span> <span class="mf">180.0</span><span class="p">)</span> <span class="o">%</span> <span class="mf">360.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">180.0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)]</span></div>
+
+
+
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Bond distortions</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<div class="viewcode-block" id="bond_classes">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.bond_classes">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">bond_classes</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""{"C-H": (i, j), ...}: for each bonded element pair, the bond of median</span>
+<span class="sd">    length (the lower of the two middle ones; ties to the lower indices).</span>
+<span class="sd">    ``pairs`` limits it to those classes (e.g. {"C-H", "C-C"}; order of the</span>
+<span class="sd">    elements does not matter)."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">}):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s2">"-"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="n">j</span><span class="p">])))</span>
+        <span class="n">groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">])),</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">pairs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">wanted</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"-"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">}</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wanted</span><span class="p">}</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">items</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">items</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+
+<div class="viewcode-block" id="stretch_vector">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.stretch_vector">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stretch_vector</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The unit-free stretch direction (3N): -u/2 on i, +u/2 on j, u the unit</span>
+<span class="sd">    vector i -&gt; j; a displacement a times it lengthens the bond by a."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">u</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">u</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="stretch_amplitude">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.stretch_amplitude">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stretch_amplitude</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The bond-length change a (Å) whose harmonic energy along the stretch is</span>
+<span class="sd">    ``energy`` (E_h): 1/2 a² vᵀHv = energy, exact for this two-atom</span>
+<span class="sd">    displacement; capped at ``maximum`` (Å)."""</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">stretch_vector</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span>  <span class="c1"># E_h/bohr²</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">maximum</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">energy</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">BOHR</span>
+        <span class="k">if</span> <span class="n">maximum</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">maximum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span></div>
+
+
+
+<div class="viewcode-block" id="stretch">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.stretch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">stretch</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A copy of xyz with bond i-j lengthened by a (Å; negative shortens), each</span>
+<span class="sd">    atom moving a/2."""</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">stretch_vector</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="diatomic_grid">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.diatomic_grid">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">diatomic_grid</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">n_points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Bond-length changes (Å) for a diatomic's 1-D stretch grid: n_points equally</span>
+<span class="sd">    spaced from -a to +a, a the displacement whose harmonic energy is ``energy``</span>
+<span class="sd">    (E_h); r_e itself (the minimum, already a point) is left out if it falls on</span>
+<span class="sd">    the grid."""</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">stretch_amplitude</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-9</span> <span class="o">*</span> <span class="n">a</span><span class="p">]</span></div>
+
+
+
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Hessian check</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<div class="viewcode-block" id="frequencies">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.frequencies">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">frequencies</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">masses_amu</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Signed harmonic frequencies (cm⁻¹) of a Cartesian Hessian (E_h/bohr²),</span>
+<span class="sd">    without projecting translations and rotations (for the frequency guard)."""</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">masses_amu</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">H_mw</span> <span class="o">=</span> <span class="n">H</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
+    <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">H_mw</span> <span class="o">+</span> <span class="n">H_mw</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+    <span class="c1"># E_h/(bohr² amu) -&gt; (cm⁻¹)²: 5140.487^2 per unit</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="mf">5140.48767</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span> <span class="o">*</span> <span class="n">factor</span></div>
+
+
+
+<div class="viewcode-block" id="check_hessian">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.check_hessian">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_hessian</span><span class="p">(</span>
+    <span class="n">hessian</span><span class="p">,</span>
+    <span class="n">gradient</span><span class="p">,</span>
+    <span class="n">xyz</span><span class="p">,</span>
+    <span class="n">masses_amu</span><span class="p">,</span>
+    <span class="n">rng</span><span class="p">,</span>
+    <span class="n">n_displacements</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">rms</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+    <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+    <span class="n">max_frequency</span><span class="o">=</span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Test a Hessian against central differences of the gradient.</span>
+
+<span class="sd">    For each of ``n_displacements`` random displacements δ with an RMS of ``rms``</span>
+<span class="sd">    Å, e = ‖Hδ − [g(x₀+δ) − g(x₀−δ)]/2‖ / ‖Hδ‖ (2 gradients each). The Hessian</span>
+<span class="sd">    is refused if any e exceeds ``tolerance`` or any frequency magnitude exceeds</span>
+<span class="sd">    ``max_frequency`` cm⁻¹.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    gradient : callable</span>
+<span class="sd">        gradient(xyz (N, 3) Å) -&gt; (3N,) E_h/bohr.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        "errors": [e], "max frequency": the largest frequency magnitude,</span>
+<span class="sd">        "refused": bool and "reason": text or None.</span>
+<span class="sd">    """</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">nu</span> <span class="o">=</span> <span class="n">frequencies</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">masses_amu</span><span class="p">)</span>
+    <span class="n">biggest</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nu</span><span class="p">)))</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_displacements</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">x0</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">*=</span> <span class="n">rms</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># Å</span>
+        <span class="n">Hd</span> <span class="o">=</span> <span class="n">H</span> <span class="o">@</span> <span class="p">(</span><span class="n">d</span> <span class="o">/</span> <span class="n">BOHR</span><span class="p">)</span>
+        <span class="n">g_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gradient</span><span class="p">((</span><span class="n">x0</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">g_minus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gradient</span><span class="p">((</span><span class="n">x0</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">dg</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">g_plus</span> <span class="o">-</span> <span class="n">g_minus</span><span class="p">)</span>
+        <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Hd</span> <span class="o">-</span> <span class="n">dg</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Hd</span><span class="p">)))</span>
+    <span class="n">reason</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">biggest</span> <span class="o">&gt;</span> <span class="n">max_frequency</span><span class="p">:</span>
+        <span class="n">reason</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"a frequency of </span><span class="si">{</span><span class="n">biggest</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> cm⁻¹ (&gt; </span><span class="si">{</span><span class="n">max_frequency</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">)"</span>
+    <span class="k">elif</span> <span class="nb">max</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="n">reason</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"it disagrees with the gradients by </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (&gt; </span><span class="si">{</span><span class="n">tolerance</span><span class="si">}</span><span class="s2">)"</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"errors"</span><span class="p">:</span> <span class="n">errors</span><span class="p">,</span>
+        <span class="s2">"max frequency"</span><span class="p">:</span> <span class="n">biggest</span><span class="p">,</span>
+        <span class="s2">"refused"</span><span class="p">:</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">"reason"</span><span class="p">:</span> <span class="n">reason</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="wrap">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.generate.wrap">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">wrap</span><span class="p">(</span><span class="n">delta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The magnitude of an angle difference, wrapped to 0..180 degrees."""</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">((</span><span class="n">delta</span> <span class="o">+</span> <span class="mf">180.0</span><span class="p">)</span> <span class="o">%</span> <span class="mf">360.0</span> <span class="o">-</span> <span class="mf">180.0</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
