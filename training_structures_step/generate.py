@@ -41,11 +41,18 @@ def connectivity(symbols, xyz, factor=1.3, radii=None):
     return bonds
 
 
-def connectivity_change(reference_bonds, symbols, xyz, factor=1.3, radii=None):
+def connectivity_change(
+    reference_bonds, symbols, xyz, factor=1.3, radii=None, exempt=None
+):
     """None if the structure has exactly the reference bonds, else the bonds
-    broken and formed, as text (e.g. '-C1-H5 +H5-O3')."""
+    broken and formed, as text (e.g. '-C1-H5 +H5-O3'). ``exempt`` is a bond
+    (i, j) not judged: a bond stretched on purpose."""
     now = connectivity(symbols, xyz, factor, radii)
     ref = {tuple(sorted(b)) for b in reference_bonds}
+    if exempt is not None:
+        key = tuple(sorted(exempt))
+        now.discard(key)
+        ref.discard(key)
     if now == ref:
         return None
 

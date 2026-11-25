@@ -249,10 +249,14 @@ class TrainingStructures(seamm.Node):
                 )
             e_ref = cheap.energy(x0, units="kJ/mol") if cheap is not None else None
 
-            def check(x, energy=None):
-                """(reason or None, generator-level energy above the minimum)."""
+            def check(x, energy=None, stretched=None):
+                """(reason or None, generator-level energy above the minimum). The
+                bond a stretch point lengthens on purpose (stretched, i < j) is
+                not judged by the connectivity check; every other bond is."""
                 if P["connectivity check"] == "yes":
-                    change = generate.connectivity_change(ref_bonds, symbols, x, factor)
+                    change = generate.connectivity_change(
+                        ref_bonds, symbols, x, factor, exempt=stretched
+                    )
                     if change is not None:
                         return f"bonds changed: {change}", None
                 de = None
@@ -510,7 +514,7 @@ class TrainingStructures(seamm.Node):
             for sign in (1.0, -1.0):
                 x = generate.stretch(x0, i, j, sign * a)
                 name = f"stretch {cls} {'+' if sign > 0 else '-'}"
-                reason, de = check(x)
+                reason, de = check(x, stretched=(i, j))
                 if reason is not None:
                     dropped.setdefault("stretch", []).append(f"{name}: {reason}")
                     continue
@@ -540,7 +544,7 @@ class TrainingStructures(seamm.Node):
         for n, a in enumerate(grid, start=1):
             x = generate.stretch(x0, 0, 1, a)
             name = f"grid {n}"
-            reason, de = check(x)
+            reason, de = check(x, stretched=(0, 1))
             if reason is not None:
                 dropped.setdefault("grid", []).append(f"{name}: {reason}")
                 continue
@@ -594,8 +598,20 @@ class TrainingStructures(seamm.Node):
                 )
             )
             for kind, items in data["dropped points"].items():
+                # group the points refused for the same reason
+                by_reason = {}
                 for item in items:
-                    printer.important(__(f"{kind}: {item}", indent=8 * " ", wrap=False))
+                    name, _, reason = item.partition(": ")
+                    by_reason.setdefault(reason or name, []).append(name)
+                for reason, names in by_reason.items():
+                    if len(names) == 1 or reason == names[0]:
+                        text = f"{kind}: {names[0]}" + (
+                            f": {reason}" if reason != names[0] else ""
+                        )
+                    else:
+                        text = f"{kind}: {len(names)} points ({names[0]} ... "
+                        text += f"{names[-1]}): {reason}"
+                    printer.important(__(text, indent=8 * " ", wrap=False))
         printer.important(
             __(f"The random seed was {data['random seed']}.", indent=4 * " ")
         )

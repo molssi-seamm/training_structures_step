@@ -184,3 +184,10 @@ def test_frequency_units():
     x, H, k = diatomic()
     nu = g.frequencies(H, [1.008, 1.008])
     assert max(nu) == pytest.approx(5140.48767 * math.sqrt(k / 0.504), rel=1e-6)
+
+
+def test_a_stretched_bond_is_exempt_from_the_connectivity_check():
+    s, x = ["H", "H"], np.array([[0.0, 0.0, 0.0], [0.0, 0.0, 0.74]])
+    y = g.stretch(x, 0, 1, 0.2)  # 0.94 Å: beyond 1.3 x (0.31 + 0.31)
+    assert g.connectivity_change([(0, 1)], s, y) == "-H1-H2"
+    assert g.connectivity_change([(0, 1)], s, y, exempt=(1, 0)) is None
