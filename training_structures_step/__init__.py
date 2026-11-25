@@ -9,7 +9,7 @@ A SEAMM plug-in for Training Structures
 # the training_structures_step package.
 
 from .training_structures import TrainingStructures  # noqa: F401, E501
-from .training_structures_parameters import TrainingStructuresParameters  # noqa: F401, E501
+from .training_structures_parameters import TrainingStructuresParameters  # noqa: F401
 from .training_structures_step import TrainingStructuresStep  # noqa: F401, E501
 from .tk_training_structures import TkTrainingStructures  # noqa: F401, E501
 

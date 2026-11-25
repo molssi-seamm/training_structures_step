@@ -1,3 +1,9 @@
 seamm
 seamm-util
 seamm-widgets
+seamm-exec>=2026.11.25.1
+normal-mode-sampling-step
+molsystem
+numpy
+ase
+rdkit
