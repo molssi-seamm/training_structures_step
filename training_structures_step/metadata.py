@@ -130,16 +130,60 @@ type : str
 units : str
     Optional units for the result. If present, the value should be in these units.
 """
-# metadata["results"] = {
-#     "total_energy": {
-#         "calculation": [
-#             "energy",
-#             "optimization",
-#         ],
-#         "description": "The total energy",
-#         "dimensionality": "scalar",
-#         "property": "total energy#TrainingStructures#{model}",
-#         "type": "float",
-#         "units": "E_h",
-#     },
-# }
+metadata["results"] = {
+    "number of points": {
+        "description": "The number of structures made, the minimum included",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of sample points": {
+        "description": "The number of normal-mode samples",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of scan points": {
+        "description": "The number of torsion-scan points",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of stretch points": {
+        "description": "The number of bond-stretch points",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of grid points": {
+        "description": "The number of a diatomic's stretch-grid points",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of rotors": {
+        "description": "The number of heavy rotors scanned",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "number of dropped points": {
+        "description": "The number of points refused by the checks",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "dropped points": {
+        "description": "The points refused, by kind, with the reasons",
+        "dimensionality": "scalar",
+        "type": "json",
+    },
+    "hessian": {
+        "description": "How the Hessian was made and checked",
+        "dimensionality": "scalar",
+        "type": "json",
+    },
+    "random seed": {
+        "description": "The seed of the random numbers, to reproduce the points",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+    "system name": {
+        "description": "The name of the system holding the structures",
+        "dimensionality": "scalar",
+        "type": "string",
+    },
+}

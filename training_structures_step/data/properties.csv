@@ -1,1 +1,11 @@
 Property,Type,Units,Description,URL
+point type#TrainingStructures#generation,str,,"How this training structure was made: minimum, sample, scan, stretch or grid.",
+target energy#TrainingStructures#generation,float,kJ/mol,"The harmonic energy above the minimum that this normal-mode sample was scaled to.",
+harmonic energy#TrainingStructures#generation,float,kJ/mol,"The harmonic energy of this structure above the minimum, from the Hessian.",
+prescreen energy#TrainingStructures#generation,float,kJ/mol,"The energy of this structure above the minimum at the generator level (the pre-screen).",
+scan rotor#TrainingStructures#generation,json,,"The four atoms (1-based) of the dihedral scanned for this structure.",
+scan angle#TrainingStructures#generation,float,degree,"The change of the scanned dihedral from the minimum.",
+bond class#TrainingStructures#generation,str,,"The element pair of the bond stretched for this structure.",
+bond#TrainingStructures#generation,json,,"The two atoms (1-based) of the bond stretched for this structure.",
+bond change#TrainingStructures#generation,float,Å,"The change of the stretched bond's length from the minimum.",
+hessian#TrainingStructures#generation,json,,"How the Hessian was made and checked: route, open shell, the check's errors and largest frequency, and any refusal.",

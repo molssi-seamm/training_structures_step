@@ -32,8 +32,12 @@ class TrainingStructuresStep(object):
     """
 
     my_description = {
-        "description": "An interface for Training Structures",
-        "group": "Simulations",
+        "description": (
+            "Distorted structures of a molecule for training a machine-learned "
+            "potential: energy-targeted normal-mode samples, relaxed torsion scans "
+            "and bond stretches"
+        ),
+        "group": "Building",
         "name": "Training Structures",
     }
 
@@ -63,7 +67,9 @@ class TrainingStructuresStep(object):
         TrainingStructures
         """
 
-        return training_structures_step.TrainingStructures(flowchart=flowchart, **kwargs)
+        return training_structures_step.TrainingStructures(
+            flowchart=flowchart, **kwargs
+        )
 
     def create_tk_node(self, canvas=None, **kwargs):
         """Create and return the graphical Tk node object.

@@ -4,6 +4,7 @@
 
 import pprint  # noqa: F401
 import tkinter as tk  # noqa: F401
+import tkinter.ttk as ttk
 
 import training_structures_step  # noqa: F401
 import seamm
@@ -95,96 +96,149 @@ class TkTrainingStructures(seamm.TkNode):
             h=h,
         )
 
+    #: the dialog's frames and the parameters in each, in order
+    GROUPS = {
+        "Samples": (
+            "number of samples",
+            "samples per mode",
+            "minimum number of samples",
+            "maximum number of samples",
+            "minimum target energy",
+            "maximum target energy",
+            "amplitude cap",
+            "lowest frequency",
+            "maximum atom displacement",
+            "maximum bond change",
+            "maximum angle change",
+            "maximum draws",
+        ),
+        "Torsion scans": (
+            "number of rotors",
+            "scan step",
+            "relaxation convergence",
+            "relaxation max steps",
+        ),
+        "Bond stretches": (
+            "bond stretches",
+            "bond pairs",
+            "stretch energy",
+            "maximum stretch",
+            "diatomic grid points",
+            "diatomic grid energy",
+        ),
+        "Checks": (
+            "generator level",
+            "connectivity check",
+            "connectivity factor",
+            "prescreen energy",
+        ),
+        "Hessian": (
+            "check the hessian",
+            "closed-shell check fraction",
+            "hessian tolerance",
+            "check displacement",
+            "maximum frequency",
+        ),
+        "Output": ("random seed", "system name"),
+    }
+    #: the parameters whose value changes the layout
+    DRIVERS = (
+        "number of samples",
+        "number of rotors",
+        "bond stretches",
+        "connectivity check",
+        "prescreen energy",
+        "check the hessian",
+    )
+
     def create_dialog(self):
-        """
-        Create the dialog. A set of widgets will be chosen by default
-        based on what is specified in the Training Structures_parameters
-        module.
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        None
-
-        See Also
-        --------
-        TkTrainingStructures.reset_dialog
-        """
-
+        """Create the dialog: the parameters in labelled frames."""
         frame = super().create_dialog(title="Training Structures")
-        # Shortcut for parameters
         P = self.node.parameters
-
-        # Then create the widgets
-        for key in P:
-            if key[0] != "_" and key not in (
-                "results",
-                "extra keywords",
-                "create tables",
-            ):
-                self[key] = P[key].widget(frame)
-
-        # and lay them out
+        for group, keys in self.GROUPS.items():
+            self[group] = ttk.LabelFrame(
+                frame, borderwidth=4, relief="sunken", text=group, labelanchor="n"
+            )
+            for key in keys:
+                self[key] = P[key].widget(self[group])
+        self["model chemistry note"] = ttk.Label(
+            frame,
+            text="Add a Model Chemistry step before this one: it gives the Hessian.",
+            foreground="red",
+        )
+        for key in self.DRIVERS:
+            w = self[key]
+            entry = w.combobox if hasattr(w, "combobox") else w.entry
+            for event in ("<<ComboboxSelected>>", "<Return>", "<FocusOut>"):
+                entry.bind(event, self.reset_dialog)
         self.reset_dialog()
 
     def reset_dialog(self, widget=None):
-        """Layout the widgets in the dialog.
-
-        The widgets are chosen by default from the information in
-        Training Structures_parameter.
-
-        This function simply lays them out row by row with
-        aligned labels. You may wish a more complicated layout that
-        is controlled by values of some of the control parameters.
-        If so, edit or override this method
-
-        Parameters
-        ----------
-        widget : Tk Widget = None
-
-        Returns
-        -------
-        None
-
-        See Also
-        --------
-        TkTrainingStructures.create_dialog
-        """
-
-        # Remove any widgets previously packed
+        """Lay out the frames, showing each parameter only when it applies."""
         frame = self["frame"]
         for slave in frame.grid_slaves():
             slave.grid_forget()
 
-        # Shortcut for parameters
-        P = self.node.parameters
+        def value(key):
+            return str(self[key].get()).strip()
 
-        # keep track of the row in a variable, so that the layout is flexible
-        # if e.g. rows are skipped to control such as "method" here
+        shown = {key for keys in self.GROUPS.values() for key in keys}
+        if value("number of samples") != "in proportion to the modes":
+            shown -= {
+                "samples per mode",
+                "minimum number of samples",
+                "maximum number of samples",
+            }
+        if value("number of samples") == "0":
+            shown -= set(self.GROUPS["Samples"][1:])
+        if value("number of rotors") == "0":
+            shown -= set(self.GROUPS["Torsion scans"][1:])
+        if value("bond stretches") == "no":
+            shown -= {"bond pairs", "stretch energy", "maximum stretch"}
+        if value("connectivity check") == "no":
+            shown.discard("connectivity factor")
+        if value("number of rotors") == "0" and value("prescreen energy") == "none":
+            shown.discard("generator level")
+        if value("check the hessian") == "never":
+            shown -= set(self.GROUPS["Hessian"][1:])
+        elif value("check the hessian") == "always":
+            shown.discard("closed-shell check fraction")
+
         row = 0
-        widgets = []
-        for key in P:
-            if key[0] != "_" and key not in (
-                "results",
-                "extra keywords",
-                "create tables",
-            ):
-                self[key].grid(row=row, column=0, sticky=tk.EW)
-                widgets.append(self[key])
+        if not self._upstream_has_model_chemistry():
+            self["model chemistry note"].grid(row=row, column=0, sticky=tk.W)
+            row += 1
+        for group, keys in self.GROUPS.items():
+            inner = self[group]
+            for slave in inner.grid_slaves():
+                slave.grid_forget()
+            widgets = []
+            for key in keys:
+                if key in shown:
+                    self[key].grid(row=len(widgets), column=0, sticky=tk.EW)
+                    widgets.append(self[key])
+            if widgets:
+                sw.align_labels(widgets, sticky=tk.E)
+                inner.grid(row=row, column=0, sticky=tk.EW, pady=4)
                 row += 1
 
-        # Align the labels
-        sw.align_labels(widgets, sticky=tk.E)
-
-        # Setup the results if there are any
         have_results = (
             "results" in self.node.metadata and len(self.node.metadata["results"]) > 0
         )
-        if have_results and "results" in P:
+        if have_results and "results" in self.node.parameters:
             self.setup_results()
+
+    def _upstream_has_model_chemistry(self):
+        """True if a Model Chemistry step precedes this one (False on any
+        error, so the reminder shows)."""
+        try:
+            return any(
+                type(node).__name__ == "ModelChemistry"
+                and type(node).__module__.startswith("model_chemistry_step")
+                for node in self.previous_nodes()
+            )
+        except Exception:
+            return False
 
     def right_click(self, event):
         """
