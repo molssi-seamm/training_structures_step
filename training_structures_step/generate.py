@@ -268,7 +268,7 @@ def diatomic_grid(hessian, xyz, energy, n_points):
 # --------------------------------------------------------------------------- #
 def frequencies(hessian, masses_amu):
     """Signed harmonic frequencies (cm⁻¹) of a Cartesian Hessian (E_h/bohr²),
-    without projecting translations and rotations (for the |ν| guard)."""
+    without projecting translations and rotations (for the frequency guard)."""
     m = np.repeat(np.asarray(masses_amu, dtype=float), 3)
     H = np.asarray(hessian, dtype=float)
     H_mw = H / np.sqrt(np.outer(m, m))
@@ -293,7 +293,7 @@ def check_hessian(
 
     For each of ``n_displacements`` random displacements δ with an RMS of ``rms``
     Å, e = ‖Hδ − [g(x₀+δ) − g(x₀−δ)]/2‖ / ‖Hδ‖ (2 gradients each). The Hessian
-    is refused if any e exceeds ``tolerance`` or any |ν| exceeds
+    is refused if any e exceeds ``tolerance`` or any frequency magnitude exceeds
     ``max_frequency`` cm⁻¹.
 
     Parameters
@@ -304,7 +304,7 @@ def check_hessian(
     Returns
     -------
     dict
-        "errors": [e], "max frequency": the largest |ν|, "refused": bool and
+        "errors": [e], "max frequency": the largest frequency magnitude, "refused": bool and
         "reason": text or None.
     """
     x0 = np.asarray(xyz, dtype=float).reshape(-1)
@@ -334,5 +334,5 @@ def check_hessian(
 
 
 def wrap(delta):
-    """|delta| wrapped to 0..180 degrees."""
+    """The magnitude of an angle difference, wrapped to 0..180 degrees."""
     return abs((delta + 180.0) % 360.0 - 180.0)

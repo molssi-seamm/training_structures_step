@@ -35,7 +35,9 @@ A SEAMM plug-in for Training Structures
 Features
 --------
 
-* Please edit this section!
+* The Training Structures step makes distorted structures of a molecule for training a machine-learned potential: energy-targeted normal-mode samples, relaxed torsion scans of the heavy rotors and bond stretches, each checked to keep the molecule's bonds and to lie in a chosen energy window.
+* The points are configurations of a new system, one per molecule, named by kind
+  ('sample 3', 'scan 1 C2-C3 +45', 'stretch C-H -'), for labelling by a later step.
 
 Acknowledgements
 ----------------
