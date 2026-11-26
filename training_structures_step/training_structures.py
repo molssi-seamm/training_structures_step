@@ -228,7 +228,12 @@ class TrainingStructures(seamm.Node):
         H, data["hessian"] = self._hessian(P, driver, reference, x0, masses, rng)
         # What the engine actually ran for the Hessian (its calculation record, from
         # the program's own input and output, which stay in the engine's scratch)
-        settings = engine_settings(driver.fingerprints)
+        settings = engine_settings(
+            driver.fingerprints,
+            finite_differences=str(data["hessian"].get("route", "")).startswith(
+                "finite differences"
+            ),
+        )
         if settings:
             data["hessian"]["settings"] = settings
 
@@ -341,7 +346,14 @@ class TrainingStructures(seamm.Node):
     # ------------------------------------------------------------------ #
     def _hessian(self, P, driver, configuration, x0, masses, rng):
         """The Hessian (E_h/bohr²) at the Model Chemistry and how it was made,
-        checked against finite differences of the gradient when asked."""
+        checked against finite differences of the gradient when asked.
+
+        Over a warm engine the check's gradients each start from the reference
+        structure's orbitals, with a tight SCF (seamm_exec's
+        ``EngineSession.check_hessian``). A refused Hessian is replaced by finite
+        differences of the gradient, made the same way and with every point
+        checked for a state change, and the replacement is checked again: if it
+        fails too, the molecule is refused (science 2026-11-26)."""
         how = P["check the hessian"]
         open_shell = int(configuration.spin_multiplicity or 1) > 1
         draw = rng.uniform()  # always drawn, so the points do not depend on how
@@ -350,29 +362,33 @@ class TrainingStructures(seamm.Node):
             and (open_shell or draw < float(P["closed-shell check fraction"]))
         )
         info = {"open shell": open_shell, "checked": check}
+        limits = {
+            "rms": self._as_float(P["check displacement"], "Å"),
+            "tolerance": float(P["hessian tolerance"]),
+            "max_frequency": self._as_float(P["maximum frequency"], "1/cm"),
+        }
         with driver.session(configuration) as session:
             if session is None:
                 _, H, _ = driver.energy_and_hessian(configuration)
                 info["route"] = "tasks"
+                fd = getattr(driver, "fd_info", None)
+                if fd:
+                    info["finite differences"] = fd
                 if check:
                     info["check"] = "not possible: the model chemistry runs as tasks"
                 return np.asarray(H, dtype=float), info
             H, route = session.hessian()
             info["route"] = route
+            fd = getattr(session, "fd_info", None)
+            if fd:
+                info["finite differences"] = fd
             if not check:
                 return np.asarray(H, dtype=float), info
-            result = generate.check_hessian(
-                H,
-                session.gradient,
-                x0,
-                masses,
-                rng,
-                rms=self._as_float(P["check displacement"], "Å"),
-                tolerance=float(P["hessian tolerance"]),
-                max_frequency=self._as_float(P["maximum frequency"], "1/cm"),
-            )
+            result = self._check_hessian(session, H, x0, masses, rng, limits)
             info["errors"] = [round(e, 6) for e in result["errors"]]
             info["max frequency"] = round(result["max frequency"], 1)
+            if result.get("reference guess") is not None:
+                info["check from reference guess"] = result["reference guess"]
             if result["refused"]:
                 printer.important(
                     __(
@@ -381,10 +397,35 @@ class TrainingStructures(seamm.Node):
                         indent=4 * " ",
                     )
                 )
-                H, route = session.hessian(finite_differences=True)
                 info["refused"] = result["reason"]
+                H, route = session.hessian(finite_differences=True)
                 info["route"] = route
+                fd = getattr(session, "fd_info", None)
+                if fd:
+                    info["finite differences"] = fd
+                # The replacement is checked too, and must pass
+                again = self._check_hessian(session, H, x0, masses, rng, limits)
+                info["replacement check"] = {
+                    "errors": [round(e, 6) for e in again["errors"]],
+                    "max frequency": round(again["max frequency"], 1),
+                    "reason": again["reason"],
+                }
+                if again["refused"]:
+                    raise RuntimeError(
+                        f"The {route} Hessian that replaced it was refused too: "
+                        f"{again['reason']}. The molecule is not used."
+                    )
         return np.asarray(H, dtype=float), info
+
+    @staticmethod
+    def _check_hessian(session, H, x0, masses, rng, limits):
+        """The gradient-difference check: the session's, from the reference
+        orbitals with a tight SCF (seamm-exec >= 2026.11.26), else with its
+        plain gradients."""
+        check = getattr(session, "check_hessian", None)
+        if check is not None:
+            return check(H, rng, coords_ang=x0, **limits)
+        return generate.check_hessian(H, session.gradient, x0, masses, rng, **limits)
 
     # ------------------------------------------------------------------ #
     # The kinds of points
@@ -733,15 +774,19 @@ _POINT_PROPERTIES = {
 }
 
 
-def engine_settings(fingerprints):
+def engine_settings(fingerprints, finite_differences=False):
     """The settings of the engine's Hessian run (else its last energy run), from
     the calculation records a warm engine reports ({"energy": record, "hessian":
     record}, see seamm_util.fingerprint.calculation_record): {"run", "fingerprint",
     "version", "keywords"}, the keywords being the input's '!' lines. None without
-    records (e.g. the Hessian ran as separate tasks)."""
+    records (e.g. the Hessian ran as separate tasks).
+
+    For a finite-difference Hessian the energy runs made it, so their record comes
+    first: a "hessian" record is then that of a refused analytic Hessian."""
     if not fingerprints:
         return None
-    for run in ("hessian", "energy"):
+    order = ("energy", "hessian") if finite_differences else ("hessian", "energy")
+    for run in order:
         record = fingerprints.get(run)
         if record:
             files = record.get("files") or {}

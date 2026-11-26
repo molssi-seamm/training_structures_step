@@ -2,6 +2,16 @@
 History
 =======
 
+2026.11.26.2 -- A replacement Hessian is checked too
+    * The Hessian check's gradients each start from the reference structure's
+      orbitals, with a tight SCF (seamm-exec 2026.11.26).
+    * A refused Hessian's finite-difference replacement, made the same way with every
+      point checked for a state change, is itself checked; if it fails too the
+      molecule is refused. Before, the replacement was used unchecked (methoxy in the
+      E2b pilot, SEAMM job 6090).
+    * How the finite differences were made, both checks and the zero modes are in the
+      molecule's record.
+
 2026.11.26.1 -- Record what the engine ran for the Hessian
     * Training Structures stores, with how the Hessian was made, the warm engine's own
       record of the Hessian run (else its last energy run): the settings fingerprint, the
