@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.export_training_set &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
+    <title>training_structures_step.export_training_set &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=291d9058"></script>
+    <script src="../../_static/documentation_options.js?v=1ee51a32"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.1" />
+  <meta name="docsearch:version" content="2026.11.25.2" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -668,9 +668,24 @@
         <span class="n">redraw</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">below</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># molecules with points below their minimum</span>
         <span class="n">n_kept</span> <span class="o">=</span> <span class="n">n_dropped</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">system</span> <span class="ow">in</span> <span class="n">systems</span><span class="p">:</span>
-            <span class="n">points</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_points</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecules</span><span class="p">(</span><span class="n">systems</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">first</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">second</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="n">points</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_points</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">first</span><span class="p">)</span>
+            <span class="n">redrawn</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">second</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">r_points</span><span class="p">,</span> <span class="n">r_model</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_points</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+                <span class="n">points</span><span class="p">,</span> <span class="n">problem</span> <span class="o">=</span> <span class="n">export</span><span class="o">.</span><span class="n">merge_redraw</span><span class="p">(</span>
+                    <span class="n">points</span><span class="p">,</span> <span class="n">r_points</span><span class="p">,</span> <span class="n">same_model</span><span class="o">=</span><span class="p">(</span><span class="n">r_model</span> <span class="o">==</span> <span class="n">model</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">problem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">refused</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"the redraw </span><span class="si">{</span><span class="n">second</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">problem</span><span class="si">}</span><span class="s2">"</span><span class="p">))</span>
+                    <span class="k">continue</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"replaced"</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_mark</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">"configuration"</span><span class="p">],</span> <span class="s2">"replaced by the redraw"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"replaced"</span><span class="p">)]</span>
+                <span class="n">redrawn</span> <span class="o">=</span> <span class="n">second</span><span class="o">.</span><span class="n">name</span>
             <span class="n">kept</span><span class="p">,</span> <span class="n">dropped</span><span class="p">,</span> <span class="n">problem</span> <span class="o">=</span> <span class="n">export</span><span class="o">.</span><span class="n">filter_points</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">spin</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">problem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">refused</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">problem</span><span class="p">))</span>
@@ -705,6 +720,8 @@
                 <span class="n">dropped</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">record</span><span class="p">[</span><span class="s2">"sample drop fraction"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">fraction</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">redrawn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">record</span><span class="p">[</span><span class="s2">"samples from the redraw"</span><span class="p">]</span> <span class="o">=</span> <span class="n">redrawn</span>
             <span class="n">lowest</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">"delta energy"</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">kept</span><span class="p">)</span>
             <span class="n">record</span><span class="p">[</span><span class="s2">"lowest delta energy (kJ/mol)"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">lowest</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">lowest</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">:</span>
@@ -747,6 +764,13 @@
             <span class="s2">"number of dropped points"</span><span class="p">:</span> <span class="n">n_dropped</span><span class="p">,</span>
             <span class="s2">"refused molecules"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">refused</span><span class="p">],</span>
             <span class="s2">"molecules to redraw"</span><span class="p">:</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">redraw</span><span class="p">],</span>
+            <span class="c1"># for a Loop over the systems to redraw ('name regexp'); matches nothing</span>
+            <span class="c1"># when there are none</span>
+            <span class="s2">"redraw regexp"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"^(?:"</span> <span class="o">+</span> <span class="s2">"|"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">redraw</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")$"</span>
+                <span class="k">if</span> <span class="n">redraw</span>
+                <span class="k">else</span> <span class="s2">"(?!)"</span>
+            <span class="p">),</span>
             <span class="s2">"molecules below their minimum"</span><span class="p">:</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">below</span><span class="p">],</span>
             <span class="s2">"directory"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">directory</span><span class="p">),</span>
         <span class="p">}</span>
@@ -773,6 +797,32 @@
         <span class="k">if</span> <span class="n">how</span> <span class="o">==</span> <span class="s2">"all training systems"</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">systems</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_training_system</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">systems</span> <span class="k">if</span> <span class="n">fnmatch</span><span class="o">.</span><span class="n">fnmatchcase</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">how</span><span class="p">)]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_molecules</span><span class="p">(</span><span class="n">systems</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""(name, first pass, redraw) per molecule: a system '&lt;x&gt; redraw' is the</span>
+<span class="sd">        second pass of samples for '&lt;x&gt; training'. Either may be None."""</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">system</span> <span class="ow">in</span> <span class="n">systems</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">" redraw"</span><span class="p">):</span>
+                <span class="n">base</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="n">name</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="s2">" redraw"</span><span class="p">)],</span> <span class="s2">"redraw"</span>
+            <span class="k">elif</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">" training"</span><span class="p">):</span>
+                <span class="n">base</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="n">name</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="s2">" training"</span><span class="p">)],</span> <span class="s2">"first"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">base</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span> <span class="s2">"first"</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+                <span class="n">groups</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"first"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"redraw"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+                <span class="n">order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+            <span class="n">groups</span><span class="p">[</span><span class="n">base</span><span class="p">][</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="n">system</span>
+            <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">"first"</span><span class="p">:</span>
+                <span class="n">groups</span><span class="p">[</span><span class="n">base</span><span class="p">][</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">base</span><span class="p">]</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">g</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="ow">or</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2"> training"</span><span class="p">,</span> <span class="n">g</span><span class="p">[</span><span class="s2">"first"</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="s2">"redraw"</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">out</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_is_training_system</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>

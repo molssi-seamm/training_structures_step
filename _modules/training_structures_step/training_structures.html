@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=291d9058"></script>
+    <script src="../../_static/documentation_options.js?v=1ee51a32"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.1" />
+  <meta name="docsearch:version" content="2026.11.25.2" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -782,11 +782,7 @@
                     <span class="n">points</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stretches</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">dropped</span><span class="p">)</span>
 
         <span class="c1"># 3. The new system, one configuration per point</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">system</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> training"</span>
-            <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"from structure"</span>
-            <span class="k">else</span> <span class="n">P</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_name</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"system name"</span><span class="p">],</span> <span class="n">system</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">out_sys</span> <span class="o">=</span> <span class="n">system_db</span><span class="o">.</span><span class="n">create_combined_system</span><span class="p">([</span><span class="n">reference</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">base</span> <span class="o">=</span> <span class="n">out_sys</span><span class="o">.</span><span class="n">configuration</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
@@ -1158,6 +1154,20 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No conjugation from RDKit: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">bonds</span><span class="p">,</span> <span class="n">orders</span><span class="p">,</span> <span class="n">conjugated</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_system_name</span><span class="p">(</span><span class="n">how</span><span class="p">,</span> <span class="n">structure</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The new system's name: '&lt;structure&gt; training', '&lt;structure&gt; redraw', or</span>
+<span class="sd">        the text given with {structure} replaced."""</span>
+        <span class="n">how</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">how</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">how</span> <span class="o">==</span> <span class="s2">"from structure"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">structure</span><span class="si">}</span><span class="s2"> training"</span>
+        <span class="k">if</span> <span class="n">how</span> <span class="o">==</span> <span class="s2">"for a redraw"</span><span class="p">:</span>
+            <span class="c1"># a redraw starts from the first pass's minimum, in '&lt;x&gt; training'</span>
+            <span class="k">if</span> <span class="n">structure</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">" training"</span><span class="p">):</span>
+                <span class="n">structure</span> <span class="o">=</span> <span class="n">structure</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="s2">" training"</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">structure</span><span class="si">}</span><span class="s2"> redraw"</span>
+        <span class="k">return</span> <span class="n">how</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"</span><span class="si">{structure}</span><span class="s2">"</span><span class="p">,</span> <span class="n">structure</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_seed_of</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>

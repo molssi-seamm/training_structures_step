@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>User Guide &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
+    <title>User Guide &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=291d9058"></script>
+    <script src="../_static/documentation_options.js?v=1ee51a32"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.1" />
+  <meta name="docsearch:version" content="2026.11.25.2" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -595,6 +595,22 @@ reported, for new samples with a lower maximum target energy; so are molecules w
 points more than 1 kJ/mol below their minimum, whose starting structure may not be the
 lowest conformer.</p>
 </section>
+<section id="a-redraw-pass">
+<h2>A redraw pass<a class="headerlink" href="#a-redraw-pass" title="Link to this heading">#</a></h2>
+<p>A molecule that loses more than the redraw threshold of its samples gets new samples
+in the same flowchart:</p>
+<ol class="arabic simple">
+<li><p>The first Export Training Set saves its result <code class="docutils literal notranslate"><span class="pre">redraw</span> <span class="pre">regexp</span></code> in a variable, e.g.
+<code class="docutils literal notranslate"><span class="pre">redraw</span></code>.</p></li>
+<li><p>A Loop <em>For systems in the database</em>, selecting systems by <code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">regexp</span></code> with
+<code class="docutils literal notranslate"><span class="pre">$redraw</span></code> and the configuration named <code class="docutils literal notranslate"><span class="pre">minimum</span></code>, runs Training Structures with
+the system name <em>for a redraw</em>, a lower maximum target energy (7 kcal/mol in the E2
+recipe), no rotors, no bond stretches and a new random seed.</p></li>
+<li><p>An Energy step labels the <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">redraw</span></code> systems.</p></li>
+<li><p>A second Export Training Set writes each molecule’s file again, with the redraw’s
+samples in place of the first pass’s.</p></li>
+</ol>
+</section>
 <section id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -656,6 +672,7 @@ lowest conformer.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hessian">The Hessian</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-each-point">Properties of each point</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-the-labelled-points">Exporting the labelled points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-redraw-pass">A redraw pass</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
   </nav></div>
