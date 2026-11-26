@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures_parameters &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
+    <title>training_structures_step.training_structures_parameters &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=1ee51a32"></script>
+    <script src="../../_static/documentation_options.js?v=e5385ca6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.2" />
+  <meta name="docsearch:version" content="2026.11.26" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -739,6 +739,20 @@
             <span class="s2">".1f"</span><span class="p">,</span>
         <span class="p">),</span>
         <span class="c1"># ------------------------------------------------------------ Hessian</span>
+        <span class="s2">"hessian route"</span><span class="p">:</span> <span class="n">_p</span><span class="p">(</span>
+            <span class="s2">"warm engine over MDI"</span><span class="p">,</span>
+            <span class="s2">"enum"</span><span class="p">,</span>
+            <span class="s2">""</span><span class="p">,</span>
+            <span class="s2">"Energies and Hessian via:"</span><span class="p">,</span>
+            <span class="s2">"How the Model Chemistry gives the Hessian at the minimum: the warm MDI "</span>
+            <span class="s2">"engine (analytic where the program has it, and needed for the check "</span>
+            <span class="s2">"below); separate tasks, i.e. central finite differences of 6N gradients "</span>
+            <span class="s2">"run where the job runs its tasks (no check: it is already finite "</span>
+            <span class="s2">"differences); or automatic, which on a queue that runs tasks also means "</span>
+            <span class="s2">"separate tasks. As the Thermochemistry step's CBH approach, the engine is "</span>
+            <span class="s2">"the default: 6N gradients cost several times a molecule's labels."</span><span class="p">,</span>
+            <span class="p">(</span><span class="s2">"warm engine over MDI"</span><span class="p">,</span> <span class="s2">"automatic"</span><span class="p">,</span> <span class="s2">"separate tasks"</span><span class="p">),</span>
+        <span class="p">),</span>
         <span class="s2">"check the hessian"</span><span class="p">:</span> <span class="n">_p</span><span class="p">(</span>
             <span class="s2">"open shells"</span><span class="p">,</span>
             <span class="s2">"enum"</span><span class="p">,</span>

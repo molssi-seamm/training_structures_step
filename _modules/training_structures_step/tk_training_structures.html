@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.tk_training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
+    <title>training_structures_step.tk_training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=1ee51a32"></script>
+    <script src="../../_static/documentation_options.js?v=e5385ca6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.2" />
+  <meta name="docsearch:version" content="2026.11.26" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -628,6 +628,7 @@
             <span class="s2">"prescreen energy"</span><span class="p">,</span>
         <span class="p">),</span>
         <span class="s2">"Hessian"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"hessian route"</span><span class="p">,</span>
             <span class="s2">"check the hessian"</span><span class="p">,</span>
             <span class="s2">"closed-shell check fraction"</span><span class="p">,</span>
             <span class="s2">"hessian tolerance"</span><span class="p">,</span>
@@ -644,6 +645,7 @@
         <span class="s2">"connectivity check"</span><span class="p">,</span>
         <span class="s2">"prescreen energy"</span><span class="p">,</span>
         <span class="s2">"check the hessian"</span><span class="p">,</span>
+        <span class="s2">"hessian route"</span><span class="p">,</span>
     <span class="p">)</span>
 
 <div class="viewcode-block" id="TkTrainingStructures.create_dialog">
@@ -699,8 +701,11 @@
             <span class="n">shown</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s2">"connectivity factor"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">value</span><span class="p">(</span><span class="s2">"number of rotors"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"0"</span> <span class="ow">and</span> <span class="n">value</span><span class="p">(</span><span class="s2">"prescreen energy"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"none"</span><span class="p">:</span>
             <span class="n">shown</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s2">"generator level"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">value</span><span class="p">(</span><span class="s2">"check the hessian"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"never"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">(</span><span class="s2">"hessian route"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"separate tasks"</span><span class="p">:</span>
+            <span class="c1"># finite differences as tasks: nothing to check, no engine to check with</span>
             <span class="n">shown</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GROUPS</span><span class="p">[</span><span class="s2">"Hessian"</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">elif</span> <span class="n">value</span><span class="p">(</span><span class="s2">"check the hessian"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"never"</span><span class="p">:</span>
+            <span class="n">shown</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GROUPS</span><span class="p">[</span><span class="s2">"Hessian"</span><span class="p">][</span><span class="mi">2</span><span class="p">:])</span>
         <span class="k">elif</span> <span class="n">value</span><span class="p">(</span><span class="s2">"check the hessian"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"always"</span><span class="p">:</span>
             <span class="n">shown</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s2">"closed-shell check fraction"</span><span class="p">)</span>
 

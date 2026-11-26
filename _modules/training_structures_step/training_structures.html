@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=1ee51a32"></script>
+    <script src="../../_static/documentation_options.js?v=e5385ca6"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.2" />
+  <meta name="docsearch:version" content="2026.11.26" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -655,12 +655,20 @@
         <span class="k">if</span> <span class="n">checks</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">+=</span> <span class="s2">" Every point must pass a check that it "</span> <span class="o">+</span> <span class="s2">" and "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">checks</span><span class="p">)</span>
             <span class="n">text</span> <span class="o">+=</span> <span class="s2">"."</span>
-        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"check the hessian"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"never"</span><span class="p">:</span>
+        <span class="n">route</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"hessian route"</span><span class="p">,</span> <span class="s2">"warm engine over MDI"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">route</span> <span class="o">==</span> <span class="s2">"separate tasks"</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
-                <span class="s2">" The Hessian is checked against finite differences of the gradient "</span>
-                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'check the hessian'</span><span class="p">]</span><span class="si">}</span><span class="s2">) and replaced by a finite-difference "</span>
-                <span class="s2">"Hessian if it fails."</span>
+                <span class="s2">" The Hessian is central finite differences of the gradient, run as "</span>
+                <span class="s2">"separate tasks."</span>
             <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" The Hessian comes from the Model Chemistry (</span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">)."</span>
+            <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"check the hessian"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"never"</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="s2">" It is checked against finite differences of the gradient "</span>
+                    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'check the hessian'</span><span class="p">]</span><span class="si">}</span><span class="s2">) and replaced by a finite-difference "</span>
+                    <span class="s2">"Hessian if it fails."</span>
+                <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span></div>
 
 
@@ -671,7 +679,6 @@
 <a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.TrainingStructures.run">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Make the training structures of the current molecule."""</span>
-        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">HessianDriver</span>
 
         <span class="n">next_node</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">printer</span><span class="p">)</span>
         <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">current_values_to_dict</span><span class="p">(</span>
@@ -710,7 +717,7 @@
                 <span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="n">driver</span> <span class="o">=</span> <span class="n">HessianDriver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">who</span><span class="o">=</span><span class="s2">"Training Structures"</span><span class="p">,</span> <span class="n">print_to</span><span class="o">=</span><span class="n">printer</span><span class="p">)</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">model_chemistry</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">"Training Structures needs a Model Chemistry step before it."</span>
@@ -813,6 +820,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">store_results</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">next_node</span></div>
 
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_driver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""seamm_exec's HessianDriver for the Model Chemistry, on the chosen route."""</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">HessianDriver</span>
+
+        <span class="k">return</span> <span class="n">HessianDriver</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">route</span><span class="o">=</span><span class="n">P</span><span class="p">[</span><span class="s2">"hessian route"</span><span class="p">],</span>
+            <span class="n">who</span><span class="o">=</span><span class="s2">"Training Structures"</span><span class="p">,</span>
+            <span class="n">print_to</span><span class="o">=</span><span class="n">printer</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------ #</span>
     <span class="c1"># The Hessian</span>

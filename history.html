@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.25.2 documentation</title>
+    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=1ee51a32"></script>
+    <script src="_static/documentation_options.js?v=e5385ca6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25.2" />
+  <meta name="docsearch:version" content="2026.11.26" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,19 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.26 – Choose how the Hessian is made; the warm engine by default</dt><dd><ul class="simple">
+<li><p>A new parameter, “Energies and Hessian via:”, as the Thermochemistry step’s: the
+warm MDI engine (analytic where the program has it, and needed for the Hessian
+check), separate tasks (central finite differences of 6N gradients where the job
+runs its tasks), or automatic.</p></li>
+<li><p>The default is the warm engine, as the Thermochemistry step’s CBH approach. On a
+queue that runs tasks, the old automatic choice made every Hessian 6N gradients as
+tasks, several times the cost of the molecule’s labels, and the Hessian check
+could not run.</p></li>
+<li><p>The dialog hides the check’s settings for separate tasks, which are already finite
+differences.</p></li>
+</ul>
+</dd>
 <dt>2026.11.25.2 – A redraw pass for molecules that lost too many samples</dt><dd><ul class="simple">
 <li><p>Training Structures can name its system ‘for a redraw’ (‘&lt;molecule&gt; redraw’),
 for a second pass of samples from the first pass’s minimum, e.g. with a lower
