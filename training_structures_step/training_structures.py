@@ -228,7 +228,12 @@ class TrainingStructures(seamm.Node):
         H, data["hessian"] = self._hessian(P, driver, reference, x0, masses, rng)
         # What the engine actually ran for the Hessian (its calculation record, from
         # the program's own input and output, which stay in the engine's scratch)
-        settings = engine_settings(driver.fingerprints)
+        settings = engine_settings(
+            driver.fingerprints,
+            finite_differences=str(data["hessian"].get("route", "")).startswith(
+                "finite differences"
+            ),
+        )
         if settings:
             data["hessian"]["settings"] = settings
 
@@ -769,15 +774,19 @@ _POINT_PROPERTIES = {
 }
 
 
-def engine_settings(fingerprints):
+def engine_settings(fingerprints, finite_differences=False):
     """The settings of the engine's Hessian run (else its last energy run), from
     the calculation records a warm engine reports ({"energy": record, "hessian":
     record}, see seamm_util.fingerprint.calculation_record): {"run", "fingerprint",
     "version", "keywords"}, the keywords being the input's '!' lines. None without
-    records (e.g. the Hessian ran as separate tasks)."""
+    records (e.g. the Hessian ran as separate tasks).
+
+    For a finite-difference Hessian the energy runs made it, so their record comes
+    first: a "hessian" record is then that of a refused analytic Hessian."""
     if not fingerprints:
         return None
-    for run in ("hessian", "energy"):
+    order = ("energy", "hessian") if finite_differences else ("hessian", "energy")
+    for run in order:
         record = fingerprints.get(run)
         if record:
             files = record.get("files") or {}

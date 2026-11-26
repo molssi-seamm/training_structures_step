@@ -64,3 +64,18 @@ def test_engine_settings_from_the_records():
     got = engine_settings({"energy": record, "hessian": None})
     assert got["run"] == "energy"
     assert engine_settings(None) is None and engine_settings({}) is None
+
+
+def test_engine_settings_of_a_finite_difference_hessian():
+    """A replacement made by finite differences reports the energy runs' settings,
+    not those of the refused analytic Hessian (live check, methoxy 2026-11-26)."""
+    from training_structures_step.training_structures import engine_settings
+
+    analytic = {"fingerprint": "sha256:an", "version": "6.1.1",
+                "files": {"orca.inp": "! R2SCAN-3C TIGHTSCF AnFreq"}}  # fmt: skip
+    tight = {"fingerprint": "sha256:fd", "version": "6.1.1",
+             "files": {"orca.inp": "! R2SCAN-3C VERYTIGHTSCF EnGrad"}}  # fmt: skip
+    records = {"energy": tight, "hessian": analytic}
+    assert engine_settings(records)["fingerprint"] == "sha256:an"
+    got = engine_settings(records, finite_differences=True)
+    assert got["run"] == "energy" and got["fingerprint"] == "sha256:fd"
