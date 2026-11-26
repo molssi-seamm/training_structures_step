@@ -1,7 +1,8 @@
 seamm
 seamm-util
 seamm-widgets
-seamm-exec>=2026.11.25.1
+seamm-exec>=2026.11.26
+seamm-mdi>=2026.11.26
 normal-mode-sampling-step>=2026.11.25
 molsystem
 numpy
