@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.26.2 documentation</title>
+    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.26.3 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=8c9ac4d9"></script>
+    <script src="../_static/documentation_options.js?v=28e240c0"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.2" />
+  <meta name="docsearch:version" content="2026.11.26.3" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -854,6 +854,12 @@ functions of coordinates, bonds and Hessians (no flowchart state), so that they
 can be tested on their own.</p>
 <p>Units: coordinates in Å, Hessians in E_h/bohr², gradients in E_h/bohr, energies in
 E_h unless a name says otherwise.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="training_structures_step.generate.LINEAR_ANGLE">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">LINEAR_ANGLE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">170.0</span></span><a class="headerlink" href="#training_structures_step.generate.LINEAR_ANGLE" title="Link to this definition">#</a></dt>
+<dd><p>An angle (degrees) above which three atoms count as collinear</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="training_structures_step.generate.bond_classes">
 <span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">bond_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#bond_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.bond_classes" title="Link to this definition">#</a></dt>
@@ -923,12 +929,16 @@ the grid.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="training_structures_step.generate.find_rotors">
-<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">find_rotors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conjugated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rotors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#find_rotors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.find_rotors" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.generate.</span></span><span class="sig-name descname"><span class="pre">find_rotors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conjugated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rotors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">170.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/generate.html#find_rotors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.generate.find_rotors" title="Link to this definition">#</a></dt>
 <dd><p>The heavy rotors of a molecule, most heavy atoms moved first.</p>
 <p>A heavy rotor is an acyclic single bond i-j, not conjugated, where i and j
 each have another heavy-atom neighbour (so methyl, OH and NH2 rotations are
 not rotors). Rotating about it moves the smaller side; rotors are ranked by
 the number of heavy atoms that moves, ties going to the lower atom indices.</p>
+<p>A bond onto a linear centre is not a rotor: a nitrile’s or alkyne’s sp carbon
+(a triple bond), an isocyanide’s N, an allene’s central carbon (two double
+bonds), or, given the coordinates, an end whose other heavy neighbours are
+all collinear with the bond. Its torsion is undefined (CH3CH2-C#N, B1 6091).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -937,6 +947,8 @@ the number of heavy atoms that moves, ties going to the lower atom indices.</p>
 <li><p><strong>orders</strong> (<em>{</em><em>(</em><em>i</em><em>, </em><em>j</em><em>)</em><em>: int}</em><em> or </em><em>None</em>) – Bond orders (i &lt; j); a bond without one counts as single.</p></li>
 <li><p><strong>conjugated</strong> (<em>set</em><em> of </em><em>(</em><em>i</em><em>, </em><em>j</em><em>) or </em><em>None</em>) – The conjugated bonds (i &lt; j), e.g. from RDKit’s GetIsConjugated.</p></li>
 <li><p><strong>max_rotors</strong> (<em>int</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>xyz</strong> (<em>array</em><em> (</em><em>n</em><em>, </em><em>3</em><em>) or </em><em>None</em>) – The coordinates, for the collinearity check of the dihedral’s atoms.</p></li>
+<li><p><strong>linear</strong> (<em>float</em>) – The angle (degrees) above which three atoms count as collinear.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1591,6 +1603,20 @@ list of remaining argument strings.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.drop_counts">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures.</span></span><span class="sig-name descname"><span class="pre">drop_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dropped</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#drop_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.drop_counts" title="Link to this definition">#</a></dt>
+<dd><p>{kind: {reason: count}} of the points refused while generating, from
+{kind: [“&lt;name&gt;: &lt;reason&gt;”, …]}, the reasons made general (drop_reason).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.drop_reason">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures.</span></span><span class="sig-name descname"><span class="pre">drop_reason</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reason</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#drop_reason"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.drop_reason" title="Link to this definition">#</a></dt>
+<dd><p>A drop reason without its numbers and specifics, for counting: numbers
+become ‘#’, and what follows ‘: ‘ (e.g. which bonds changed) is cut.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="training_structures_step.training_structures.engine_settings">
 <span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures.</span></span><span class="sig-name descname"><span class="pre">engine_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fingerprints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finite_differences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#engine_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.engine_settings" title="Link to this definition">#</a></dt>
 <dd><p>The settings of the engine’s Hessian run (else its last energy run), from
@@ -1817,6 +1843,7 @@ A SEAMM plug-in for Training Structures</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.generate">training_structures_step.generate module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.LINEAR_ANGLE"><code class="docutils literal notranslate"><span class="pre">LINEAR_ANGLE</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.bond_classes"><code class="docutils literal notranslate"><span class="pre">bond_classes()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.check_hessian"><code class="docutils literal notranslate"><span class="pre">check_hessian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.connectivity"><code class="docutils literal notranslate"><span class="pre">connectivity()</span></code></a></li>
@@ -1908,6 +1935,8 @@ A SEAMM plug-in for Training Structures</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.version"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.version</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.drop_counts"><code class="docutils literal notranslate"><span class="pre">drop_counts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.drop_reason"><code class="docutils literal notranslate"><span class="pre">drop_reason()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.engine_settings"><code class="docutils literal notranslate"><span class="pre">engine_settings()</span></code></a></li>
 </ul>
 </li>

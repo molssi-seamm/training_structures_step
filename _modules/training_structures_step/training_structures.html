@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.2 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.3 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=8c9ac4d9"></script>
+    <script src="../../_static/documentation_options.js?v=28e240c0"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.2" />
+  <meta name="docsearch:version" content="2026.11.26.3" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -496,6 +496,7 @@
 <span class="sd">"""Non-graphical part of the Training Structures step in a SEAMM flowchart"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">importlib.resources</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>  <span class="c1"># noqa: F401</span>
@@ -754,6 +755,7 @@
                 <span class="n">orders</span><span class="p">,</span>
                 <span class="n">conjugated</span><span class="p">,</span>
                 <span class="n">max_rotors</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"number of rotors"</span><span class="p">]),</span>
+                <span class="n">xyz</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="n">need_cheap</span> <span class="o">=</span> <span class="n">prescreen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">rotors</span>
         <span class="n">cheap_context</span> <span class="o">=</span> <span class="p">(</span>
@@ -812,6 +814,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"hessian"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">],</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"random seed"</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"int"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"dropped points"</span><span class="p">,</span> <span class="n">drop_counts</span><span class="p">(</span><span class="n">dropped</span><span class="p">),</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">)</span>
         <span class="n">system_db</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">out_sys</span>
         <span class="n">out_sys</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">id</span>
 
@@ -1035,7 +1038,17 @@
             <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="n">numbers</span><span class="o">=</span><span class="n">numbers</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
             <span class="n">atoms</span><span class="o">.</span><span class="n">set_constraint</span><span class="p">(</span><span class="n">FixInternals</span><span class="p">(</span><span class="n">dihedrals_deg</span><span class="o">=</span><span class="p">[[</span><span class="n">target</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span><span class="p">]]]))</span>
             <span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">_MDICalculator</span><span class="p">(</span><span class="n">cheap</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-            <span class="n">converged</span> <span class="o">=</span> <span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="n">fmax</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"scan </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">target</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">+.0f</span><span class="si">}</span><span class="s2">"</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">converged</span> <span class="o">=</span> <span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="n">fmax</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># ASE cannot hold the torsion (e.g. FixInternals did not</span>
+                <span class="c1"># converge): drop the point, not the molecule; the next point</span>
+                <span class="c1"># starts again from the last good one</span>
+                <span class="n">dropped</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"scan"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: the torsion could not be held (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)"</span>
+                <span class="p">)</span>
+                <span class="k">continue</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
             <span class="n">energy</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span> <span class="o">*</span> <span class="n">_EV_TO_KJ</span>
             <span class="n">angle</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">start</span>
@@ -1265,6 +1278,33 @@
 
 
 <span class="n">_EV_TO_KJ</span> <span class="o">=</span> <span class="mf">96.48533212331</span>  <span class="c1"># kJ/mol per eV</span>
+
+
+<div class="viewcode-block" id="drop_reason">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.drop_reason">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">drop_reason</span><span class="p">(</span><span class="n">reason</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A drop reason without its numbers and specifics, for counting: numbers</span>
+<span class="sd">    become '#', and what follows ': ' (e.g. which bonds changed) is cut."""</span>
+    <span class="n">general</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d+(\.\d+)?"</span><span class="p">,</span> <span class="s2">"#"</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">general</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">": "</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="drop_counts">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.drop_counts">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">drop_counts</span><span class="p">(</span><span class="n">dropped</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""{kind: {reason: count}} of the points refused while generating, from</span>
+<span class="sd">    {kind: ["&lt;name&gt;: &lt;reason&gt;", ...]}, the reasons made general (drop_reason)."""</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">dropped</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">": "</span><span class="p">)</span>
+            <span class="n">reason</span> <span class="o">=</span> <span class="n">drop_reason</span><span class="p">(</span><span class="n">reason</span> <span class="ow">or</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">kind</span><span class="p">][</span><span class="n">reason</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">counts</span></div>
+
+
 
 <span class="c1">#: per-point values -&gt; (property, units, type)</span>
 <span class="n">_POINT_PROPERTIES</span> <span class="o">=</span> <span class="p">{</span>

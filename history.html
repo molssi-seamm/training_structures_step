@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26.2 documentation</title>
+    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26.3 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=8c9ac4d9"></script>
+    <script src="_static/documentation_options.js?v=28e240c0"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.2" />
+  <meta name="docsearch:version" content="2026.11.26.3" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,19 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.26.3 – Bugfix: no rotors onto linear groups</dt><dd><ul class="simple">
+<li><p>A single bond onto a linear centre (a nitrile’s or alkyne’s sp carbon, an
+isocyanide’s nitrogen, an allene’s central carbon, or atoms that are collinear
+in the structure) is no longer a rotor. Its torsion is undefined, and scanning
+it stopped the molecule with “FixInternals.adjust_positions did not converge”
+(ethyl cyanide, 2-cyclopentenecarbonitrile, 1-norbornylisocyanide).</p></li>
+<li><p>A scan point whose torsion cannot be held is dropped and reported, rather than
+stopping the molecule.</p></li>
+<li><p>The points refused while generating are stored on the minimum (“dropped
+points”, by kind and reason, with counts) and the export’s per-molecule record
+carries them as “dropped while generating”.</p></li>
+</ul>
+</dd>
 <dt>2026.11.26.2 – A replacement Hessian is checked too</dt><dd><ul class="simple">
 <li><p>The Hessian check’s gradients each start from the reference structure’s
 orbitals, with a tight SCF (seamm-exec 2026.11.26).</p></li>
