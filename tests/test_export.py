@@ -147,3 +147,49 @@ def test_coverage_counts_elements_and_bonded_pairs():
     rows = ex.coverage_table(coverage, element_minimum=(2, 3), pair_minimum=(3, 1))
     assert ("element", "H", 2, 3, None, None, True) in rows
     assert [r for r in rows if r[0] == "pair"][0][-1] is False  # 2 < 3 molecules
+
+
+# ---- the redraw pass ---------------------------------------------------------
+
+
+def test_a_redraw_replaces_the_samples():
+    first = molecule()
+    e0 = first[0]["energy"]
+    redraw = [
+        point("minimum", "minimum", e0),
+        point("sample 1", "sample", e0 + 2 * KCAL),
+        point("sample 2", "sample", e0 + 4 * KCAL),
+    ]
+    merged, problem = ex.merge_redraw(first, redraw)
+    assert problem is None
+    replaced = [p["name"] for p in merged if p.get("replaced")]
+    assert replaced == ["sample 1", "sample 2"]
+    kept = [p for p in merged if not p.get("replaced")]
+    assert [p["name"] for p in kept] == [
+        "minimum",
+        "scan 1 C2-C3 +15",
+        "stretch O-H +",
+        "redraw sample 1",
+        "redraw sample 2",
+    ]
+    kept, dropped, _ = ex.filter_points(kept, window=10 * KCAL)
+    assert (
+        ex.sample_drop_fraction([p for p in merged if not p.get("replaced")], dropped)
+        == 0.0
+    )
+
+
+@pytest.mark.parametrize(
+    "change, message",
+    [
+        ({"energy": -199990.0}, "different minimum"),
+        ({"fingerprint": "sha256:b"}, "settings differ"),
+    ],
+)
+def test_a_redraw_from_another_start_is_refused(change, message):
+    first = molecule()
+    redraw = [dict(point("minimum", "minimum", first[0]["energy"]), **change)]
+    _, problem = ex.merge_redraw(first, redraw)
+    assert message in problem
+    _, problem = ex.merge_redraw(first, redraw, same_model=False)
+    assert "another model chemistry" in problem

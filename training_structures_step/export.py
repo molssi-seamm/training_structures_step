@@ -99,6 +99,43 @@ def filter_points(
     return kept, dropped, None
 
 
+def merge_redraw(points, redraw_points, same_model=True, tolerance=0.01):
+    """A molecule's points with a redraw's samples in place of the first pass's.
+
+    The first pass's samples are kept in the list, marked "replaced" (so the
+    caller can mark their configurations); the redraw's minimum is a duplicate of
+    the first pass's and is left out. Both minima must agree in energy (within
+    ``tolerance`` kJ/mol) and settings: the redraw must start from the same
+    structure at the same level.
+
+    Returns
+    -------
+    (points, problem)
+    """
+    if not same_model:
+        return points, "it was labelled with another model chemistry"
+    first_min = next((p for p in points if p.get("type") == "minimum"), None)
+    redraw_min = next((p for p in redraw_points if p.get("type") == "minimum"), None)
+    if first_min is None or redraw_min is None:
+        return points, "a pass has no minimum"
+    if first_min.get("energy") is None or redraw_min.get("energy") is None:
+        return points, "a minimum has no energy"
+    if first_min.get("fingerprint") != redraw_min.get("fingerprint"):
+        return points, "its settings differ from the first pass's"
+    if abs(float(first_min["energy"]) - float(redraw_min["energy"])) > tolerance:
+        return points, "it started from a different minimum"
+    merged = []
+    for p in points:
+        if p.get("type") == "sample":
+            merged.append(dict(p, replaced=True))
+        else:
+            merged.append(p)
+    for p in redraw_points:
+        if p.get("type") == "sample":
+            merged.append(dict(p, name=f"redraw {p['name']}"))
+    return merged, None
+
+
 def sample_drop_fraction(points, dropped):
     """The fraction of the normal-mode samples dropped by the window or the spin
     check (the recipe redraws a molecule's samples when it exceeds 15 %)."""

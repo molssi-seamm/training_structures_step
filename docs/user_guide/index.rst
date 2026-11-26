@@ -103,6 +103,22 @@ reported, for new samples with a lower maximum target energy; so are molecules w
 points more than 1 kJ/mol below their minimum, whose starting structure may not be the
 lowest conformer.
 
+A redraw pass
+=============
+
+A molecule that loses more than the redraw threshold of its samples gets new samples
+in the same flowchart:
+
+1. The first Export Training Set saves its result ``redraw regexp`` in a variable, e.g.
+   ``redraw``.
+2. A Loop *For systems in the database*, selecting systems by ``name regexp`` with
+   ``$redraw`` and the configuration named ``minimum``, runs Training Structures with
+   the system name *for a redraw*, a lower maximum target energy (7 kcal/mol in the E2
+   recipe), no rotors, no bond stretches and a new random seed.
+3. An Energy step labels the ``* redraw`` systems.
+4. A second Export Training Set writes each molecule's file again, with the redraw's
+   samples in place of the first pass's.
+
 Indices and tables
 ==================
 

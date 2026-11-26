@@ -304,8 +304,10 @@ class TrainingStructuresParameters(seamm.Parameters):
             "",
             "Name of the new system:",
             "The system holding the points: 'from structure' adds ' training' to "
-            "the molecule's name.",
-            ("from structure",),
+            "the molecule's name; 'for a redraw' adds ' redraw', for a second pass "
+            "of samples that Export Training Set merges with the first. Other text "
+            "is used as given, with {structure} replaced by the molecule's name.",
+            ("from structure", "for a redraw"),
         ),
         "results": {
             "default": {},

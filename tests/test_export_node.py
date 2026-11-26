@@ -95,3 +95,27 @@ def test_points_are_marked_not_deleted(db):
 
 def test_file_stem():
     assert ExportTrainingSet._file_stem("C1=CC=C1 training") == "C1_CC_C1_training"
+
+
+def test_molecules_pair_the_redraw_with_its_first_pass():
+    def system(name):
+        return types.SimpleNamespace(name=name)
+
+    systems = [system("A training"), system("B training"), system("A redraw")]
+    groups = ExportTrainingSet._molecules(systems)
+    assert [
+        (n, f.name if f else None, r.name if r else None) for n, f, r in groups
+    ] == [
+        ("A training", "A training", "A redraw"),
+        ("B training", "B training", None),
+    ]
+
+
+def test_system_name_template():
+    from training_structures_step import TrainingStructures
+
+    name = TrainingStructures._system_name
+    assert name("from structure", "CCO") == "CCO training"
+    assert name("for a redraw", "CCO") == "CCO redraw"
+    assert name("for a redraw", "CCO training") == "CCO redraw"
+    assert name("{structure} pass 2", "CCO") == "CCO pass 2"
