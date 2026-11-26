@@ -85,6 +85,38 @@ def test_collinear_dihedral_atoms_are_not_rotors_without_orders():
     assert len(g.find_rotors(s, bonds, xyz=x)) == 1
 
 
+def _metal(octahedral):
+    """M-C(-C) with chlorides on M: all five more (octahedral, one trans to the
+    M-C bond) or only the trans one (linear Cl-M-C)."""
+    ligands = [(-2.3, 0.0, 0.0)]  # trans to the M-C bond
+    if octahedral:
+        ligands += [
+            (0.0, 2.3, 0.0),
+            (0.0, -2.3, 0.0),
+            (0.0, 0.0, 2.3),
+            (0.0, 0.0, -2.3),
+        ]
+    xyz = [(0.0, 0.0, 0.0)] + ligands + [(2.0, 0.0, 0.0), (2.8, 1.2, 0.0)]
+    n = len(xyz)
+    symbols = ["Pt"] + ["Cl"] * len(ligands) + ["C", "C"]
+    bonds = [(0, k) for k in range(1, len(ligands) + 1)] + [(0, n - 2), (n - 2, n - 1)]
+    return symbols, np.array(xyz), bonds
+
+
+def test_a_trans_ligand_does_not_remove_a_rotor():
+    """An end is linear only when ALL its other heavy neighbours are collinear
+    with the bond (E2 recipe erratum 1): an octahedral centre with a trans
+    ligand keeps its rotor, defined by a cis ligand; a linear Cl-M-C loses it."""
+    s, x, bonds = _metal(octahedral=True)
+    (rotor,) = g.find_rotors(s, bonds, xyz=x)
+    assert rotor["bond"] == (0, 6)
+    a, i, j, b = rotor["dihedral"]
+    assert a != 1  # never the trans chloride
+    s, x, bonds = _metal(octahedral=False)
+    assert g.find_rotors(s, bonds, xyz=x) == []
+    assert len(g.find_rotors(s, bonds)) == 1  # without coordinates it cannot tell
+
+
 def test_rotors_rank_by_heavy_atoms_moved():
     s, _, bonds, orders, conjugated = molecule("CCCCCC")
     rotors = g.find_rotors(s, bonds, orders, conjugated)
