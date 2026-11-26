@@ -133,6 +133,7 @@ class TkTrainingStructures(seamm.TkNode):
             "prescreen energy",
         ),
         "Hessian": (
+            "hessian route",
             "check the hessian",
             "closed-shell check fraction",
             "hessian tolerance",
@@ -149,6 +150,7 @@ class TkTrainingStructures(seamm.TkNode):
         "connectivity check",
         "prescreen energy",
         "check the hessian",
+        "hessian route",
     )
 
     def create_dialog(self):
@@ -199,8 +201,11 @@ class TkTrainingStructures(seamm.TkNode):
             shown.discard("connectivity factor")
         if value("number of rotors") == "0" and value("prescreen energy") == "none":
             shown.discard("generator level")
-        if value("check the hessian") == "never":
+        if value("hessian route") == "separate tasks":
+            # finite differences as tasks: nothing to check, no engine to check with
             shown -= set(self.GROUPS["Hessian"][1:])
+        elif value("check the hessian") == "never":
+            shown -= set(self.GROUPS["Hessian"][2:])
         elif value("check the hessian") == "always":
             shown.discard("closed-shell check fraction")
 

@@ -83,6 +83,17 @@ def test_dialog_layouts(tk_node):
     assert shown(tk_node, "hessian tolerance")
     assert not shown(tk_node, "closed-shell check fraction")
 
+    # finite differences as tasks: nothing to check
+    assert shown(tk_node, "hessian route")
+    tk_node["hessian route"].set("separate tasks")
+    tk_node.reset_dialog()
+    assert shown(tk_node, "hessian route")
+    assert not shown(tk_node, "check the hessian")
+    assert not shown(tk_node, "hessian tolerance")
+    tk_node["hessian route"].set("warm engine over MDI")
+    tk_node.reset_dialog()
+    assert shown(tk_node, "check the hessian")
+
 
 def test_export_dialog():
     import tkinter as tk

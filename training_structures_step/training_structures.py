@@ -158,12 +158,20 @@ class TrainingStructures(seamm.Node):
         if checks:
             text += " Every point must pass a check that it " + " and ".join(checks)
             text += "."
-        if P["check the hessian"] != "never":
+        route = P.get("hessian route", "warm engine over MDI")
+        if route == "separate tasks":
             text += (
-                " The Hessian is checked against finite differences of the gradient "
-                f"({P['check the hessian']}) and replaced by a finite-difference "
-                "Hessian if it fails."
+                " The Hessian is central finite differences of the gradient, run as "
+                "separate tasks."
             )
+        else:
+            text += f" The Hessian comes from the Model Chemistry ({route})."
+            if P["check the hessian"] != "never":
+                text += (
+                    " It is checked against finite differences of the gradient "
+                    f"({P['check the hessian']}) and replaced by a finite-difference "
+                    "Hessian if it fails."
+                )
         return self.header + "\n" + __(text, indent=4 * " ").__str__()
 
     # ------------------------------------------------------------------ #
@@ -171,7 +179,6 @@ class TrainingStructures(seamm.Node):
     # ------------------------------------------------------------------ #
     def run(self):
         """Make the training structures of the current molecule."""
-        from seamm_exec.hessian import HessianDriver
 
         next_node = super().run(printer)
         P = self.parameters.current_values_to_dict(
@@ -210,7 +217,7 @@ class TrainingStructures(seamm.Node):
                 )
             )
 
-        driver = HessianDriver(self, who="Training Structures", print_to=printer)
+        driver = self._driver(P)
         if driver.model_chemistry() is None:
             raise ValueError(
                 "Training Structures needs a Model Chemistry step before it."
@@ -312,6 +319,17 @@ class TrainingStructures(seamm.Node):
         self.analyze(data=data)
         self.store_results(configuration=base, data=data)
         return next_node
+
+    def _driver(self, P):
+        """seamm_exec's HessianDriver for the Model Chemistry, on the chosen route."""
+        from seamm_exec.hessian import HessianDriver
+
+        return HessianDriver(
+            self,
+            route=P["hessian route"],
+            who="Training Structures",
+            print_to=printer,
+        )
 
     # ------------------------------------------------------------------ #
     # The Hessian
