@@ -187,3 +187,45 @@ metadata["results"] = {
         "type": "string",
     },
 }
+
+
+#: The results of the Export Training Set step
+export_metadata = {
+    "results": {
+        "number of molecules": {
+            "description": "The number of molecules exported",
+            "dimensionality": "scalar",
+            "type": "integer",
+        },
+        "number of points": {
+            "description": "The number of points kept and exported",
+            "dimensionality": "scalar",
+            "type": "integer",
+        },
+        "number of dropped points": {
+            "description": "The number of points dropped by the filters",
+            "dimensionality": "scalar",
+            "type": "integer",
+        },
+        "refused molecules": {
+            "description": "Molecules not exported, with the reasons",
+            "dimensionality": "scalar",
+            "type": "json",
+        },
+        "molecules to redraw": {
+            "description": "Molecules that lost too many samples to the filters",
+            "dimensionality": "scalar",
+            "type": "json",
+        },
+        "molecules below their minimum": {
+            "description": "Molecules with points more than 1 kJ/mol below the minimum",
+            "dimensionality": "scalar",
+            "type": "json",
+        },
+        "directory": {
+            "description": "Where the files were written",
+            "dimensionality": "scalar",
+            "type": "string",
+        },
+    },
+}

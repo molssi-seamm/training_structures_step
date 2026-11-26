@@ -298,6 +298,7 @@ class TrainingStructures(seamm.Node):
                 if point.get(key) is not None:
                     self._put_property(conf, prop, point[key], units, _type)
         self._put_property(base, "hessian", data["hessian"], "", "json")
+        self._put_property(base, "random seed", seed, "", "int")
         system_db.system = out_sys
         out_sys.configuration = base.id
 

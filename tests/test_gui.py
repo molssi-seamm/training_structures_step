@@ -82,3 +82,31 @@ def test_dialog_layouts(tk_node):
     tk_node.reset_dialog()
     assert shown(tk_node, "hessian tolerance")
     assert not shown(tk_node, "closed-shell check fraction")
+
+
+def test_export_dialog():
+    import tkinter as tk
+
+    try:
+        root = tk.Tk()
+    except tk.TclError:
+        pytest.skip("no display available for Tk")
+    root.withdraw()
+    import Pmw
+    import seamm
+
+    Pmw.initialise(root)
+    flowchart = seamm.Flowchart(namespace="org.molssi.seamm", directory=".")
+    tk_flowchart = seamm.TkFlowchart(
+        master=root, flowchart=flowchart, namespace="org.molssi.seamm.tk"
+    )
+    node = flowchart.create_node("Export Training Set")
+    flowchart.add_node(node)
+    plugin = tk_flowchart.plugin_manager.get("Export Training Set")
+    tk_node = plugin.create_tk_node(
+        tk_flowchart=tk_flowchart, node=node, canvas=tk_flowchart.canvas, x=100, y=100
+    )
+    tk_node.create_dialog()
+    tk_node.reset_dialog()
+    assert tk_node["energy window"].grid_info() != {}
+    root.destroy()
