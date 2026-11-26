@@ -63,11 +63,26 @@ def test_a_broken_bond_is_reported():
         ("CC(=O)NCC", 1),  # N-ethylacetamide: the N-CH2 bond
         ("CC(=O)OCC", 1),  # ester: only O-CH2 (C(=O)-O is conjugated)
         ("c1ccccc1C(=O)C", 0),  # aryl-C(O) is conjugated
+        ("CCC#N", 0),  # ethyl cyanide: CH2-C#N ends on a linear centre (B1 6091)
+        ("CCCC#N", 1),  # butyronitrile: C2-C3 only
+        ("N#CC1CC=CC1", 0),  # 2-cyclopentenecarbonitrile (B1 6091)
+        ("[C-]#[N+]C1(C)CCCC1", 0),  # an isocyanide's N is linear too
+        ("CCC#CCC", 0),  # 3-hexyne: both CH2-C# bonds end on sp carbons
     ],
 )
 def test_heavy_rotors(smiles, n):
     s, _, bonds, orders, conjugated = molecule(smiles)
     assert len(g.find_rotors(s, bonds, orders, conjugated)) == n
+
+
+def test_collinear_dihedral_atoms_are_not_rotors_without_orders():
+    """Given only the coordinates (no bond orders), a nitrile's C-C-N is
+    collinear, so CH2-CN is not a rotor; butane's central bond still is."""
+    s, x, bonds, _, _ = molecule("CCC#N")
+    assert len(g.find_rotors(s, bonds)) == 1  # topology alone cannot tell
+    assert g.find_rotors(s, bonds, xyz=x) == []
+    s, x, bonds, _, _ = molecule("CCCC")
+    assert len(g.find_rotors(s, bonds, xyz=x)) == 1
 
 
 def test_rotors_rank_by_heavy_atoms_moved():

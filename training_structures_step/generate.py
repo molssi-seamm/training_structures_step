@@ -90,13 +90,30 @@ def _side(n_atoms, bonds, i, j):
     return seen
 
 
-def find_rotors(symbols, bonds, orders=None, conjugated=None, max_rotors=None):
+#: An angle (degrees) above which three atoms count as collinear
+LINEAR_ANGLE = 170.0
+
+
+def find_rotors(
+    symbols,
+    bonds,
+    orders=None,
+    conjugated=None,
+    max_rotors=None,
+    xyz=None,
+    linear=LINEAR_ANGLE,
+):
     """The heavy rotors of a molecule, most heavy atoms moved first.
 
     A heavy rotor is an acyclic single bond i-j, not conjugated, where i and j
     each have another heavy-atom neighbour (so methyl, OH and NH2 rotations are
     not rotors). Rotating about it moves the smaller side; rotors are ranked by
     the number of heavy atoms that moves, ties going to the lower atom indices.
+
+    A bond onto a linear centre is not a rotor: a nitrile's or alkyne's sp carbon
+    (a triple bond), an isocyanide's N, an allene's central carbon (two double
+    bonds), or, given the coordinates, an end whose other heavy neighbours are
+    all collinear with the bond. Its torsion is undefined (CH3CH2-C#N, B1 6091).
 
     Parameters
     ----------
@@ -108,6 +125,10 @@ def find_rotors(symbols, bonds, orders=None, conjugated=None, max_rotors=None):
     conjugated : set of (i, j) or None
         The conjugated bonds (i < j), e.g. from RDKit's GetIsConjugated.
     max_rotors : int or None
+    xyz : array (n, 3) or None
+        The coordinates, for the collinearity check of the dihedral's atoms.
+    linear : float
+        The angle (degrees) above which three atoms count as collinear.
 
     Returns
     -------
@@ -123,14 +144,32 @@ def find_rotors(symbols, bonds, orders=None, conjugated=None, max_rotors=None):
         neighbours[b].add(a)
     orders = {} if orders is None else orders
     conjugated = set() if conjugated is None else conjugated
+    sp = set()  # linear centres from the bond orders
+    for c in range(n):
+        multiple = [orders.get(tuple(sorted((c, x))), 1) for x in neighbours[c]]
+        if 3 in multiple or multiple.count(2) >= 2:
+            sp.add(c)
+    if xyz is not None:
+        xyz = np.asarray(xyz, dtype=float).reshape(-1, 3)
+
+    def bent(x, c, d):
+        """Whether x-c-d is not collinear (always, without coordinates)."""
+        if xyz is None:
+            return True
+        u, v = xyz[x] - xyz[c], xyz[d] - xyz[c]
+        cosine = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
+        return math.degrees(math.acos(np.clip(cosine, -1.0, 1.0))) < linear
+
     rotors = []
     for a, b in sorted({tuple(sorted(x)) for x in bonds}):
         if not (heavy[a] and heavy[b]):
             continue
         if orders.get((a, b), 1) != 1 or (a, b) in conjugated:
             continue
-        ha = sorted(x for x in neighbours[a] - {b} if heavy[x])
-        hb = sorted(x for x in neighbours[b] - {a} if heavy[x])
+        if a in sp or b in sp:
+            continue
+        ha = sorted(x for x in neighbours[a] - {b} if heavy[x] and bent(x, a, b))
+        hb = sorted(x for x in neighbours[b] - {a} if heavy[x] and bent(x, b, a))
         if not ha or not hb:
             continue
         side_b = _side(n, bonds, a, b)

@@ -254,6 +254,7 @@ class TrainingStructures(seamm.Node):
                 orders,
                 conjugated,
                 max_rotors=int(P["number of rotors"]),
+                xyz=x0,
             )
         need_cheap = prescreen is not None or rotors
         cheap_context = (
@@ -534,7 +535,17 @@ class TrainingStructures(seamm.Node):
             atoms = Atoms(numbers=numbers, positions=y)
             atoms.set_constraint(FixInternals(dihedrals_deg=[[target, [a, i, j, b]]]))
             atoms.calc = _MDICalculator(cheap.engine)
-            converged = BFGS(atoms, logfile=None).run(fmax=fmax, steps=steps)
+            name = f"scan {k} {label} {target - start:+.0f}"
+            try:
+                converged = BFGS(atoms, logfile=None).run(fmax=fmax, steps=steps)
+            except ValueError as e:
+                # ASE cannot hold the torsion (e.g. FixInternals did not
+                # converge): drop the point, not the molecule; the next point
+                # starts again from the last good one
+                dropped.setdefault("scan", []).append(
+                    f"{name}: the torsion could not be held ({e})"
+                )
+                continue
             x = np.asarray(atoms.positions, dtype=float)
             energy = atoms.get_potential_energy() * _EV_TO_KJ
             angle = target - start
