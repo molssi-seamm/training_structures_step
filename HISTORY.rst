@@ -2,6 +2,14 @@
 History
 =======
 
+2026.11.26.1 -- Record what the engine ran for the Hessian
+    * Training Structures stores, with how the Hessian was made, the warm engine's own
+      record of the Hessian run (else its last energy run): the settings fingerprint, the
+      program version and the input's '!' line(s). The engine runs in node-local scratch,
+      so its input and output are not kept; this record, made from them, is what shows
+      the Hessian's level and settings afterwards. Export Training Set carries it in each
+      molecule's record.
+
 2026.11.26 -- Choose how the Hessian is made; the warm engine by default
     * A new parameter, "Energies and Hessian via:", as the Thermochemistry step's: the
       warm MDI engine (analytic where the program has it, and needed for the Hessian
