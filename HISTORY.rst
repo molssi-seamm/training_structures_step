@@ -10,6 +10,9 @@ History
       (ethyl cyanide, 2-cyclopentenecarbonitrile, 1-norbornylisocyanide).
     * A scan point whose torsion cannot be held is dropped and reported, rather than
       stopping the molecule.
+    * The points refused while generating are stored on the minimum ("dropped
+      points", by kind and reason, with counts) and the export's per-molecule record
+      carries them as "dropped while generating".
 
 2026.11.26.2 -- A replacement Hessian is checked too
     * The Hessian check's gradients each start from the reference structure's

@@ -3,6 +3,7 @@
 """Non-graphical part of the Training Structures step in a SEAMM flowchart"""
 
 import logging
+import re
 from pathlib import Path
 import importlib.resources
 import pprint  # noqa: F401
@@ -313,6 +314,7 @@ class TrainingStructures(seamm.Node):
                     self._put_property(conf, prop, point[key], units, _type)
         self._put_property(base, "hessian", data["hessian"], "", "json")
         self._put_property(base, "random seed", seed, "", "int")
+        self._put_property(base, "dropped points", drop_counts(dropped), "", "json")
         system_db.system = out_sys
         out_sys.configuration = base.id
 
@@ -771,6 +773,27 @@ class TrainingStructures(seamm.Node):
 
 
 _EV_TO_KJ = 96.48533212331  # kJ/mol per eV
+
+
+def drop_reason(reason):
+    """A drop reason without its numbers and specifics, for counting: numbers
+    become '#', and what follows ': ' (e.g. which bonds changed) is cut."""
+    general = re.sub(r"\d+(\.\d+)?", "#", reason)
+    return general.split(": ", 1)[0]
+
+
+def drop_counts(dropped):
+    """{kind: {reason: count}} of the points refused while generating, from
+    {kind: ["<name>: <reason>", ...]}, the reasons made general (drop_reason)."""
+    counts = {}
+    for kind, items in dropped.items():
+        for item in items:
+            name, _, reason = item.partition(": ")
+            reason = drop_reason(reason or name)
+            counts.setdefault(kind, {})
+            counts[kind][reason] = counts[kind].get(reason, 0) + 1
+    return counts
+
 
 #: per-point values -> (property, units, type)
 _POINT_PROPERTIES = {

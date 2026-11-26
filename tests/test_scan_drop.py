@@ -69,3 +69,32 @@ def test_an_unholdable_torsion_drops_the_point(monkeypatch):
     assert len(points) == 10
     (why,) = dropped["scan"]
     assert "the torsion could not be held" in why and "did not converge" in why
+
+
+def test_drop_counts_by_kind_and_general_reason():
+    from training_structures_step.training_structures import drop_counts
+
+    dropped = {
+        "scan": [
+            "scan 1 C2-C3 +30: the torsion could not be held (FixInternals.adjust"
+            "_positions did not converge.)",
+            "scan 1 C2-C3 +60: the torsion could not be held (FixInternals.adjust"
+            "_positions did not converge.)",
+            "scan 1 C2-C3 +90: 41.3 kJ/mol above the minimum at xTB:SQM@GFN2-xTB",
+        ],
+        "sample": [
+            "sample 3: bonds changed: -O2-H5",
+            "sample 9: bonds changed: +C1-H8",
+            "sample 12: 33.0 kJ/mol above the minimum at xTB:SQM@GFN2-xTB",
+        ],
+    }
+    counts = drop_counts(dropped)
+    torsion = (
+        "the torsion could not be held (FixInternals.adjust_positions did not"
+        " converge.)"
+    )
+    above = "# kJ/mol above the minimum at xTB:SQM@GFN#-xTB"
+    assert counts == {
+        "scan": {torsion: 2, above: 1},
+        "sample": {"bonds changed": 2, above: 1},
+    }
