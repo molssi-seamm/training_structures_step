@@ -74,6 +74,35 @@ the point type; the target and harmonic energies; the pre-screen energy; for sca
 dihedral and the change of angle; for stretches the element pair, the bond and the
 change of length. The random seed is reported and saved with the results.
 
+Exporting the labelled points
+=============================
+
+After an *Energy* step has labelled the points (energies and gradients, with the model
+chemistry of the training set), the **Export Training Set** step writes them out:
+
+- each point's energy above its molecule's minimum (ΔE);
+- a check that all of a molecule's points share one settings fingerprint, so a molecule
+  never mixes levels or settings;
+- points more than the **energy window** (10 kcal/mol) above the minimum are dropped,
+  and, for open shells, points whose <S**2> differs from the minimum's by more than the
+  **spin tolerance** (0.05). Dropped points are marked on their configurations
+  (``training status#TrainingStructures#export``), never deleted;
+- one extended-XYZ file per molecule, ``<molecule>.extxyz``: ``REF_energy``,
+  ``delta_energy`` and ``REF_forces`` in the chosen units (eV by default), with
+  ``config_type``, the point's name and its generation details on each frame. ASE reads
+  these keys as data, not as a calculator's results;
+- a record per molecule, ``<molecule>.json``: model chemistry, settings fingerprint, the
+  calculation record (program and version), how the Hessian was made and checked, the
+  random seed, and the points kept and dropped;
+- ``coverage.csv`` and a table in the output: for each element and bonded element pair,
+  the molecules and points, the bond lengths sampled, and whether the minimum counts
+  are met (elements 30 molecules and 500 points, pairs 10 and 100, by default).
+
+A molecule that lost more than 15 % of its samples to the window or the spin check is
+reported, for new samples with a lower maximum target energy; so are molecules with
+points more than 1 kJ/mol below their minimum, whose starting structure may not be the
+lowest conformer.
+
 Indices and tables
 ==================
 

@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="../../_static/documentation_options.js?v=291d9058"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25" />
+  <meta name="docsearch:version" content="2026.11.25.1" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -798,6 +798,7 @@
                 <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"hessian"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">],</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_put_property</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"random seed"</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"int"</span><span class="p">)</span>
         <span class="n">system_db</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">out_sys</span>
         <span class="n">out_sys</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">id</span>
 

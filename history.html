@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="_static/documentation_options.js?v=291d9058"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25" />
+  <meta name="docsearch:version" content="2026.11.25.1" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,23 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.25.1 – Export Training Set: labelled points to extended-XYZ files</dt><dd><ul class="simple">
+<li><p>A new step, Export Training Set, for the points of Training Structures after an
+Energy step has labelled them: each point’s energy above its molecule’s minimum, a
+check that a molecule’s points share one settings fingerprint (no mixed levels),
+and filters for an energy window (10 kcal/mol) and, for open shells, a change of
+&lt;S**2&gt; (0.05). Dropped points are marked on their configurations, not deleted.</p></li>
+<li><p>One extended-XYZ file per molecule (REF_energy, REF_forces, delta_energy and the
+point’s details, full-precision positions; keys that ASE reads as data, not as a
+calculator’s results), with a JSON record of how it was made: model chemistry,
+settings fingerprint, the calculation record, how the Hessian was made and
+checked, the random seed, and the points kept and dropped.</p></li>
+<li><p>A coverage table of elements and bonded pairs (molecules, points, the bond lengths
+sampled) against minimum counts; molecules that lost too many samples are
+reported for a redraw, and points below a molecule’s minimum are reported.</p></li>
+<li><p>Training Structures now stores its random seed on the minimum.</p></li>
+</ul>
+</dd>
 <dt>2026.11.25 – Initial release</dt><dd><ul class="simple">
 <li><p>Distorted structures of a molecule for training a machine-learned potential, from
 the Hessian of the Model Chemistry: energy-targeted normal-mode samples, relaxed

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.25 documentation</title>
+    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.25.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=d2c0d6cc"></script>
+    <script src="../_static/documentation_options.js?v=291d9058"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.25" />
+  <meta name="docsearch:version" content="2026.11.25.1" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -526,6 +526,311 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
+<section id="module-training_structures_step.export">
+<span id="training-structures-step-export-module"></span><h2>training_structures_step.export module<a class="headerlink" href="#module-training_structures_step.export" title="Link to this heading">#</a></h2>
+<p>The labelled training points of one molecule: relative energies, the filters,
+the extended-XYZ file and the coverage counts, as plain functions (no flowchart
+state) so that they can be tested on their own.</p>
+<p>Energies are in kJ/mol and gradients in kJ/mol/Å, as the Energy step stores them,
+unless a name says otherwise.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="training_structures_step.export.FRAME_KEYS">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">FRAME_KEYS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('type',</span> <span class="pre">'config_type'),</span> <span class="pre">('name',</span> <span class="pre">'point'),</span> <span class="pre">('target</span> <span class="pre">energy',</span> <span class="pre">'target_energy_kJmol'),</span> <span class="pre">('harmonic</span> <span class="pre">energy',</span> <span class="pre">'harmonic_energy_kJmol'),</span> <span class="pre">('prescreen</span> <span class="pre">energy',</span> <span class="pre">'prescreen_energy_kJmol'),</span> <span class="pre">('scan</span> <span class="pre">angle',</span> <span class="pre">'scan_angle'),</span> <span class="pre">('bond</span> <span class="pre">class',</span> <span class="pre">'bond_class'),</span> <span class="pre">('bond</span> <span class="pre">change',</span> <span class="pre">'bond_change'),</span> <span class="pre">('S**2',</span> <span class="pre">'S2'))</span></span><a class="headerlink" href="#training_structures_step.export.FRAME_KEYS" title="Link to this definition">#</a></dt>
+<dd><p>point keys copied into each frame’s comment line, with their file key</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="training_structures_step.export.UNITS">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">UNITS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'E_h':</span> <span class="pre">(2625.4996394799,</span> <span class="pre">'E_h/Å'),</span> <span class="pre">'eV':</span> <span class="pre">(96.48533212331002,</span> <span class="pre">'eV/Å'),</span> <span class="pre">'kJ/mol':</span> <span class="pre">(1.0,</span> <span class="pre">'kJ/mol/Å')}</span></span><a class="headerlink" href="#training_structures_step.export.UNITS" title="Link to this definition">#</a></dt>
+<dd><p>name -&gt; (kJ/mol per unit, force units)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the energy and force units of the file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.add_coverage">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">add_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#add_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.add_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Count one molecule’s kept points: every point counts for every element and
+every bonded element pair of the molecule (the E2a census rule), and each
+pair’s sampled bond lengths are tracked.</p>
+<p>coverage : {“elements”: {el: [molecules, points]}, “pairs”: {pair: [molecules,
+points, r_min, r_max]}}, updated in place.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.coverage_table">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">coverage_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(30,</span> <span class="pre">500)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pair_minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">100)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#coverage_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.coverage_table" title="Link to this definition">#</a></dt>
+<dd><p>Rows (kind, name, molecules, points, r_min, r_max, passes) of a coverage
+record, against the minimum (molecules, points) for elements and pairs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.dumps">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">dumps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#dumps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.dumps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.extxyz_frame">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">extxyz_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'eV'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#extxyz_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.extxyz_frame" title="Link to this definition">#</a></dt>
+<dd><p>One extended-XYZ frame: species, positions (full precision) and, with
+gradients (kJ/mol/Å), the forces in the file’s units as REF_forces.</p>
+<p><code class="docutils literal notranslate"><span class="pre">info</span></code> gives the comment-line keys; numbers already in the file’s units.
+The energy goes in as REF_energy (not ‘energy’, which ASE would turn into a
+calculator result), and there is no ‘charge’ column (ASE reads that as a
+calculator result too).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.filter_points">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">filter_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#filter_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.filter_points" title="Link to this definition">#</a></dt>
+<dd><p>Relative energies and the filters, for one molecule’s labelled points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>[</em><em>dict</em><em>]</em>) – One per configuration, in order, each with “name”, “type” (the Training
+Structures point type), “energy” (kJ/mol or None when unlabelled),
+“gradients”, “fingerprint” (the settings fingerprint or None) and “S**2”
+(or None). Exactly one has type “minimum”.</p></li>
+<li><p><strong>window</strong> (<em>float</em><em> or </em><em>None</em>) – Drop a point more than this (kJ/mol) above the minimum.</p></li>
+<li><p><strong>spin_tolerance</strong> (<em>float</em><em> or </em><em>None</em>) – For an open shell, drop a point whose &lt;S**2&gt; differs from the minimum’s by
+more than this.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>kept: the points with “delta energy” added, the minimum first; dropped:
+(name, type, reason); problem: None, or why the molecule as a whole cannot
+be exported (no labelled minimum, mixed settings).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(kept, dropped, problem)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.molecule_file">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">molecule_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'eV'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiplicity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#molecule_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.molecule_file" title="Link to this definition">#</a></dt>
+<dd><p>The extended-XYZ text of one molecule’s kept points (the minimum first).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.provenance">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">provenance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fingerprint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#provenance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.provenance" title="Link to this definition">#</a></dt>
+<dd><p>The sidecar record of one molecule’s export (JSON-ready).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.export.sample_drop_fraction">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.export.</span></span><span class="sig-name descname"><span class="pre">sample_drop_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export.html#sample_drop_fraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export.sample_drop_fraction" title="Link to this definition">#</a></dt>
+<dd><p>The fraction of the normal-mode samples dropped by the window or the spin
+check (the recipe redraws a molecule’s samples when it exceeds 15 %).</p>
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.export_training_set">
+<span id="training-structures-step-export-training-set-module"></span><h2>training_structures_step.export_training_set module<a class="headerlink" href="#module-training_structures_step.export_training_set" title="Link to this heading">#</a></h2>
+<p>Non-graphical part of the Export Training Set step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.export_training_set.</span></span><span class="sig-name descname"><span class="pre">ExportTrainingSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Export</span> <span class="pre">Training</span> <span class="pre">Set'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">training_structures_step.export_training_set</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set.html#ExportTrainingSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>The non-graphical part of a Export Training Set step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.parser">
+<span class="sig-name descname"><span class="pre">parser</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.parser" title="Link to this definition">#</a></dt>
+<dd><p>The parser object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>configargparse.ArgParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.options" title="Link to this definition">#</a></dt>
+<dd><p>It contains a two item tuple containing the populated namespace and the
+list of remaining argument strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.subflowchart">
+<span class="sig-name descname"><span class="pre">subflowchart</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A SEAMM Flowchart object that represents a subflowchart, if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seamm.Flowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.parameters" title="Link to this definition">#</a></dt>
+<dd><p>The control parameters for Export Training Set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#training_structures_step.export_training_set_parameters.ExportTrainingSetParameters" title="training_structures_step.export_training_set_parameters.ExportTrainingSetParameters">ExportTrainingSetParameters</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkExportTrainingSet</span></code>, <a class="reference internal" href="#training_structures_step.export_training_set.ExportTrainingSet" title="training_structures_step.export_training_set.ExportTrainingSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTrainingSet</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTrainingSetParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refused</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redraw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">below</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set.html#ExportTrainingSet.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.analyze" title="Link to this definition">#</a></dt>
+<dd><p>Summarize the export.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.description_text">
+<span class="sig-name descname"><span class="pre">description_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set.html#ExportTrainingSet.description_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.description_text" title="Link to this definition">#</a></dt>
+<dd><p>Create the text description of what this step will do.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git version of this module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set.html#ExportTrainingSet.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.run" title="Link to this definition">#</a></dt>
+<dd><p>Export the training points.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set.ExportTrainingSet.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#training_structures_step.export_training_set.ExportTrainingSet.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of this module.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.export_training_set_parameters">
+<span id="training-structures-step-export-training-set-parameters-module"></span><h2>training_structures_step.export_training_set_parameters module<a class="headerlink" href="#module-training_structures_step.export_training_set_parameters" title="Link to this heading">#</a></h2>
+<p>Control parameters for the Export Training Set step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_parameters.ExportTrainingSetParameters">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.export_training_set_parameters.</span></span><span class="sig-name descname"><span class="pre">ExportTrainingSetParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set_parameters.html#ExportTrainingSetParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set_parameters.ExportTrainingSetParameters" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Parameters</span></code></p>
+<p>The control parameters for Export Training Set.</p>
+<p>The step reads the systems made by Training Structures after an Energy step
+has labelled them, works out each point’s energy above its molecule’s
+minimum, drops points outside the energy window or with a changed &lt;S**2&gt;, and
+writes one extended-XYZ file per molecule, with a record of how it was made,
+and a coverage table of the elements and bonded pairs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_parameters.ExportTrainingSetParameters.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'directory':</span> <span class="pre">{'default':</span> <span class="pre">'training_set',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Directory:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Where</span> <span class="pre">the</span> <span class="pre">files</span> <span class="pre">go,</span> <span class="pre">relative</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">job's</span> <span class="pre">directory</span> <span class="pre">unless</span> <span class="pre">absolute:</span> <span class="pre">&lt;molecule&gt;.extxyz</span> <span class="pre">and</span> <span class="pre">&lt;molecule&gt;.json</span> <span class="pre">per</span> <span class="pre">molecule,</span> <span class="pre">and</span> <span class="pre">coverage.csv.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'element</span> <span class="pre">minimum</span> <span class="pre">molecules':</span> <span class="pre">{'default':</span> <span class="pre">30,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Elements</span> <span class="pre">need</span> <span class="pre">at</span> <span class="pre">least:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'molecules</span> <span class="pre">...',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'element</span> <span class="pre">minimum</span> <span class="pre">points':</span> <span class="pre">{'default':</span> <span class="pre">500,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'and</span> <span class="pre">points:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'points.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'energy</span> <span class="pre">units':</span> <span class="pre">{'default':</span> <span class="pre">'eV',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Units</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">file:',</span> <span class="pre">'enumeration':</span> <span class="pre">('eV',</span> <span class="pre">'kJ/mol',</span> <span class="pre">'E_h'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">units</span> <span class="pre">of</span> <span class="pre">REF_energy</span> <span class="pre">and</span> <span class="pre">delta_energy</span> <span class="pre">(forces</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">per</span> <span class="pre">Å).',</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'energy</span> <span class="pre">window':</span> <span class="pre">{'default':</span> <span class="pre">10.0,</span> <span class="pre">'default_units':</span> <span class="pre">'kcal/mol',</span> <span class="pre">'description':</span> <span class="pre">'Energy</span> <span class="pre">window:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.2f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Drop</span> <span class="pre">a</span> <span class="pre">point</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this</span> <span class="pre">above</span> <span class="pre">its</span> <span class="pre">molecule's</span> <span class="pre">minimum.</span> <span class="pre">'none'</span> <span class="pre">keeps</span> <span class="pre">every</span> <span class="pre">labelled</span> <span class="pre">point.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'model</span> <span class="pre">chemistry':</span> <span class="pre">{'default':</span> <span class="pre">'from</span> <span class="pre">the</span> <span class="pre">labels',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Labels</span> <span class="pre">from:',</span> <span class="pre">'enumeration':</span> <span class="pre">('from</span> <span class="pre">the</span> <span class="pre">labels',),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;The</span> <span class="pre">model</span> <span class="pre">chemistry</span> <span class="pre">whose</span> <span class="pre">energies</span> <span class="pre">and</span> <span class="pre">gradients</span> <span class="pre">are</span> <span class="pre">the</span> <span class="pre">labels:</span> <span class="pre">'from</span> <span class="pre">the</span> <span class="pre">labels'</span> <span class="pre">when</span> <span class="pre">the</span> <span class="pre">points</span> <span class="pre">carry</span> <span class="pre">only</span> <span class="pre">one,</span> <span class="pre">else</span> <span class="pre">its</span> <span class="pre">level</span> <span class="pre">(e.g.</span> <span class="pre">'ORCA:DFT&#64;r2SCAN-3c').&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'pair</span> <span class="pre">minimum</span> <span class="pre">molecules':</span> <span class="pre">{'default':</span> <span class="pre">10,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Bonded</span> <span class="pre">pairs</span> <span class="pre">need</span> <span class="pre">at</span> <span class="pre">least:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'molecules</span> <span class="pre">...',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'pair</span> <span class="pre">minimum</span> <span class="pre">points':</span> <span class="pre">{'default':</span> <span class="pre">100,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'and</span> <span class="pre">points:',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'points.',</span> <span class="pre">'kind':</span> <span class="pre">'integer'},</span> <span class="pre">'redraw</span> <span class="pre">threshold':</span> <span class="pre">{'default':</span> <span class="pre">15.0,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Report</span> <span class="pre">a</span> <span class="pre">redraw</span> <span class="pre">above</span> <span class="pre">(%):',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'.1f',</span> <span class="pre">'help_text':</span> <span class="pre">'A</span> <span class="pre">molecule</span> <span class="pre">that</span> <span class="pre">lost</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this</span> <span class="pre">share</span> <span class="pre">of</span> <span class="pre">its</span> <span class="pre">samples</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">window</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">spin</span> <span class="pre">check</span> <span class="pre">is</span> <span class="pre">reported</span> <span class="pre">for</span> <span class="pre">new</span> <span class="pre">samples</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">lower</span> <span class="pre">maximum</span> <span class="pre">target</span> <span class="pre">energy.',</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'results':</span> <span class="pre">{'default':</span> <span class="pre">{},</span> <span class="pre">'default_units':</span> <span class="pre">None,</span> <span class="pre">'description':</span> <span class="pre">'results',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">results</span> <span class="pre">to</span> <span class="pre">save</span> <span class="pre">to</span> <span class="pre">variables</span> <span class="pre">or</span> <span class="pre">in</span> <span class="pre">tables.',</span> <span class="pre">'kind':</span> <span class="pre">'dictionary'},</span> <span class="pre">'spin</span> <span class="pre">tolerance':</span> <span class="pre">{'default':</span> <span class="pre">0.05,</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Allowed</span> <span class="pre">change</span> <span class="pre">of</span> <span class="pre">&lt;S**2&gt;:',</span> <span class="pre">'enumeration':</span> <span class="pre">('none',),</span> <span class="pre">'format_string':</span> <span class="pre">'.3f',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;For</span> <span class="pre">an</span> <span class="pre">open-shell</span> <span class="pre">molecule,</span> <span class="pre">drop</span> <span class="pre">a</span> <span class="pre">point</span> <span class="pre">whose</span> <span class="pre">&lt;S**2&gt;</span> <span class="pre">differs</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">minimum's</span> <span class="pre">by</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">this</span> <span class="pre">(a</span> <span class="pre">different</span> <span class="pre">electronic</span> <span class="pre">state</span> <span class="pre">or</span> <span class="pre">more</span> <span class="pre">spin</span> <span class="pre">contamination).</span> <span class="pre">'none'</span> <span class="pre">skips</span> <span class="pre">the</span> <span class="pre">check.&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'float'},</span> <span class="pre">'systems':</span> <span class="pre">{'default':</span> <span class="pre">'all</span> <span class="pre">training</span> <span class="pre">systems',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Systems:',</span> <span class="pre">'enumeration':</span> <span class="pre">('all</span> <span class="pre">training</span> <span class="pre">systems',</span> <span class="pre">'current'),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">&quot;Which</span> <span class="pre">systems</span> <span class="pre">to</span> <span class="pre">export:</span> <span class="pre">'all</span> <span class="pre">training</span> <span class="pre">systems'</span> <span class="pre">(every</span> <span class="pre">system</span> <span class="pre">whose</span> <span class="pre">configurations</span> <span class="pre">were</span> <span class="pre">made</span> <span class="pre">by</span> <span class="pre">Training</span> <span class="pre">Structures),</span> <span class="pre">'current',</span> <span class="pre">or</span> <span class="pre">a</span> <span class="pre">pattern</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">system</span> <span class="pre">names</span> <span class="pre">(e.g.</span> <span class="pre">'*</span> <span class="pre">training').&quot;,</span> <span class="pre">'kind':</span> <span class="pre">'string'}}</span></span><a class="headerlink" href="#training_structures_step.export_training_set_parameters.ExportTrainingSetParameters.parameters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.export_training_set_step">
+<span id="training-structures-step-export-training-set-step-module"></span><h2>training_structures_step.export_training_set_step module<a class="headerlink" href="#module-training_structures_step.export_training_set_step" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_step.ExportTrainingSetStep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.export_training_set_step.</span></span><span class="sig-name descname"><span class="pre">ExportTrainingSetStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set_step.html#ExportTrainingSetStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class needed for the stevedore integration.</p>
+<p>This must provide a <cite>description()</cite> method that returns a dict containing a
+description of this node, and <cite>create_node()</cite> and <cite>create_tk_node()</cite> methods
+for creating the graphical and non-graphical nodes.</p>
+<p>The dictionary for the description is the class variable just below these
+comments. The felds are as follows:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>my_description<span class="classifier">{str, str}</span></dt><dd><p>A human-readable description of this step. It can be
+several lines long, and needs to be clear to non-expert users.
+It contains the following keys: description, group, name.</p>
+</dd>
+<dt>my_description[“description”]<span class="classifier">tuple</span></dt><dd><p>A description of the Export Training Set step. It must be
+clear to non-experts.</p>
+</dd>
+<dt>my_description[“group”]<span class="classifier">str</span></dt><dd><p>Which group in the menus to put this step. If the group does
+not exist it will be created. Common groups are “Building”,
+“Control”, “Custom”, “Data”, and “Simulations”.</p>
+</dd>
+<dt>my_description[“name”]<span class="classifier">str</span></dt><dd><p>The name of this step, to be displayed in the menus.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_step.ExportTrainingSetStep.create_node">
+<span class="sig-name descname"><span class="pre">create_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set_step.html#ExportTrainingSetStep.create_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.create_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the new node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flowchart</strong> (<em>seamm.Node</em>) – A non-graphical SEAMM node</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as title, namespace or
+extension representing the title displayed in the flowchart,
+the namespace for the plugins of a subflowchart and
+the extension, respectively.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#training_structures_step.export_training_set.ExportTrainingSet" title="training_structures_step.export_training_set.ExportTrainingSet">ExportTrainingSet</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_step.ExportTrainingSetStep.create_tk_node">
+<span class="sig-name descname"><span class="pre">create_tk_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set_step.html#ExportTrainingSetStep.create_tk_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.create_tk_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the graphical Tk node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>canvas</strong> (<em>tk.Canvas</em>) – The Tk Canvas widget</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as tk_flowchart, node, x, y, w, h
+representing a graphical flowchart object, a non-graphical node for
+a step, and dimensions of the graphical node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet" title="training_structures_step.tk_export_training_set.TkExportTrainingSet">TkExportTrainingSet</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_step.ExportTrainingSetStep.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/export_training_set_step.html#ExportTrainingSetStep.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.description" title="Link to this definition">#</a></dt>
+<dd><p>Return a description of what this step does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict(str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.export_training_set_step.ExportTrainingSetStep.my_description">
+<span class="sig-name descname"><span class="pre">my_description</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">'Write</span> <span class="pre">labelled</span> <span class="pre">training</span> <span class="pre">structures</span> <span class="pre">as</span> <span class="pre">extended-XYZ</span> <span class="pre">files,</span> <span class="pre">one</span> <span class="pre">per</span> <span class="pre">molecule,</span> <span class="pre">with</span> <span class="pre">relative</span> <span class="pre">energies,</span> <span class="pre">filters</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">coverage</span> <span class="pre">table',</span> <span class="pre">'group':</span> <span class="pre">'Data',</span> <span class="pre">'name':</span> <span class="pre">'Export</span> <span class="pre">Training</span> <span class="pre">Set'}</span></span><a class="headerlink" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.my_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-training_structures_step.generate">
 <span id="training-structures-step-generate-module"></span><h2>training_structures_step.generate module<a class="headerlink" href="#module-training_structures_step.generate" title="Link to this heading">#</a></h2>
 <p>The geometry generators and filters of the Training Structures step, as plain
@@ -689,6 +994,12 @@ vector i -&gt; j; a displacement a times it lengthens the bond by a.</p>
 <span id="training-structures-step-metadata-module"></span><h2>training_structures_step.metadata module<a class="headerlink" href="#module-training_structures_step.metadata" title="Link to this heading">#</a></h2>
 <p>This file contains metadata describing the results from TrainingStructures</p>
 <dl class="py data">
+<dt class="sig sig-object py" id="training_structures_step.metadata.export_metadata">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.metadata.</span></span><span class="sig-name descname"><span class="pre">export_metadata</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'results':</span> <span class="pre">{'directory':</span> <span class="pre">{'description':</span> <span class="pre">'Where</span> <span class="pre">the</span> <span class="pre">files</span> <span class="pre">were</span> <span class="pre">written',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'molecules</span> <span class="pre">below</span> <span class="pre">their</span> <span class="pre">minimum':</span> <span class="pre">{'description':</span> <span class="pre">'Molecules</span> <span class="pre">with</span> <span class="pre">points</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">1</span> <span class="pre">kJ/mol</span> <span class="pre">below</span> <span class="pre">the</span> <span class="pre">minimum',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'molecules</span> <span class="pre">to</span> <span class="pre">redraw':</span> <span class="pre">{'description':</span> <span class="pre">'Molecules</span> <span class="pre">that</span> <span class="pre">lost</span> <span class="pre">too</span> <span class="pre">many</span> <span class="pre">samples</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">filters',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">dropped</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">points</span> <span class="pre">dropped</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">filters',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">molecules':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">molecules</span> <span class="pre">exported',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">points</span> <span class="pre">kept</span> <span class="pre">and</span> <span class="pre">exported',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'refused</span> <span class="pre">molecules':</span> <span class="pre">{'description':</span> <span class="pre">'Molecules</span> <span class="pre">not</span> <span class="pre">exported,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">reasons',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'}}}</span></span><a class="headerlink" href="#training_structures_step.metadata.export_metadata" title="Link to this definition">#</a></dt>
+<dd><p>The results of the Export Training Set step</p>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="training_structures_step.metadata.metadata">
 <span class="sig-prename descclassname"><span class="pre">training_structures_step.metadata.</span></span><span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'results':</span> <span class="pre">{'dropped</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">points</span> <span class="pre">refused,</span> <span class="pre">by</span> <span class="pre">kind,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">reasons',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'hessian':</span> <span class="pre">{'description':</span> <span class="pre">'How</span> <span class="pre">the</span> <span class="pre">Hessian</span> <span class="pre">was</span> <span class="pre">made</span> <span class="pre">and</span> <span class="pre">checked',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'json'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">dropped</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">points</span> <span class="pre">refused</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">checks',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">grid</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">&quot;The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">diatomic's</span> <span class="pre">stretch-grid</span> <span class="pre">points&quot;,</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">structures</span> <span class="pre">made,</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">included',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">rotors':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">heavy</span> <span class="pre">rotors</span> <span class="pre">scanned',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">sample</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">normal-mode</span> <span class="pre">samples',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">scan</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">torsion-scan</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">stretch</span> <span class="pre">points':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">bond-stretch</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'random</span> <span class="pre">seed':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">seed</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">random</span> <span class="pre">numbers,</span> <span class="pre">to</span> <span class="pre">reproduce</span> <span class="pre">the</span> <span class="pre">points',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'system</span> <span class="pre">name':</span> <span class="pre">{'description':</span> <span class="pre">'The</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">system</span> <span class="pre">holding</span> <span class="pre">the</span> <span class="pre">structures',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'string'}}}</span></span><a class="headerlink" href="#training_structures_step.metadata.metadata" title="Link to this definition">#</a></dt>
 <dd><p>Description of the computational models for TrainingStructures.</p>
@@ -791,6 +1102,205 @@ Training Structures themselves.</p>
 <dt class="sig sig-object py" id="training_structures_step.substep.Substep.version">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#training_structures_step.substep.Substep.version" title="Link to this definition">#</a></dt>
 <dd><p>The semantic version of the training_structures_step package.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-training_structures_step.tk_export_training_set">
+<span id="training-structures-step-tk-export-training-set-module"></span><h2>training_structures_step.tk_export_training_set module<a class="headerlink" href="#module-training_structures_step.tk_export_training_set" title="Link to this heading">#</a></h2>
+<p>The graphical part of a Export Training Set step</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">training_structures_step.tk_export_training_set.</span></span><span class="sig-name descname"><span class="pre">TkExportTrainingSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tk_flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_export_training_set.html#TkExportTrainingSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TkNode</span></code></p>
+<p>The graphical part of a Export Training Set step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_flowchart">
+<span class="sig-name descname"><span class="pre">tk_flowchart</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_flowchart" title="Link to this definition">#</a></dt>
+<dd><p>The flowchart that we belong to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.node">
+<span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.node" title="Link to this definition">#</a></dt>
+<dd><p>The corresponding node of the non-graphical flowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.namespace" title="Link to this definition">#</a></dt>
+<dd><p>The namespace of the current step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_subflowchart">
+<span class="sig-name descname"><span class="pre">tk_subflowchart</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A graphical Flowchart representing a subflowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.canvas">
+<span class="sig-name descname"><span class="pre">canvas</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.canvas" title="Link to this definition">#</a></dt>
+<dd><p>The Tk Canvas to draw on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tkCanvas = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.dialog">
+<span class="sig-name descname"><span class="pre">dialog</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.dialog" title="Link to this definition">#</a></dt>
+<dd><p>The Pmw dialog object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dialog</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.x" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.y" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.w" title="Link to this definition">#</a></dt>
+<dd><p>The width in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 200</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.h" title="Link to this definition">#</a></dt>
+<dd><p>The height in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 50</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.self">
+<span class="sig-name descname"><span class="pre">self</span></span><span class="sig-paren">[</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">]</span><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.self" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of tk widgets built using the information
+contained in Export Training Set_parameters.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTrainingSet</span></code>, <a class="reference internal" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet" title="training_structures_step.tk_export_training_set.TkExportTrainingSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkExportTrainingSet</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTrainingSetParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.create_dialog">
+<span class="sig-name descname"><span class="pre">create_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_export_training_set.html#TkExportTrainingSet.create_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.create_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Create the dialog. A set of widgets will be chosen by default
+based on what is specified in the Export Training Set_parameters
+module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.reset_dialog" title="training_structures_step.tk_export_training_set.TkExportTrainingSet.reset_dialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkExportTrainingSet.reset_dialog</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.reset_dialog">
+<span class="sig-name descname"><span class="pre">reset_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_export_training_set.html#TkExportTrainingSet.reset_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.reset_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Layout the widgets in the dialog.</p>
+<p>The widgets are chosen by default from the information in
+Export Training Set_parameter.</p>
+<p>This function simply lays them out row by row with
+aligned labels. You may wish a more complicated layout that
+is controlled by values of some of the control parameters.
+If so, edit or override this method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<em>Tk Widget = None</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.create_dialog" title="training_structures_step.tk_export_training_set.TkExportTrainingSet.create_dialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkExportTrainingSet.create_dialog</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="training_structures_step.tk_export_training_set.TkExportTrainingSet.right_click">
+<span class="sig-name descname"><span class="pre">right_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/tk_export_training_set.html#TkExportTrainingSet.right_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.right_click" title="Link to this definition">#</a></dt>
+<dd><p>Handles the right click event on the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tk Event</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkExportTrainingSet.edit</span></code></p>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1232,6 +1742,51 @@ A SEAMM plug-in for Training Structures</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.export">training_structures_step.export module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.FRAME_KEYS"><code class="docutils literal notranslate"><span class="pre">FRAME_KEYS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.UNITS"><code class="docutils literal notranslate"><span class="pre">UNITS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.add_coverage"><code class="docutils literal notranslate"><span class="pre">add_coverage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.coverage_table"><code class="docutils literal notranslate"><span class="pre">coverage_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.dumps"><code class="docutils literal notranslate"><span class="pre">dumps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.extxyz_frame"><code class="docutils literal notranslate"><span class="pre">extxyz_frame()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.filter_points"><code class="docutils literal notranslate"><span class="pre">filter_points()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.molecule_file"><code class="docutils literal notranslate"><span class="pre">molecule_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.provenance"><code class="docutils literal notranslate"><span class="pre">provenance()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export.sample_drop_fraction"><code class="docutils literal notranslate"><span class="pre">sample_drop_fraction()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.export_training_set">training_structures_step.export_training_set module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.parser"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.parser</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.options"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.subflowchart"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.parameters"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.parameters</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.analyze"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.analyze()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.description_text"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.description_text()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.git_revision"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.run"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set.ExportTrainingSet.version"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSet.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.export_training_set_parameters">training_structures_step.export_training_set_parameters module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_parameters.ExportTrainingSetParameters"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetParameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_parameters.ExportTrainingSetParameters.parameters"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetParameters.parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.export_training_set_step">training_structures_step.export_training_set_step module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetStep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.create_node"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetStep.create_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.create_tk_node"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetStep.create_tk_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.description"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetStep.description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.export_training_set_step.ExportTrainingSetStep.my_description"><code class="docutils literal notranslate"><span class="pre">ExportTrainingSetStep.my_description</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.generate">training_structures_step.generate module</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.bond_classes"><code class="docutils literal notranslate"><span class="pre">bond_classes()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.generate.check_hessian"><code class="docutils literal notranslate"><span class="pre">check_hessian()</span></code></a></li>
@@ -1252,6 +1807,7 @@ A SEAMM plug-in for Training Structures</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.metadata">training_structures_step.metadata module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.metadata.export_metadata"><code class="docutils literal notranslate"><span class="pre">export_metadata</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.metadata.metadata"><code class="docutils literal notranslate"><span class="pre">metadata</span></code></a></li>
 </ul>
 </li>
@@ -1264,6 +1820,26 @@ A SEAMM plug-in for Training Structures</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.is_runable"><code class="docutils literal notranslate"><span class="pre">Substep.is_runable</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.options"><code class="docutils literal notranslate"><span class="pre">Substep.options</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.substep.Substep.version"><code class="docutils literal notranslate"><span class="pre">Substep.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.tk_export_training_set">training_structures_step.tk_export_training_set module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_flowchart"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.tk_flowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.node"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.node</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.namespace"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.namespace</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.tk_subflowchart"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.tk_subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.canvas"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.canvas</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.dialog"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.dialog</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.x"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.x</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.y"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.y</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.w"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.w</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.h"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.h</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.self"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.self</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.create_dialog"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.create_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.reset_dialog"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.reset_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.tk_export_training_set.TkExportTrainingSet.right_click"><code class="docutils literal notranslate"><span class="pre">TkExportTrainingSet.right_click()</span></code></a></li>
 </ul>
 </li>
 </ul>
