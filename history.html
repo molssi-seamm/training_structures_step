@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
+    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=e5385ca6"></script>
+    <script src="_static/documentation_options.js?v=bb624eb3"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26" />
+  <meta name="docsearch:version" content="2026.11.26.1" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,15 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.26.1 – Record what the engine ran for the Hessian</dt><dd><ul class="simple">
+<li><p>Training Structures stores, with how the Hessian was made, the warm engine’s own
+record of the Hessian run (else its last energy run): the settings fingerprint, the
+program version and the input’s ‘!’ line(s). The engine runs in node-local scratch,
+so its input and output are not kept; this record, made from them, is what shows
+the Hessian’s level and settings afterwards. Export Training Set carries it in each
+molecule’s record.</p></li>
+</ul>
+</dd>
 <dt>2026.11.26 – Choose how the Hessian is made; the warm engine by default</dt><dd><ul class="simple">
 <li><p>A new parameter, “Energies and Hessian via:”, as the Thermochemistry step’s: the
 warm MDI engine (analytic where the program has it, and needed for the Hessian

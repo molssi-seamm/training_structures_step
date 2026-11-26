@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=e5385ca6"></script>
+    <script src="../../_static/documentation_options.js?v=bb624eb3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26" />
+  <meta name="docsearch:version" content="2026.11.26.1" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -726,6 +726,11 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"random seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">}</span>
         <span class="c1"># 1. The Hessian at the Model Chemistry, checked</span>
         <span class="n">H</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hessian</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="c1"># What the engine actually ran for the Hessian (its calculation record, from</span>
+        <span class="c1"># the program's own input and output, which stay in the engine's scratch)</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">engine_settings</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">fingerprints</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">][</span><span class="s2">"settings"</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
 
         <span class="c1"># 2. The points, with the generator level for the scans and pre-screen</span>
         <span class="n">points</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="n">x0</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">}]</span>
@@ -1231,6 +1236,35 @@
     <span class="s2">"bond"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"bond"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">),</span>
     <span class="s2">"bond change"</span><span class="p">:</span> <span class="p">(</span><span class="s2">"bond change"</span><span class="p">,</span> <span class="s2">"Å"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">),</span>
 <span class="p">}</span>
+
+
+<div class="viewcode-block" id="engine_settings">
+<a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.engine_settings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">engine_settings</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The settings of the engine's Hessian run (else its last energy run), from</span>
+<span class="sd">    the calculation records a warm engine reports ({"energy": record, "hessian":</span>
+<span class="sd">    record}, see seamm_util.fingerprint.calculation_record): {"run", "fingerprint",</span>
+<span class="sd">    "version", "keywords"}, the keywords being the input's '!' lines. None without</span>
+<span class="sd">    records (e.g. the Hessian ran as separate tasks)."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fingerprints</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"hessian"</span><span class="p">,</span> <span class="s2">"energy"</span><span class="p">):</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">fingerprints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">record</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"files"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">files</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">"run"</span><span class="p">:</span> <span class="n">run</span><span class="p">,</span>
+                <span class="s2">"fingerprint"</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"fingerprint"</span><span class="p">),</span>
+                <span class="s2">"version"</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"version"</span><span class="p">),</span>
+                <span class="s2">"keywords"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"!"</span><span class="p">)</span>
+                <span class="p">],</span>
+            <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_no_session</span><span class="p">:</span>

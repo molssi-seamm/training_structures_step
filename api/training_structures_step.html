@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.26 documentation</title>
+    <title>training_structures_step package &#8212; SEAMM Training Structures Plug-in 2026.11.26.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=e5385ca6"></script>
+    <script src="../_static/documentation_options.js?v=bb624eb3"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26" />
+  <meta name="docsearch:version" content="2026.11.26.1" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -1590,6 +1590,16 @@ list of remaining argument strings.</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="training_structures_step.training_structures.engine_settings">
+<span class="sig-prename descclassname"><span class="pre">training_structures_step.training_structures.</span></span><span class="sig-name descname"><span class="pre">engine_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fingerprints</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/training_structures_step/training_structures.html#engine_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#training_structures_step.training_structures.engine_settings" title="Link to this definition">#</a></dt>
+<dd><p>The settings of the engine’s Hessian run (else its last energy run), from
+the calculation records a warm engine reports ({“energy”: record, “hessian”:
+record}, see seamm_util.fingerprint.calculation_record): {“run”, “fingerprint”,
+“version”, “keywords”}, the keywords being the input’s ‘!’ lines. None without
+records (e.g. the Hessian ran as separate tasks).</p>
+</dd></dl>
+
 </section>
 <section id="module-training_structures_step.training_structures_parameters">
 <span id="training-structures-step-training-structures-parameters-module"></span><h2>training_structures_step.training_structures_parameters module<a class="headerlink" href="#module-training_structures_step.training_structures_parameters" title="Link to this heading">#</a></h2>
@@ -1896,6 +1906,7 @@ A SEAMM plug-in for Training Structures</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.TrainingStructures.version"><code class="docutils literal notranslate"><span class="pre">TrainingStructures.version</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training_structures_step.training_structures.engine_settings"><code class="docutils literal notranslate"><span class="pre">engine_settings()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-training_structures_step.training_structures_parameters">training_structures_step.training_structures_parameters module</a><ul class="pst-show_toc_level nav section-nav flex-column">
