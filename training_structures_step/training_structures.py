@@ -226,6 +226,11 @@ class TrainingStructures(seamm.Node):
         data = {"random seed": seed}
         # 1. The Hessian at the Model Chemistry, checked
         H, data["hessian"] = self._hessian(P, driver, reference, x0, masses, rng)
+        # What the engine actually ran for the Hessian (its calculation record, from
+        # the program's own input and output, which stay in the engine's scratch)
+        settings = engine_settings(driver.fingerprints)
+        if settings:
+            data["hessian"]["settings"] = settings
 
         # 2. The points, with the generator level for the scans and pre-screen
         points = [{"type": "minimum", "x": x0, "name": "minimum"}]
@@ -726,6 +731,32 @@ _POINT_PROPERTIES = {
     "bond": ("bond", "", "json"),
     "bond change": ("bond change", "Å", "float"),
 }
+
+
+def engine_settings(fingerprints):
+    """The settings of the engine's Hessian run (else its last energy run), from
+    the calculation records a warm engine reports ({"energy": record, "hessian":
+    record}, see seamm_util.fingerprint.calculation_record): {"run", "fingerprint",
+    "version", "keywords"}, the keywords being the input's '!' lines. None without
+    records (e.g. the Hessian ran as separate tasks)."""
+    if not fingerprints:
+        return None
+    for run in ("hessian", "energy"):
+        record = fingerprints.get(run)
+        if record:
+            files = record.get("files") or {}
+            text = "\n".join(str(v) for v in files.values())
+            return {
+                "run": run,
+                "fingerprint": record.get("fingerprint"),
+                "version": record.get("version"),
+                "keywords": [
+                    line.strip()
+                    for line in text.splitlines()
+                    if line.strip().startswith("!")
+                ],
+            }
+    return None
 
 
 class _no_session:

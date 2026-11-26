@@ -38,3 +38,29 @@ def test_hessian_route_reaches_the_driver():
         P = node.parameters.values_to_dict()
         P["hessian route"] = route
         assert node._driver(P).route == route
+
+
+def test_engine_settings_from_the_records():
+    """The Hessian run's settings, as the engine recorded them (criterion 11 of the
+    E2b pilot: the key and the '!' line of what actually ran)."""
+    from training_structures_step.training_structures import engine_settings
+
+    record = {
+        "program": "ORCA",
+        "version": "6.1",
+        "fingerprint": "sha256:abc",
+        "files": {
+            "orca.inp": "! R2SCAN-3C TIGHTSCF DEFGRID3 AnFreq\n%pal nprocs 4 end"
+        },
+    }
+    got = engine_settings({"energy": {"fingerprint": "sha256:e"}, "hessian": record})
+    assert got == {
+        "run": "hessian",
+        "fingerprint": "sha256:abc",
+        "version": "6.1",
+        "keywords": ["! R2SCAN-3C TIGHTSCF DEFGRID3 AnFreq"],
+    }
+    # no Hessian run over the engine (finite differences of its gradients)
+    got = engine_settings({"energy": record, "hessian": None})
+    assert got["run"] == "energy"
+    assert engine_settings(None) is None and engine_settings({}) is None
