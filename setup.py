@@ -81,9 +81,11 @@ setup(
     entry_points={
         'org.molssi.seamm': [
             'Training Structures = training_structures_step:TrainingStructuresStep',
+            'Export Training Set = training_structures_step:ExportTrainingSetStep',
         ],
         'org.molssi.seamm.tk': [
             'Training Structures = training_structures_step:TrainingStructuresStep',
+            'Export Training Set = training_structures_step:ExportTrainingSetStep',
         ],
     }
 )
