@@ -166,6 +166,7 @@ class ExportTrainingSet(seamm.Node):
         summary = []
         refused = []
         redraw = []
+        below = []  # molecules with points below their minimum
         n_kept = n_dropped = 0
         for system in systems:
             points, model, extra = self._points(P, system)
@@ -204,6 +205,10 @@ class ExportTrainingSet(seamm.Node):
                 dropped,
             )
             record["sample drop fraction"] = round(fraction, 4)
+            lowest = min(p["delta energy"] for p in kept)
+            record["lowest delta energy (kJ/mol)"] = round(lowest, 4)
+            if lowest < -1.0:
+                below.append((name, lowest))
             (directory / f"{stem}.json").write_text(export.dumps(record))
             bonds = sorted(generate.connectivity(extra["symbols"], kept[0]["xyz"]))
             export.add_coverage(
@@ -242,6 +247,7 @@ class ExportTrainingSet(seamm.Node):
             "number of dropped points": n_dropped,
             "refused molecules": [f"{n}: {r}" for n, r in refused],
             "molecules to redraw": [n for n, _ in redraw],
+            "molecules below their minimum": [n for n, _ in below],
             "directory": str(directory),
         }
         self.analyze(
@@ -249,6 +255,7 @@ class ExportTrainingSet(seamm.Node):
             summary=summary,
             refused=refused,
             redraw=redraw,
+            below=below,
             rows=rows,
             threshold=threshold,
         )
@@ -372,6 +379,7 @@ class ExportTrainingSet(seamm.Node):
         summary=(),
         refused=(),
         redraw=(),
+        below=(),
         rows=(),
         threshold=0.15,
         **kwargs,
@@ -398,6 +406,15 @@ class ExportTrainingSet(seamm.Node):
                     f"These molecules lost more than {threshold:.0%} of their samples "
                     "and need new samples with a lower maximum target energy (7 "
                     f"kcal/mol in the E2 recipe): {names}.",
+                    indent=4 * " ",
+                )
+            )
+        if below:
+            names = ", ".join(f"{n} ({e:.1f} kJ/mol)" for n, e in below)
+            printer.important(
+                __(
+                    "Some points lie below their molecule's minimum, which may not be "
+                    f"the lowest conformer: {names}.",
                     indent=4 * " ",
                 )
             )

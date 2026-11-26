@@ -217,6 +217,11 @@ export_metadata = {
             "dimensionality": "scalar",
             "type": "json",
         },
+        "molecules below their minimum": {
+            "description": "Molecules with points more than 1 kJ/mol below the minimum",
+            "dimensionality": "scalar",
+            "type": "json",
+        },
         "directory": {
             "description": "Where the files were written",
             "dimensionality": "scalar",
