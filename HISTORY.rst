@@ -2,6 +2,18 @@
 History
 =======
 
+2026.11.26.3 -- Bugfix: no rotors onto linear groups
+    * A single bond onto a linear centre (a nitrile's or alkyne's sp carbon, an
+      isocyanide's nitrogen, an allene's central carbon, or atoms that are collinear
+      in the structure) is no longer a rotor. Its torsion is undefined, and scanning
+      it stopped the molecule with "FixInternals.adjust_positions did not converge"
+      (ethyl cyanide, 2-cyclopentenecarbonitrile, 1-norbornylisocyanide).
+    * A scan point whose torsion cannot be held is dropped and reported, rather than
+      stopping the molecule.
+    * The points refused while generating are stored on the minimum ("dropped
+      points", by kind and reason, with counts) and the export's per-molecule record
+      carries them as "dropped while generating".
+
 2026.11.26.2 -- A replacement Hessian is checked too
     * The Hessian check's gradients each start from the reference structure's
       orbitals, with a tight SCF (seamm-exec 2026.11.26).

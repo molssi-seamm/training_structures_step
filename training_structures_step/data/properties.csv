@@ -10,5 +10,6 @@ bond#TrainingStructures#generation,json,,"The two atoms (1-based) of the bond st
 bond change#TrainingStructures#generation,float,Å,"The change of the stretched bond's length from the minimum.",
 hessian#TrainingStructures#generation,json,,"How the Hessian was made and checked: route, open shell, the check's errors and largest frequency, and any refusal.",
 random seed#TrainingStructures#generation,int,,"The seed of the random numbers that made this molecule's points.",
+dropped points#TrainingStructures#generation,json,,"The points refused while generating this molecule's, by kind (sample, scan, stretch, grid) and reason, with counts.",
 training status#TrainingStructures#export,str,,"Whether the Export Training Set step kept this point, or why it dropped it.",
 delta energy#TrainingStructures#export,float,kJ/mol,"The labelled energy of this point above the molecule's minimum.",

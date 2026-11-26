@@ -63,11 +63,58 @@ def test_a_broken_bond_is_reported():
         ("CC(=O)NCC", 1),  # N-ethylacetamide: the N-CH2 bond
         ("CC(=O)OCC", 1),  # ester: only O-CH2 (C(=O)-O is conjugated)
         ("c1ccccc1C(=O)C", 0),  # aryl-C(O) is conjugated
+        ("CCC#N", 0),  # ethyl cyanide: CH2-C#N ends on a linear centre (B1 6091)
+        ("CCCC#N", 1),  # butyronitrile: C2-C3 only
+        ("N#CC1CC=CC1", 0),  # 2-cyclopentenecarbonitrile (B1 6091)
+        ("[C-]#[N+]C1(C)CCCC1", 0),  # an isocyanide's N is linear too
+        ("CCC#CCC", 0),  # 3-hexyne: both CH2-C# bonds end on sp carbons
     ],
 )
 def test_heavy_rotors(smiles, n):
     s, _, bonds, orders, conjugated = molecule(smiles)
     assert len(g.find_rotors(s, bonds, orders, conjugated)) == n
+
+
+def test_collinear_dihedral_atoms_are_not_rotors_without_orders():
+    """Given only the coordinates (no bond orders), a nitrile's C-C-N is
+    collinear, so CH2-CN is not a rotor; butane's central bond still is."""
+    s, x, bonds, _, _ = molecule("CCC#N")
+    assert len(g.find_rotors(s, bonds)) == 1  # topology alone cannot tell
+    assert g.find_rotors(s, bonds, xyz=x) == []
+    s, x, bonds, _, _ = molecule("CCCC")
+    assert len(g.find_rotors(s, bonds, xyz=x)) == 1
+
+
+def _metal(octahedral):
+    """M-C(-C) with chlorides on M: all five more (octahedral, one trans to the
+    M-C bond) or only the trans one (linear Cl-M-C)."""
+    ligands = [(-2.3, 0.0, 0.0)]  # trans to the M-C bond
+    if octahedral:
+        ligands += [
+            (0.0, 2.3, 0.0),
+            (0.0, -2.3, 0.0),
+            (0.0, 0.0, 2.3),
+            (0.0, 0.0, -2.3),
+        ]
+    xyz = [(0.0, 0.0, 0.0)] + ligands + [(2.0, 0.0, 0.0), (2.8, 1.2, 0.0)]
+    n = len(xyz)
+    symbols = ["Pt"] + ["Cl"] * len(ligands) + ["C", "C"]
+    bonds = [(0, k) for k in range(1, len(ligands) + 1)] + [(0, n - 2), (n - 2, n - 1)]
+    return symbols, np.array(xyz), bonds
+
+
+def test_a_trans_ligand_does_not_remove_a_rotor():
+    """An end is linear only when ALL its other heavy neighbours are collinear
+    with the bond (E2 recipe erratum 1): an octahedral centre with a trans
+    ligand keeps its rotor, defined by a cis ligand; a linear Cl-M-C loses it."""
+    s, x, bonds = _metal(octahedral=True)
+    (rotor,) = g.find_rotors(s, bonds, xyz=x)
+    assert rotor["bond"] == (0, 6)
+    a, i, j, b = rotor["dihedral"]
+    assert a != 1  # never the trans chloride
+    s, x, bonds = _metal(octahedral=False)
+    assert g.find_rotors(s, bonds, xyz=x) == []
+    assert len(g.find_rotors(s, bonds)) == 1  # without coordinates it cannot tell
 
 
 def test_rotors_rank_by_heavy_atoms_moved():

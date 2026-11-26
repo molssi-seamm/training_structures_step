@@ -219,6 +219,8 @@ class ExportTrainingSet(seamm.Node):
                 kept,
                 dropped,
             )
+            # the points refused while generating, by kind and reason
+            record["dropped while generating"] = extra.get("generation drops") or {}
             record["sample drop fraction"] = round(fraction, 4)
             if redrawn is not None:
                 record["samples from the redraw"] = redrawn
@@ -397,6 +399,9 @@ class ExportTrainingSet(seamm.Node):
             "calculation": _get(minimum, f"calculation#Energy#{model}"),
             "hessian": _get(minimum, "hessian#TrainingStructures#generation"),
             "seed": _get(minimum, "random seed#TrainingStructures#generation"),
+            "generation drops": _get(
+                minimum, "dropped points#TrainingStructures#generation"
+            ),
         }
         return points, model, extra
 
