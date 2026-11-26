@@ -3,6 +3,7 @@
 """Non-graphical part of the Training Structures step in a SEAMM flowchart"""
 
 import logging
+import os
 import re
 from pathlib import Path
 import importlib.resources
@@ -237,6 +238,12 @@ class TrainingStructures(seamm.Node):
         )
         if settings:
             data["hessian"]["settings"] = settings
+        # Keep the Hessian itself (Paul 2026-11-26): E_h/bohr^2 with the masses,
+        # geometry and how it was made, next to the step's output; its path,
+        # relative to the job's directory, goes with the "hessian" property
+        data["hessian"]["file"] = self._save_hessian(
+            directory, H, masses, x0, symbols, reference, data["hessian"], driver
+        )
 
         # 2. The points, with the generator level for the scans and pre-screen
         points = [{"type": "minimum", "x": x0, "name": "minimum"}]
@@ -690,6 +697,30 @@ class TrainingStructures(seamm.Node):
             __(f"The random seed was {data['random seed']}.", indent=4 * " ")
         )
         printer.important("")
+
+    def _save_hessian(self, directory, H, masses, x0, symbols, reference, info, driver):
+        """Write the Hessian to ``hessian.npz`` in the step's directory
+        (seamm_exec.hessian.save_hessian) and return its path relative to the
+        job's directory."""
+        from seamm_exec.hessian import save_hessian
+
+        path = Path(directory) / "hessian.npz"
+        mc = driver.model_chemistry() or {}
+        save_hessian(
+            path,
+            H,
+            masses,
+            x0,
+            symbols,
+            model=mc.get("level") if hasattr(mc, "get") else str(mc),
+            charge=int(reference.charge or 0),
+            multiplicity=int(reference.spin_multiplicity or 1),
+            **{k: v for k, v in info.items() if k != "file"},
+        )
+        try:
+            return os.path.relpath(path, self.flowchart.root_directory)
+        except (AttributeError, TypeError, ValueError):
+            return str(path)
 
     def _put_property(self, conf, name, value, units, _type="float"):
         """Store a per-point property (the names in data/properties.csv)."""
