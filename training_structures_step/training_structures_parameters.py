@@ -244,6 +244,20 @@ class TrainingStructuresParameters(seamm.Parameters):
             ".1f",
         ),
         # ------------------------------------------------------------ Hessian
+        "hessian route": _p(
+            "warm engine over MDI",
+            "enum",
+            "",
+            "Energies and Hessian via:",
+            "How the Model Chemistry gives the Hessian at the minimum: the warm MDI "
+            "engine (analytic where the program has it, and needed for the check "
+            "below); separate tasks, i.e. central finite differences of 6N gradients "
+            "run where the job runs its tasks (no check: it is already finite "
+            "differences); or automatic, which on a queue that runs tasks also means "
+            "separate tasks. As the Thermochemistry step's CBH approach, the engine is "
+            "the default: 6N gradients cost several times a molecule's labels.",
+            ("warm engine over MDI", "automatic", "separate tasks"),
+        ),
         "check the hessian": _p(
             "open shells",
             "enum",

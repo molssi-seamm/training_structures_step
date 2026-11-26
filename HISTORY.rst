@@ -2,6 +2,18 @@
 History
 =======
 
+2026.11.26 -- Choose how the Hessian is made; the warm engine by default
+    * A new parameter, "Energies and Hessian via:", as the Thermochemistry step's: the
+      warm MDI engine (analytic where the program has it, and needed for the Hessian
+      check), separate tasks (central finite differences of 6N gradients where the job
+      runs its tasks), or automatic.
+    * The default is the warm engine, as the Thermochemistry step's CBH approach. On a
+      queue that runs tasks, the old automatic choice made every Hessian 6N gradients as
+      tasks, several times the cost of the molecule's labels, and the Hessian check
+      could not run.
+    * The dialog hides the check's settings for separate tasks, which are already finite
+      differences.
+
 2026.11.25.2 -- A redraw pass for molecules that lost too many samples
     * Training Structures can name its system 'for a redraw' ('<molecule> redraw'),
       for a second pass of samples from the first pass's minimum, e.g. with a lower
