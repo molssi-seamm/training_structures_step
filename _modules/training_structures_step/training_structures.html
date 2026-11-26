@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.1 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.2 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=bb624eb3"></script>
+    <script src="../../_static/documentation_options.js?v=8c9ac4d9"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.1" />
+  <meta name="docsearch:version" content="2026.11.26.2" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -728,7 +728,12 @@
         <span class="n">H</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hessian</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
         <span class="c1"># What the engine actually ran for the Hessian (its calculation record, from</span>
         <span class="c1"># the program's own input and output, which stay in the engine's scratch)</span>
-        <span class="n">settings</span> <span class="o">=</span> <span class="n">engine_settings</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">fingerprints</span><span class="p">)</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">engine_settings</span><span class="p">(</span>
+            <span class="n">driver</span><span class="o">.</span><span class="n">fingerprints</span><span class="p">,</span>
+            <span class="n">finite_differences</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"route"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+                <span class="s2">"finite differences"</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">settings</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">][</span><span class="s2">"settings"</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
 
@@ -842,7 +847,14 @@
     <span class="c1"># ------------------------------------------------------------------ #</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""The Hessian (E_h/bohr²) at the Model Chemistry and how it was made,</span>
-<span class="sd">        checked against finite differences of the gradient when asked."""</span>
+<span class="sd">        checked against finite differences of the gradient when asked.</span>
+
+<span class="sd">        Over a warm engine the check's gradients each start from the reference</span>
+<span class="sd">        structure's orbitals, with a tight SCF (seamm_exec's</span>
+<span class="sd">        ``EngineSession.check_hessian``). A refused Hessian is replaced by finite</span>
+<span class="sd">        differences of the gradient, made the same way and with every point</span>
+<span class="sd">        checked for a state change, and the replacement is checked again: if it</span>
+<span class="sd">        fails too, the molecule is refused (science 2026-11-26)."""</span>
         <span class="n">how</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"check the hessian"</span><span class="p">]</span>
         <span class="n">open_shell</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">spin_multiplicity</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
         <span class="n">draw</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>  <span class="c1"># always drawn, so the points do not depend on how</span>
@@ -851,29 +863,33 @@
             <span class="ow">and</span> <span class="p">(</span><span class="n">open_shell</span> <span class="ow">or</span> <span class="n">draw</span> <span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"closed-shell check fraction"</span><span class="p">]))</span>
         <span class="p">)</span>
         <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"open shell"</span><span class="p">:</span> <span class="n">open_shell</span><span class="p">,</span> <span class="s2">"checked"</span><span class="p">:</span> <span class="n">check</span><span class="p">}</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"rms"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"check displacement"</span><span class="p">],</span> <span class="s2">"Å"</span><span class="p">),</span>
+            <span class="s2">"tolerance"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"hessian tolerance"</span><span class="p">]),</span>
+            <span class="s2">"max_frequency"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum frequency"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
+        <span class="p">}</span>
         <span class="k">with</span> <span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">_</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">energy_and_hessian</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
                 <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"tasks"</span>
+                <span class="n">fd</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="s2">"fd_info"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">fd</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">"finite differences"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fd</span>
                 <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
                     <span class="n">info</span><span class="p">[</span><span class="s2">"check"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"not possible: the model chemistry runs as tasks"</span>
                 <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
             <span class="n">H</span><span class="p">,</span> <span class="n">route</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">()</span>
             <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">"fd_info"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fd</span><span class="p">:</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"finite differences"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fd</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">check_hessian</span><span class="p">(</span>
-                <span class="n">H</span><span class="p">,</span>
-                <span class="n">session</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span>
-                <span class="n">x0</span><span class="p">,</span>
-                <span class="n">masses</span><span class="p">,</span>
-                <span class="n">rng</span><span class="p">,</span>
-                <span class="n">rms</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"check displacement"</span><span class="p">],</span> <span class="s2">"Å"</span><span class="p">),</span>
-                <span class="n">tolerance</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"hessian tolerance"</span><span class="p">]),</span>
-                <span class="n">max_frequency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_as_float</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"maximum frequency"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
-            <span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_hessian</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">limits</span><span class="p">)</span>
             <span class="n">info</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]]</span>
             <span class="n">info</span><span class="p">[</span><span class="s2">"max frequency"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"max frequency"</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"reference guess"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"check from reference guess"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"reference guess"</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">"refused"</span><span class="p">]:</span>
                 <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
                     <span class="n">__</span><span class="p">(</span>
@@ -882,10 +898,35 @@
                         <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-                <span class="n">H</span><span class="p">,</span> <span class="n">route</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">finite_differences</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 <span class="n">info</span><span class="p">[</span><span class="s2">"refused"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"reason"</span><span class="p">]</span>
+                <span class="n">H</span><span class="p">,</span> <span class="n">route</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">finite_differences</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 <span class="n">info</span><span class="p">[</span><span class="s2">"route"</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span>
+                <span class="n">fd</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">"fd_info"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">fd</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s2">"finite differences"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fd</span>
+                <span class="c1"># The replacement is checked too, and must pass</span>
+                <span class="n">again</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_hessian</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">limits</span><span class="p">)</span>
+                <span class="n">info</span><span class="p">[</span><span class="s2">"replacement check"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">"errors"</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">again</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]],</span>
+                    <span class="s2">"max frequency"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">again</span><span class="p">[</span><span class="s2">"max frequency"</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">"reason"</span><span class="p">:</span> <span class="n">again</span><span class="p">[</span><span class="s2">"reason"</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">again</span><span class="p">[</span><span class="s2">"refused"</span><span class="p">]:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2"> Hessian that replaced it was refused too: "</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">again</span><span class="p">[</span><span class="s1">'reason'</span><span class="p">]</span><span class="si">}</span><span class="s2">. The molecule is not used."</span>
+                    <span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">info</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_hessian</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">limits</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The gradient-difference check: the session's, from the reference</span>
+<span class="sd">        orbitals with a tight SCF (seamm-exec &gt;= 2026.11.26), else with its</span>
+<span class="sd">        plain gradients."""</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">"check_hessian"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">check</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">coords_ang</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="o">**</span><span class="n">limits</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">generate</span><span class="o">.</span><span class="n">check_hessian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="o">**</span><span class="n">limits</span><span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------ #</span>
     <span class="c1"># The kinds of points</span>
@@ -1240,15 +1281,19 @@
 
 <div class="viewcode-block" id="engine_settings">
 <a class="viewcode-back" href="../../api/training_structures_step.html#training_structures_step.training_structures.engine_settings">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">engine_settings</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">engine_settings</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">finite_differences</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""The settings of the engine's Hessian run (else its last energy run), from</span>
 <span class="sd">    the calculation records a warm engine reports ({"energy": record, "hessian":</span>
 <span class="sd">    record}, see seamm_util.fingerprint.calculation_record): {"run", "fingerprint",</span>
 <span class="sd">    "version", "keywords"}, the keywords being the input's '!' lines. None without</span>
-<span class="sd">    records (e.g. the Hessian ran as separate tasks)."""</span>
+<span class="sd">    records (e.g. the Hessian ran as separate tasks).</span>
+
+<span class="sd">    For a finite-difference Hessian the energy runs made it, so their record comes</span>
+<span class="sd">    first: a "hessian" record is then that of a refused analytic Hessian."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">fingerprints</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
-    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"hessian"</span><span class="p">,</span> <span class="s2">"energy"</span><span class="p">):</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"energy"</span><span class="p">,</span> <span class="s2">"hessian"</span><span class="p">)</span> <span class="k">if</span> <span class="n">finite_differences</span> <span class="k">else</span> <span class="p">(</span><span class="s2">"hessian"</span><span class="p">,</span> <span class="s2">"energy"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
         <span class="n">record</span> <span class="o">=</span> <span class="n">fingerprints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">record</span><span class="p">:</span>
             <span class="n">files</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"files"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
