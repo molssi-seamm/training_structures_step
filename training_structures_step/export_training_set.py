@@ -168,9 +168,24 @@ class ExportTrainingSet(seamm.Node):
         redraw = []
         below = []  # molecules with points below their minimum
         n_kept = n_dropped = 0
-        for system in systems:
-            points, model, extra = self._points(P, system)
-            name = system.name
+        for name, first, second in self._molecules(systems):
+            if first is None:
+                first, second = second, None
+            points, model, extra = self._points(P, first)
+            redrawn = None
+            if second is not None:
+                r_points, r_model, _ = self._points(P, second)
+                points, problem = export.merge_redraw(
+                    points, r_points, same_model=(r_model == model)
+                )
+                if problem is not None:
+                    refused.append((name, f"the redraw {second.name}: {problem}"))
+                    continue
+                for p in points:
+                    if p.get("replaced"):
+                        self._mark(p["configuration"], "replaced by the redraw", None)
+                points = [p for p in points if not p.get("replaced")]
+                redrawn = second.name
             kept, dropped, problem = export.filter_points(points, window, spin)
             if problem is not None:
                 refused.append((name, problem))
@@ -205,6 +220,8 @@ class ExportTrainingSet(seamm.Node):
                 dropped,
             )
             record["sample drop fraction"] = round(fraction, 4)
+            if redrawn is not None:
+                record["samples from the redraw"] = redrawn
             lowest = min(p["delta energy"] for p in kept)
             record["lowest delta energy (kJ/mol)"] = round(lowest, 4)
             if lowest < -1.0:
@@ -247,6 +264,13 @@ class ExportTrainingSet(seamm.Node):
             "number of dropped points": n_dropped,
             "refused molecules": [f"{n}: {r}" for n, r in refused],
             "molecules to redraw": [n for n, _ in redraw],
+            # for a Loop over the systems to redraw ('name regexp'); matches nothing
+            # when there are none
+            "redraw regexp": (
+                "^(?:" + "|".join(re.escape(n) for n, _ in redraw) + ")$"
+                if redraw
+                else "(?!)"
+            ),
             "molecules below their minimum": [n for n, _ in below],
             "directory": str(directory),
         }
@@ -272,6 +296,32 @@ class ExportTrainingSet(seamm.Node):
         if how == "all training systems":
             return [s for s in systems if self._is_training_system(s)]
         return [s for s in systems if fnmatch.fnmatchcase(s.name, how)]
+
+    @staticmethod
+    def _molecules(systems):
+        """(name, first pass, redraw) per molecule: a system '<x> redraw' is the
+        second pass of samples for '<x> training'. Either may be None."""
+        groups = {}
+        order = []
+        for system in systems:
+            name = system.name
+            if name.endswith(" redraw"):
+                base, kind = name[: -len(" redraw")], "redraw"
+            elif name.endswith(" training"):
+                base, kind = name[: -len(" training")], "first"
+            else:
+                base, kind = name, "first"
+            if base not in groups:
+                groups[base] = {"first": None, "redraw": None, "name": None}
+                order.append(base)
+            groups[base][kind] = system
+            if kind == "first":
+                groups[base]["name"] = name
+        out = []
+        for base in order:
+            g = groups[base]
+            out.append((g["name"] or f"{base} training", g["first"], g["redraw"]))
+        return out
 
     @staticmethod
     def _is_training_system(system):

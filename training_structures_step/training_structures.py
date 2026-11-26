@@ -282,11 +282,7 @@ class TrainingStructures(seamm.Node):
                     points += self._stretches(P, H, x0, symbols, check, dropped)
 
         # 3. The new system, one configuration per point
-        name = (
-            f"{system.name} training"
-            if P["system name"] == "from structure"
-            else P["system name"]
-        )
+        name = self._system_name(P["system name"], system.name)
         out_sys = system_db.create_combined_system([reference], name=name)
         base = out_sys.configuration
         for k, point in enumerate(points):
@@ -654,6 +650,20 @@ class TrainingStructures(seamm.Node):
         except Exception as e:  # pragma: no cover
             logger.warning(f"No conjugation from RDKit: {e}")
         return bonds, orders, conjugated
+
+    @staticmethod
+    def _system_name(how, structure):
+        """The new system's name: '<structure> training', '<structure> redraw', or
+        the text given with {structure} replaced."""
+        how = str(how)
+        if how == "from structure":
+            return f"{structure} training"
+        if how == "for a redraw":
+            # a redraw starts from the first pass's minimum, in '<x> training'
+            if structure.endswith(" training"):
+                structure = structure[: -len(" training")]
+            return f"{structure} redraw"
+        return how.replace("{structure}", structure)
 
     @staticmethod
     def _seed_of(seed):

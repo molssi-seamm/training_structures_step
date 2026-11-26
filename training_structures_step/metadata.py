@@ -217,6 +217,14 @@ export_metadata = {
             "dimensionality": "scalar",
             "type": "json",
         },
+        "redraw regexp": {
+            "description": (
+                "A regular expression matching the training systems to redraw, for "
+                "a Loop over systems"
+            ),
+            "dimensionality": "scalar",
+            "type": "string",
+        },
         "molecules below their minimum": {
             "description": "Molecules with points more than 1 kJ/mol below the minimum",
             "dimensionality": "scalar",

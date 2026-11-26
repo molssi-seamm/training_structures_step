@@ -2,6 +2,17 @@
 History
 =======
 
+2026.11.25.2 -- A redraw pass for molecules that lost too many samples
+    * Training Structures can name its system 'for a redraw' ('<molecule> redraw'),
+      for a second pass of samples from the first pass's minimum, e.g. with a lower
+      maximum target energy, no scans and no stretches.
+    * Export Training Set merges a molecule's redraw with its first pass: the redraw's
+      samples replace the first pass's (marked 'replaced by the redraw'), the scans and
+      stretches are kept, and both passes must share the minimum's energy and settings.
+      The record says where the samples came from.
+    * Export Training Set gives the molecules to redraw as a regular expression
+      ('redraw regexp'), for a Loop over those systems in the same flowchart.
+
 2026.11.25.1 -- Export Training Set: labelled points to extended-XYZ files
     * A new step, Export Training Set, for the points of Training Structures after an
       Energy step has labelled them: each point's energy above its molecule's minimum, a
