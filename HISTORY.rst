@@ -2,6 +2,15 @@
 History
 =======
 
+2026.11.26.4 -- The Hessian is kept
+    * Training Structures writes the Hessian at the minimum to hessian.npz in its
+      directory (seamm-exec's save_hessian: E_h/bohr^2, with the masses, geometry,
+      route, settings key and model chemistry), and puts the file's path, relative to
+      the job's directory, in the "hessian" record as "file".
+    * Export Training Set copies it next to each molecule's .extxyz as
+      <molecule>.hessian.npz, named in the molecule's record as "hessian file".
+    * Needs seamm-exec 2026.11.26.1.
+
 2026.11.26.3 -- Bugfix: no rotors onto linear groups
     * A single bond onto a linear centre (a nitrile's or alkyne's sp carbon, an
       isocyanide's nitrogen, an allene's central carbon, or atoms that are collinear
