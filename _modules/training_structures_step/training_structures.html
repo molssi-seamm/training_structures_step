@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.3 documentation</title>
+    <title>training_structures_step.training_structures &#8212; SEAMM Training Structures Plug-in 2026.11.26.4 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=28e240c0"></script>
+    <script src="../../_static/documentation_options.js?v=e36bd00d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.3" />
+  <meta name="docsearch:version" content="2026.11.26.4" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -496,6 +496,7 @@
 <span class="sd">"""Non-graphical part of the Training Structures step in a SEAMM flowchart"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">importlib.resources</span>
@@ -737,6 +738,12 @@
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">settings</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">][</span><span class="s2">"settings"</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span>
+        <span class="c1"># Keep the Hessian itself (Paul 2026-11-26): E_h/bohr^2 with the masses,</span>
+        <span class="c1"># geometry and how it was made, next to the step's output; its path,</span>
+        <span class="c1"># relative to the job's directory, goes with the "hessian" property</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">][</span><span class="s2">"file"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_hessian</span><span class="p">(</span>
+            <span class="n">directory</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">],</span> <span class="n">driver</span>
+        <span class="p">)</span>
 
         <span class="c1"># 2. The points, with the generator level for the scans and pre-screen</span>
         <span class="n">points</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="n">x0</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"minimum"</span><span class="p">}]</span>
@@ -1194,6 +1201,30 @@
         <span class="p">)</span>
         <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span></div>
 
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_hessian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Write the Hessian to ``hessian.npz`` in the step's directory</span>
+<span class="sd">        (seamm_exec.hessian.save_hessian) and return its path relative to the</span>
+<span class="sd">        job's directory."""</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_hessian</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"hessian.npz"</span>
+        <span class="n">mc</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">model_chemistry</span><span class="p">()</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">save_hessian</span><span class="p">(</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">H</span><span class="p">,</span>
+            <span class="n">masses</span><span class="p">,</span>
+            <span class="n">x0</span><span class="p">,</span>
+            <span class="n">symbols</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"level"</span><span class="p">)</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="s2">"get"</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">mc</span><span class="p">),</span>
+            <span class="n">charge</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">charge</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">multiplicity</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">reference</span><span class="o">.</span><span class="n">spin_multiplicity</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">"file"</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flowchart</span><span class="o">.</span><span class="n">root_directory</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_put_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">_type</span><span class="o">=</span><span class="s2">"float"</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Store a per-point property (the names in data/properties.csv)."""</span>

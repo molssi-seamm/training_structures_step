@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26.3 documentation</title>
+    <title>History &#8212; SEAMM Training Structures Plug-in 2026.11.26.4 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=28e240c0"></script>
+    <script src="_static/documentation_options.js?v=e36bd00d"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.26.3" />
+  <meta name="docsearch:version" content="2026.11.26.4" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,16 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.26.4 – The Hessian is kept</dt><dd><ul class="simple">
+<li><p>Training Structures writes the Hessian at the minimum to hessian.npz in its
+directory (seamm-exec’s save_hessian: E_h/bohr^2, with the masses, geometry,
+route, settings key and model chemistry), and puts the file’s path, relative to
+the job’s directory, in the “hessian” record as “file”.</p></li>
+<li><p>Export Training Set copies it next to each molecule’s .extxyz as
+&lt;molecule&gt;.hessian.npz, named in the molecule’s record as “hessian file”.</p></li>
+<li><p>Needs seamm-exec 2026.11.26.1.</p></li>
+</ul>
+</dd>
 <dt>2026.11.26.3 – Bugfix: no rotors onto linear groups</dt><dd><ul class="simple">
 <li><p>A single bond onto a linear centre (a nitrile’s or alkyne’s sp carbon, an
 isocyanide’s nitrogen, an allene’s central carbon, or atoms that are collinear
